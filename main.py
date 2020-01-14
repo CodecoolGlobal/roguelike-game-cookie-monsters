@@ -17,7 +17,7 @@ def create_player():
     Returns:
     dictionary
     '''
-
+def players():
 
 def main():
 
