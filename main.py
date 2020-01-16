@@ -7,7 +7,7 @@ PLAYER_START_X = 6
 PLAYER_START_Y = 10
 
 BOARD_WIDTH = 30
-BOARD_HEIGHT = 30
+BOARD_HEIGHT = 20
 
 def create_player():
     pass
@@ -23,13 +23,15 @@ def main():
         'type': 'ingridient', 
         'item_icon': 'F',
         'position_x': 11,
-        'position_y': 2
+        'position_y': 2,
+        'number': 2
         },
     'sugar':{ 
         'type': 'ingridient', 
         'item_icon': 'S',
         'position_x': 9,
-        'position_y': 18
+        'position_y': 18,
+        'number': 6
         }
     }
 
@@ -78,11 +80,20 @@ def main():
                 player['position_x'] += 1
         else:
             pass
+        
+        item_to_delete = ''
 
         for item_key in item:
             if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
                 engine.add_to_inventory(inventory, item_key)
-                
+                item_to_delete = item_key
+                item[item_key]['number'] -= 1 
+        
+        if item_to_delete == '':
+            pass
+        elif item[item_to_delete]['number'] == 0:
+            del item[item_to_delete]
+        
         util.clear_screen()
         print(inventory)
 
