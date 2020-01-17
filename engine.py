@@ -42,11 +42,13 @@ def put_player_on_board(board, player):
         for cell in row:
             if cell == player['player_icon']:
                 board[x][y] = ' '
+
             y += 1
         x += 1
 
-    height = player['position_y'] - 1
-    width = player['position_x'] - 1
+    height = player['position_y']
+    width = player['position_x']
+
     board[height][width] = player['player_icon']
 
     return board
@@ -73,11 +75,6 @@ def put_other_on_board(board, other):
             y += 1
         x += 1
 
-    # for line in board:
-    #     for cell in line:
-    #         if cell == other["other_icon"]:
-    #             cell = " "
-
     x_index = other["position_x"]
     y_index = other["position_y"]
     board[x_index][y_index] = other["other_icon"]
@@ -103,3 +100,19 @@ def get_random_position_of_other(other):
         other["position_y"] += other["step"]
     elif random_selection == 3:
         other["position_y"] -= other["step"]
+
+
+def add_to_inventory(inventory, item_key):
+    """Add to the inventory dictionary a list of items"""
+
+    if item_key in inventory:
+        inventory[item_key] += 1
+    else:
+        inventory[item_key] = 1
+
+
+def put_item_on_board(board, item, item_key):
+
+    board[item[item_key]['position_y']][item[item_key]['position_x']] = item[item_key]['item_icon'] 
+
+    return board
