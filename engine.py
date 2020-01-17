@@ -1,3 +1,6 @@
+import random
+
+
 def create_board(width, height):
     '''
     Creates a new game board based on input parameters.
@@ -33,7 +36,7 @@ def put_player_on_board(board, player):
     Returns:
     Nothing
     '''
-    x = 0 
+    x = 0
     for row in board:
         y = 0
         for cell in row:
@@ -50,6 +53,55 @@ def put_player_on_board(board, player):
 
     return board
 
+
+def put_other_on_board(board, other):
+    '''
+    Modifies the game board by placing the other character icon at its coordinates.
+
+    Args:
+    list: The game board
+    dictionary: The other character information containing the icon and coordinates
+
+    Returns:
+    Nothing
+    '''
+
+    x = 0
+    for row in board:
+        y = 0
+        for cell in row:
+            if cell == other["other_icon"]:
+                board[x][y] = ' '
+            y += 1
+        x += 1
+
+    x_index = other["position_x"]
+    y_index = other["position_y"]
+    board[x_index][y_index] = other["other_icon"]
+
+    return board
+
+
+def get_random_position_of_other(other):
+    """
+    Randomly generates and updates position of Other Character
+    based on the Character's step.
+
+    Args:
+        other: dictionary
+
+    """
+    random_selection = random.randrange(4)
+    if random_selection == 0:
+        other["position_x"] += other["step"]
+    elif random_selection == 1:
+        other["position_x"] -= other["step"]
+    elif random_selection == 2:
+        other["position_y"] += other["step"]
+    elif random_selection == 3:
+        other["position_y"] -= other["step"]
+
+
 def add_to_inventory(inventory, item_key):
     """Add to the inventory dictionary a list of items"""
 
@@ -57,6 +109,7 @@ def add_to_inventory(inventory, item_key):
         inventory[item_key] += 1
     else:
         inventory[item_key] = 1
+
 
 def put_item_on_board(board, item, item_key):
 
