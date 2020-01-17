@@ -6,14 +6,22 @@ PLAYER_ICON = '@'
 PLAYER_START_X = 6
 PLAYER_START_Y = 10
 
+OTHER_NAME = "Miller"
+OTHER2_NAME = "Cook"
+OTHER3_NAME = "Cow"
+
 OTHER_ICON = "M"
-OTHER2_ICON = "K"
-OTHER3_ICON = "C"
+OTHER2_ICON = "C"
+OTHER3_ICON = "K"
+
+OTHER_HEALTH = 3
+OTHER2_HEALTH = 3
+OTHER3_HEALTH = 3
 
 OTHER_START_X = 20
 OTHER_START_Y = 30
 
-OTHER_STEP = 1
+OTHER_STEP = 2
 
 BOARD_WIDTH = 100
 BOARD_HEIGHT = 30
@@ -29,15 +37,22 @@ def create_player():
     '''
 
 
+def create_other():
+    other = {'other_name': OTHER_NAME,
+            'other_icon': OTHER_ICON,
+            'position_x': OTHER_START_X,
+            'position_y': OTHER_START_Y,
+            'step': OTHER_STEP}
+    return other
+
+
 def main():
 
     # player = create_player()
-    # other = create_other()
 
     player = {'player_icon': PLAYER_ICON, 'position_x': PLAYER_START_X, 'position_y': PLAYER_START_Y}
-    other = {'other_icon': OTHER_ICON, 'position_x': OTHER_START_X, 'position_y': OTHER_START_Y, 'step': OTHER_STEP}
     empty_board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
-
+    other = create_other()
     is_running = True
 
     while is_running:

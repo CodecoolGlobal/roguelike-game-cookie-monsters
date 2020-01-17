@@ -86,6 +86,14 @@ def put_other_on_board(board, other):
 
 
 def get_random_position_of_other(other):
+    """
+    Randomly generates and updates position of Other Character
+    based on the Character's step.
+
+    Args:
+        other: dictionary
+
+    """
     random_selection = random.randrange(4)
     if random_selection == 0:
         other["position_x"] += other["step"]
