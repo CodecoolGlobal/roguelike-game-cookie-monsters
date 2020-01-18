@@ -83,24 +83,41 @@ def put_other_on_board(board, other):
     return board
 
 
-def get_random_position_of_other(other):
+def get_random_position_of_other(other, width, height):
     """
     Randomly generates and updates position of Other Character
-    based on the Character's step.
+    based on the Character's step. Other Character respects the walls.
 
     Args:
         other: dictionary
+        BOARD_HEIGHT and BOARD_WEIGHT: int
 
     """
     random_selection = random.randrange(4)
     if random_selection == 0:
-        other["position_x"] += other["step"]
-    elif random_selection == 1:
-        other["position_x"] -= other["step"]
-    elif random_selection == 2:
-        other["position_y"] += other["step"]
-    elif random_selection == 3:
-        other["position_y"] -= other["step"]
+        potential_position = other["position_x"] + other["step"]
+        if potential_position == width:
+            pass
+        else:
+            other["position_x"] += other["step"]
+    if random_selection == 1:
+        potential_position = other["position_x"] - other["step"]
+        if potential_position == 0:
+            pass
+        else:
+            other["position_x"] -= other["step"]
+    if random_selection == 2:
+        potential_position = other["position_y"] + other["step"]
+        if potential_position == height:
+            pass
+        else:
+            other["position_y"] += other["step"]
+    if random_selection == 3:
+        potential_position = other["position_y"] - other["step"]
+        if potential_position == 0:
+            pass
+        else:
+            other["position_y"] -= other["step"]
 
 
 def add_to_inventory(inventory, item_key):
@@ -122,7 +139,7 @@ def put_item_on_board(board, item, item_key):
 
 
 
-def movement(board, player, key, other):
+def movement(board, player, key, other, width, height):
     
         
     if key == 'w':
@@ -130,26 +147,26 @@ def movement(board, player, key, other):
             pass
         else:
             player['position_y'] -= 1
-        get_random_position_of_other(other)
+        get_random_position_of_other(other, width, height)
 
     elif key == 's':
         if player['position_y'] == len(board) - 2:
             pass
         else:
             player['position_y'] += 1
-        get_random_position_of_other(other)
+        get_random_position_of_other(other, width, height)
     elif key == 'a':
         if player['position_x'] == 1:
             pass
         else:
             player['position_x'] -= 1
-        get_random_position_of_other(other)
+        get_random_position_of_other(other, width, height)
     elif key == 'd':
         if player['position_x'] == len(board[0]) - 3:
             pass
         else:
             player['position_x'] += 1
-        get_random_position_of_other(other)
+        get_random_position_of_other(other, width, height)
     else:
         pass
 

@@ -93,7 +93,7 @@ def main():
 
         key = util.key_pressed()
 
-        engine.movement(board, player, key, other)
+        engine.movement(board, player, key, other, BOARD_HEIGHT, BOARD_WIDTH)
         
         util.clear_screen()
 
