@@ -66,18 +66,18 @@ def put_other_on_board(board, other):
     Nothing
     '''
 
-    x = 0
+    y = 0
     for row in board:
-        y = 0
+        x = 0
         for cell in row:
             if cell == other["other_icon"]:
-                board[x][y] = ' '
-            y += 1
-        x += 1
+                board[y][x] = ' '
+            x += 1
+        y += 1
 
-    x_index = other["position_x"]
-    y_index = other["position_y"]
-    board[x_index][y_index] = other["other_icon"]
+    width = other["position_x"]
+    height = other["position_y"]
+    board[height][width] = other["other_icon"]
 
     return board
 
