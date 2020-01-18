@@ -100,11 +100,10 @@ def main():
         engine.item_vs_player(inventory, item, player)
 
         if key == 'i':
-            print('\n')
-            print('This is your inventory content: ')
-            print('\n')
-            print(ui.print_table(inventory))
-            print('\n')
+            message = 'This is your inventory content: '
+            ui.print_message(message)
+            ui.print_table(inventory)
+            
         
         elif key == 'q':
             is_running = False
