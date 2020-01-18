@@ -96,7 +96,7 @@ def get_random_position_of_other(other, width, height):
     random_selection = random.randrange(4)
     if random_selection == 0:
         potential_position = other["position_x"] + other["step"]
-        if potential_position == width:
+        if potential_position == width - 1:
             pass
         else:
             other["position_x"] += other["step"]
@@ -108,7 +108,7 @@ def get_random_position_of_other(other, width, height):
             other["position_x"] -= other["step"]
     if random_selection == 2:
         potential_position = other["position_y"] + other["step"]
-        if potential_position == height:
+        if potential_position == height - 1:
             pass
         else:
             other["position_y"] += other["step"]
@@ -156,6 +156,7 @@ def player_meets_other(other, player):
             if_meet = True
     elif other["position_y"] == player["position_y"] and other["position_x"] == player["position_x"]:
         if_meet = True
+
     return if_meet
 
 
