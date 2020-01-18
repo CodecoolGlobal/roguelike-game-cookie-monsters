@@ -133,15 +133,33 @@ def add_to_inventory(inventory, item_key):
 
 def put_item_on_board(board, item, item_key):
 
-    board[item[item_key]['position_y']][item[item_key]['position_x']] = item[item_key]['item_icon'] 
+    board[item[item_key]['position_y']][item[item_key]['position_x']] = item[item_key]['item_icon']
 
     return board
 
 
+def player_meets_other(other, player):
+    """
+    Checks if Player meets the Other Character (is next to it, above or under)
+    Args:
+        other: dictionary
+        player: dictionary
+    Returns:
+        if_meet: boolean
+    """
+    if_meet = False
+    if other["position_x"] == player["position_x"] + 1 or other["position_x"] == player["position_x"] - 1:
+        if other["position_y"] == player["position_y"]:
+            if_meet = True
+    elif other["position_y"] == player["position_y"] + 1 or other["position_y"] == player["position_y"] - 1:
+        if other["position_x"] == player["position_x"]:
+            if_meet = True
+    elif other["position_y"] == player["position_y"] and other["position_x"] == player["position_x"]:
+        if_meet = True
+    return if_meet
+
 
 def movement(board, player, key, other, width, height):
-    
-        
     if key == 'w':
         if player['position_y'] == 1:
             pass
@@ -170,17 +188,17 @@ def movement(board, player, key, other, width, height):
     else:
         pass
 
+
 def item_vs_player(inventory, item, player):
 
     item_to_delete = ''
 
     for item_key in item:
-            if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
-                add_to_inventory(inventory, item_key)
-                item_to_delete = item_key
-                item[item_key]['number'] -= 1 
-                ui.print_message('This item has been added to your inventory!')
-                
+        if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
+            add_to_inventory(inventory, item_key)
+            item_to_delete = item_key
+            item[item_key]['number'] -= 1
+            ui.print_message('This item has been added to your inventory!')
 
     if item_to_delete == '':
         pass
