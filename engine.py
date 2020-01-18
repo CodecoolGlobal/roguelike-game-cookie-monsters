@@ -1,4 +1,5 @@
 import random
+import ui
 
 
 def create_board(width, height):
@@ -119,27 +120,12 @@ def put_item_on_board(board, item, item_key):
 
     return board
 
-def print_table(inventory):
 
-
-    elements = sorted(inventory, key = inventory.get, reverse=True)
-    print('-' * 17)
-    print ("{:>5} {:<2}".format('item name |', 'count'))
-    print('-' * 17)
-
-    for r in elements:
-        results = (r, inventory[r])
-        print ("{:>12} {:>4}".format(r +' | ', inventory[r]), end = '\n')
-    print('-' * 17)
-
-    return ''
 
 def movement(board, player, key, other):
-
-    if key == 'q':
-            is_running = False
-
-    elif key == 'w':
+    
+        
+    if key == 'w':
         if player['position_y'] == 1:
             pass
         else:
@@ -176,7 +162,7 @@ def item_vs_player(inventory, item, player):
                 add_to_inventory(inventory, item_key)
                 item_to_delete = item_key
                 item[item_key]['number'] -= 1 
-                print('This item has been added to your inventory!')
+                ui.print_message('This item has been added to your inventory!')
                 
 
     if item_to_delete == '':

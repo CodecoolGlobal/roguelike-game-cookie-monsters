@@ -78,9 +78,10 @@ def main():
 
     empty_board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
     other = create_other()
-    is_running = True
 
-    while is_running:
+    is_running = True
+    
+    while is_running: 
 
         board = engine.put_player_on_board(empty_board, player)
         board = engine.put_other_on_board(board, other)
@@ -97,11 +98,18 @@ def main():
         util.clear_screen()
 
         engine.item_vs_player(inventory, item, player)
-        
 
         if key == 'i':
-            print("This is your inventory contentent: ")
-            print(engine.print_table(inventory))
+            print('\n')
+            print('This is your inventory content: ')
+            print('\n')
+            print(ui.print_table(inventory))
+            print('\n')
+        
+        elif key == 'q':
+            is_running = False
+
+        
         
 
 if __name__ == '__main__':
