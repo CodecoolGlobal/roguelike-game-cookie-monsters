@@ -29,27 +29,24 @@ def create_board(width, height):
 def put_player_on_board(board, player):
     '''
     Modifies the game board by placing the player icon at its coordinates.
-
     Args:
     list: The game board
     dictionary: The player information containing the icon and coordinates
-
     Returns:
     Nothing
     '''
+
     x = 0
     for row in board:
         y = 0
         for cell in row:
             if cell == player['player_icon']:
                 board[x][y] = ' '
-
             y += 1
         x += 1
 
     height = player['position_y']
     width = player['position_x']
-
     board[height][width] = player['player_icon']
 
     return board
@@ -58,11 +55,9 @@ def put_player_on_board(board, player):
 def put_other_on_board(board, other):
     '''
     Modifies the game board by placing the other character icon at its coordinates.
-
     Args:
     list: The game board
     dictionary: The other character information containing the icon and coordinates
-
     Returns:
     Nothing
     '''
@@ -71,14 +66,14 @@ def put_other_on_board(board, other):
     for row in board:
         y = 0
         for cell in row:
-            if cell == other["other_icon"]:
+            if cell == other['other_icon']:
                 board[x][y] = ' '
             y += 1
         x += 1
 
-    x_index = other["position_x"]
-    y_index = other["position_y"]
-    board[x_index][y_index] = other["other_icon"]
+    height = other['position_y']
+    width = other['position_x']
+    board[height][width] = other['other_icon']
 
     return board
 
@@ -96,25 +91,25 @@ def get_random_position_of_other(other, width, height):
     random_selection = random.randrange(4)
     if random_selection == 0:
         potential_position = other["position_x"] + other["step"]
-        if potential_position == width - 1:
+        if potential_position >= width - 1:
             pass
         else:
             other["position_x"] += other["step"]
     if random_selection == 1:
         potential_position = other["position_x"] - other["step"]
-        if potential_position == 0:
+        if potential_position <= 0:
             pass
         else:
             other["position_x"] -= other["step"]
     if random_selection == 2:
         potential_position = other["position_y"] + other["step"]
-        if potential_position == height - 1:
+        if potential_position >= height - 1:
             pass
         else:
             other["position_y"] += other["step"]
     if random_selection == 3:
         potential_position = other["position_y"] - other["step"]
-        if potential_position == 0:
+        if potential_position <= 0:
             pass
         else:
             other["position_y"] -= other["step"]
@@ -148,12 +143,10 @@ def player_meets_other(other, player):
         if_meet: boolean
     """
     if_meet = False
-    if other["position_x"] == player["position_x"] + 1 or other["position_x"] == player["position_x"] - 1:
-        if other["position_y"] == player["position_y"]:
-            if_meet = True
-    elif other["position_y"] == player["position_y"] + 1 or other["position_y"] == player["position_y"] - 1:
-        if other["position_x"] == player["position_x"]:
-            if_meet = True
+    if other["position_y"] == player["position_y"] and (other["position_x"] == player["position_x"] + 1 or other["position_x"] == player["position_x"] - 1):
+        if_meet = True
+    elif other["position_x"] == player["position_x"] and (other["position_y"] == player["position_y"] + 1 or other["position_y"] == player["position_y"] - 1):
+        if_meet = True
     elif other["position_y"] == player["position_y"] and other["position_x"] == player["position_x"]:
         if_meet = True
 
@@ -206,3 +199,4 @@ def item_vs_player(inventory, item, player):
 
     elif item[item_to_delete]['number'] == 0:
         del item[item_to_delete]
+

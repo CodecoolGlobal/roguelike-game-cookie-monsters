@@ -3,8 +3,8 @@ import engine
 import ui
 
 PLAYER_ICON = '@'
-PLAYER_START_X = 6
-PLAYER_START_Y = 10
+PLAYER_START_X = 1
+PLAYER_START_Y = 2
 
 OTHER_NAME = "Miller"
 OTHER2_NAME = "Cook"
@@ -21,7 +21,7 @@ OTHER3_HEALTH = 3
 OTHER_START_X = 20
 OTHER_START_Y = 30
 
-OTHER_STEP = 2
+OTHER_STEP = 1
 
 BOARD_WIDTH = 100
 BOARD_HEIGHT = 30
@@ -94,9 +94,11 @@ def main():
 
         key = util.key_pressed()
 
-        engine.movement(board, player, key, other, BOARD_HEIGHT, BOARD_WIDTH)
-
+        engine.movement(board, player, key, other, BOARD_WIDTH, BOARD_HEIGHT)
         util.clear_screen()
+
+        if engine.player_meets_other(other, player):
+            ui.print_message("Now you will fight!")
 
         engine.item_vs_player(inventory, item, player)
 
