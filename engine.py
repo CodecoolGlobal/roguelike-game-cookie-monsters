@@ -105,6 +105,8 @@ def get_random_position_of_other(other):
 def add_to_inventory(inventory, item_key):
     """Add to the inventory dictionary a list of items"""
 
+    item_key = item_key[:-1]
+
     if item_key in inventory:
         inventory[item_key] += 1
     else:
@@ -116,3 +118,69 @@ def put_item_on_board(board, item, item_key):
     board[item[item_key]['position_y']][item[item_key]['position_x']] = item[item_key]['item_icon'] 
 
     return board
+
+def print_table(inventory):
+
+
+    elements = sorted(inventory, key = inventory.get, reverse=True)
+    print('-' * 17)
+    print ("{:>5} {:<2}".format('item name |', 'count'))
+    print('-' * 17)
+
+    for r in elements:
+        results = (r, inventory[r])
+        print ("{:>12} {:>4}".format(r +' | ', inventory[r]), end = '\n')
+    print('-' * 17)
+
+    return ''
+
+def movement(board, player, key, other):
+
+    if key == 'q':
+            is_running = False
+
+    elif key == 'w':
+        if player['position_y'] == 1:
+            pass
+        else:
+            player['position_y'] -= 1
+        get_random_position_of_other(other)
+
+    elif key == 's':
+        if player['position_y'] == len(board) - 2:
+            pass
+        else:
+            player['position_y'] += 1
+        get_random_position_of_other(other)
+    elif key == 'a':
+        if player['position_x'] == 1:
+            pass
+        else:
+            player['position_x'] -= 1
+        get_random_position_of_other(other)
+    elif key == 'd':
+        if player['position_x'] == len(board[0]) - 3:
+            pass
+        else:
+            player['position_x'] += 1
+        get_random_position_of_other(other)
+    else:
+        pass
+
+def item_vs_player(inventory, item, player):
+
+    item_to_delete = ''
+
+    for item_key in item:
+            if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
+                add_to_inventory(inventory, item_key)
+                item_to_delete = item_key
+                item[item_key]['number'] -= 1 
+                print('This item has been added to your inventory!')
+                
+
+    if item_to_delete == '':
+        pass
+
+    elif item[item_to_delete]['number'] == 0:
+        del item[item_to_delete]

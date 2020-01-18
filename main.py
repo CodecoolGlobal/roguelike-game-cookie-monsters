@@ -46,21 +46,36 @@ def main():
 
     player = {'player_icon': PLAYER_ICON, 'position_x': PLAYER_START_X, 'position_y': PLAYER_START_Y}
     item = {
-    'flour':{ 
+    'flour0':{ 
         'type': 'ingridient', 
         'item_icon': 'F',
         'position_x': 11,
         'position_y': 2,
         'number': 2
         },
-    'sugar':{ 
+    'sugar0':{ 
         'type': 'ingridient', 
         'item_icon': 'S',
         'position_x': 9,
         'position_y': 18,
-        'number': 6
+        'number': 1
+        },
+    'sugar2':{ 
+        'type': 'ingridient', 
+        'item_icon': 'S',
+        'position_x': 55,
+        'position_y': 25,
+        'number': 1
+        },
+    'sugar3':{ 
+        'type': 'ingridient', 
+        'item_icon': 'S',
+        'position_x': 90,
+        'position_y': 2,
+        'number': 2
         }
     }
+
     empty_board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
     other = create_other()
     is_running = True
@@ -77,53 +92,17 @@ def main():
 
         key = util.key_pressed()
 
-        if key == 'q':
-            is_running = False
-
-        elif key == 'w':
-            if player['position_y'] == 1:
-                pass
-            else:
-                player['position_y'] -= 1
-            engine.get_random_position_of_other(other)
-
-        elif key == 's':
-            if player['position_y'] == len(board) - 2:
-                pass
-            else:
-                player['position_y'] += 1
-            engine.get_random_position_of_other(other)
-        elif key == 'a':
-            if player['position_x'] == 1:
-                pass
-            else:
-                player['position_x'] -= 1
-            engine.get_random_position_of_other(other)
-        elif key == 'd':
-            if player['position_x'] == len(board[0]) - 3:
-                pass
-            else:
-                player['position_x'] += 1
-            engine.get_random_position_of_other(other)
-        else:
-            pass
-
-        item_to_delete = ''
-
-        for item_key in item:
-            if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
-                engine.add_to_inventory(inventory, item_key)
-                item_to_delete = item_key
-                item[item_key]['number'] -= 1 
-
-        if item_to_delete == '':
-            pass
-        elif item[item_to_delete]['number'] == 0:
-            del item[item_to_delete]
-
+        engine.movement(board, player, key, other)
+        
         util.clear_screen()
-        print(inventory)
 
+        engine.item_vs_player(inventory, item, player)
+        
+
+        if key == 'i':
+            print("This is your inventory contentent: ")
+            print(engine.print_table(inventory))
+        
 
 if __name__ == '__main__':
     main()
