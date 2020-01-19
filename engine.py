@@ -210,7 +210,7 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=2):
     health - it disappears and the Player gets flour.
     """
 
-    print("Play the quiz to get %s from the %s" % (other["other_quiz"]["goal"], other["other_name"]))
+    print("Play the quiz to get %s from the %s" % (other["goal_quiz"], other["other_name"]))
     q_count = 0
     questions = [question for question in questions if question[2] is False]
     while q_count <= questions_number and other["other_health"] > 0:
@@ -226,7 +226,7 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=2):
         q_count += 1
 
     if other["other_health"] > 0:
-        print("To get %s you have to come back and reply correctly to the questions!" % other["other_quiz"]["goal"])
+        print("To get %s you have to come back and reply correctly to the questions!" % other["goal_quiz"])
     else:
         #  here flour(goal) needs to be added to inventory
-        print("Wonderful! The %s gave you %s." % (other["other_name"], other["other_quiz"]["goal"]))
+        print("Wonderful! The %s gave you %s." % (other["other_name"], other["goal_quiz"]))

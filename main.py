@@ -10,26 +10,26 @@ PLAYER_START_X = 1
 PLAYER_START_Y = 2
 PLAYER_HEALTH = 5
 
-OTHER_NAME = "Miller"
-OTHER2_NAME = "Cook"
-OTHER3_NAME = "Cow"
+# OTHER_NAME = "Miller"
+# OTHER2_NAME = "Cook"
+# OTHER3_NAME = "Cow"
 
-OTHER_ICON = "M"
-OTHER2_ICON = "C"
-OTHER3_ICON = "K"
+# OTHER_ICON = "M"
+# OTHER2_ICON = "C"
+# OTHER3_ICON = "K"
 
-OTHER_HEALTH = 3
-OTHER2_HEALTH = 3
-OTHER3_HEALTH = 3
+# OTHER_HEALTH = 3
+# OTHER2_HEALTH = 3
+# OTHER3_HEALTH = 3
 
-OTHER_GOAL = "flour"
-OTHER2_GOAL = "information"
-OTHER3_GOAL = "milk"
+# OTHER_GOAL = "flour"
+# OTHER2_GOAL = "information"
+# OTHER3_GOAL = "milk"
 
-OTHER_START_X = 5
-OTHER_START_Y = 5
+# OTHER_START_X = 5
+# OTHER_START_Y = 5
 
-OTHER_STEP = 1
+# OTHER_STEP = 1
 
 question_prompts = [
     "What's the first name of 'Ooops I did it again' singer?\n(a) Christina\n(b) Britney\n(c) Jessica\n",
@@ -76,24 +76,46 @@ BOARD = {
         }
     }
 
+other = {
+    'other_type': "enemy",
+    'other_name': "Miller",
+    'other_icon': "M",
+    'position_x': 5,
+    'position_y': 5,
+    'step': 1,
+    'other_health': 3,
+    'goal_quiz': "flour"
+    }
+
+other2: {
+    'other_type': "friend",
+    'other_name': "Cook",
+    'other_icon': "C",
+    'position_x': 20,
+    'position_y': 30,
+    'step': 0,
+    'other_health': 3,
+    'goal_quiz': "information"
+    }
+
+other3: {
+    'other_type': "enemy",
+    'other_name': "Cow",
+    'other_icon': "K",
+    'position_x': 33,
+    'position_y': 15,
+    'step': 2,
+    'other_health': 3,
+    'goal_quiz': "milk"
+    }
+
 
 def create_player():
     pass
 
 
 def create_other():
-    other = {
-        'other_name': OTHER_NAME,
-        'other_icon': OTHER_ICON,
-        'position_x': OTHER_START_X,
-        'position_y': OTHER_START_Y,
-        'step': OTHER_STEP,
-        'other_health': OTHER_HEALTH,
-        'other_quiz': {
-            'goal': OTHER_GOAL
-            }
-        }
-    return other
+    pass
 
 
 def main():
@@ -106,6 +128,7 @@ def main():
         'position_y': PLAYER_START_Y,
         'player_health': PLAYER_HEALTH
         }
+
     item = {
         'flour0': {
             'type': 'ingridient',
@@ -138,7 +161,6 @@ def main():
          }
 
     empty_board = engine.create_board(BOARD['BOARD_1'])
-    other = create_other()
 
     is_running = True
 
