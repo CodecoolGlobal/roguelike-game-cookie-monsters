@@ -1,6 +1,7 @@
 import util
 import engine
 import ui
+import time
 
 BOARD_WIDTH = 100
 BOARD_HEIGHT = 30
@@ -9,27 +10,6 @@ PLAYER_ICON = '@'
 PLAYER_START_X = 1
 PLAYER_START_Y = 2
 PLAYER_HEALTH = 5
-
-# OTHER_NAME = "Miller"
-# OTHER2_NAME = "Cook"
-# OTHER3_NAME = "Cow"
-
-# OTHER_ICON = "M"
-# OTHER2_ICON = "C"
-# OTHER3_ICON = "K"
-
-# OTHER_HEALTH = 3
-# OTHER2_HEALTH = 3
-# OTHER3_HEALTH = 3
-
-# OTHER_GOAL = "flour"
-# OTHER2_GOAL = "information"
-# OTHER3_GOAL = "milk"
-
-# OTHER_START_X = 5
-# OTHER_START_Y = 5
-
-# OTHER_STEP = 1
 
 question_prompts = [
     "What's the first name of 'Ooops I did it again' singer?\n(a) Christina\n(b) Britney\n(c) Jessica\n",
@@ -56,23 +36,26 @@ BOARD = {
         'WIDTH': 100,
         'HEIGHT': 30,
         'GATE_POSITION_X': 5,
-        'GATE_POSITION_Y': 0
+        'GATE_POSITION_Y': 0,
+        'NEXT_LEVEL': 'BOARD_2'
         },
-    'BOARD_2': {
+    'BOARD_2':{
         'BRICK': '%',
         'COLOR': 'yellow',
         'WIDTH': 100,
         'HEIGHT': 30,
-        'GATE_POSITION_X': 5,
-        'GATE_POSITION_Y': 0
+        'GATE_POSITION_X': 0,
+        'GATE_POSITION_Y': 10,
+        'NEXT_LEVEL': 'BOARD_3'
         },
-    'BOARD_3': {
+    'BOARD_3':{
         'BRICK': 'X',
         'COLOR': 'yellow',
         'WIDTH': 100,
         'HEIGHT': 30,
-        'GATE_POSITION_X': 5,
-        'GATE_POSITION_Y': 0
+        'GATE_POSITION_X': 60,
+        'GATE_POSITION_Y': 0,
+        'NEXT_LEVEL': 'WIN'
         }
     }
 
@@ -160,36 +143,137 @@ def main():
             }
          }
 
-    empty_board = engine.create_board(BOARD['BOARD_1'])
+    # initial board
+    board = engine.create_board(BOARD['BOARD_1'])
+
+    # initial level
+    level = 'BOARD_1'
 
     is_running = True
 
     while is_running:
 
-        board = engine.put_player_on_board(empty_board, player)
+        if level == 'BOARD_1':
 
-        board = engine.put_other_on_board(board, other)
+            print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+            time.sleep(2.0)
 
-        for item_key in item:
-            board = engine.put_item_on_board(board, item, item_key)
+            while level == 'BOARD_1':
 
-        ui.display_board(board)
+                board = engine.create_board(BOARD[level])
 
-        key = util.key_pressed()
+                board = engine.put_player_on_board(board, player)
+                board = engine.put_other_on_board(board, other)
 
-        engine.movement(board, player, key, other, BOARD_WIDTH, BOARD_HEIGHT)
+                for item_key in item:
+                    board = engine.put_item_on_board(board, item, item_key)
 
-        util.clear_screen()
+                ui.display_board(board)
 
-        engine.item_vs_player(inventory, item, player)
+                key = util.key_pressed()
+                
+                level = engine.player_enters_gate(level, BOARD, player, key)
 
-        if engine.player_meets_other(other, player):
-            engine.player_vs_other_quiz(player, other, item, questions)
+                engine.movement(board, player, key, other)
 
-        if key == 'i':
-            message = 'This is your inventory content: '
-            ui.print_message(message)
-            ui.print_table(inventory)
+                if engine.player_meets_other(other, player):
+                    engine.player_vs_other_quiz(player, other, item, questions)
+
+                if key == 'i':
+                    message = 'This is your inventory content: '
+                    ui.print_message(message)
+                    ui.print_table(inventory)
+
+                engine.item_vs_player(inventory, item, player)
+                
+
+                util.clear_screen()
+
+
+            
+            #level = engine.player_enters_gate(BOARD, player, key)
+    
+        elif level == 'BOARD_2':
+
+            print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+            time.sleep(2.0)
+
+            while level == 'BOARD_2':
+
+                board = engine.create_board(BOARD[level])
+
+                board = engine.put_player_on_board(board, player)
+                board = engine.put_other_on_board(board, other)
+
+                for item_key in item:
+                    board = engine.put_item_on_board(board, item, item_key)
+
+                ui.display_board(board)
+
+                key = util.key_pressed()
+                
+                level = engine.player_enters_gate(level, BOARD, player, key)
+
+                engine.movement(board, player, key, other)
+
+                if engine.player_meets_other(other, player):
+                    engine.player_vs_other_quiz(player, other, item, questions)
+
+                if key == 'i':
+                    message = 'This is your inventory content: '
+                    ui.print_message(message)
+                    ui.print_table(inventory)
+
+                engine.item_vs_player(inventory, item, player)
+                
+
+                util.clear_screen()
+
+        elif level == 'BOARD_3':
+
+            print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+            time.sleep(2.0)
+            
+            while level == 'BOARD_3':
+                
+                board = engine.create_board(BOARD[level])
+
+                board = engine.put_player_on_board(board, player)
+                board = engine.put_other_on_board(board, other)
+
+                for item_key in item:
+                    board = engine.put_item_on_board(board, item, item_key)
+
+                ui.display_board(board)
+
+                key = util.key_pressed()
+                
+                level = engine.player_enters_gate(level, BOARD, player, key)
+
+                engine.movement(board, player, key, other)
+
+                if engine.player_meets_other(other, player):
+                    engine.player_vs_other_quiz(player, other, item, questions)
+
+                if key == 'i':
+                    message = 'This is your inventory content: '
+                    ui.print_message(message)
+                    ui.print_table(inventory)
+
+                engine.item_vs_player(inventory, item, player)
+                
+
+                util.clear_screen()
+        
+        elif level == 'WIN':
+
+            while True:
+                print('YOU WON!!!')
+                time.sleep(0.7)
+                print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
+                time.sleep(0.7)
+
+
 
         elif key == 'q':
             is_running = False
