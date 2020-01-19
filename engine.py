@@ -8,16 +8,18 @@ def create_board(board):
     width = board['WIDTH']
     height = board['HEIGHT']
 
-    board = []
+    new_board = []
 
-    board.append(width * [brick])
+    new_board.append(width * [brick])
 
     for a in range(height - 2):
-        board.append([brick] + (width - 2) * [' '] + [brick])
+        new_board.append([brick] + (width - 2) * [' '] + [brick])
 
-    board.append(width * [brick])
+    new_board.append(width * [brick])
 
-    return board
+    new_board[board['GATE_POSITION_Y']][board['GATE_POSITION_X']] = ' '
+
+    return new_board
 
 def put_player_on_board(board, player):
     '''
@@ -147,6 +149,7 @@ def player_meets_other(other, player):
 
 
 def movement(board, player, key, other):
+
     height = len(board)
     width = len(board[0])
 
@@ -195,4 +198,30 @@ def item_vs_player(inventory, item, player):
 
     elif item[item_to_delete]['number'] == 0:
         del item[item_to_delete]
+
+def player_enters_gate(level, BOARD, player, key):
+
+    # entering gate that is up in relation to player
+    if player['position_x'] == BOARD[level]['GATE_POSITION_X'] and (player['position_y'] - 1) == BOARD[level]['GATE_POSITION_Y'] and key == 'w':
+        return BOARD[level]['NEXT_LEVEL']
+
+    # entering gate that is down in relation to player
+    elif player['position_x'] == BOARD[level]['GATE_POSITION_X'] and (player['position_y'] + 1) == BOARD[level]['GATE_POSITION_Y'] and key == 's':
+        return BOARD[level]['NEXT_LEVEL']
+
+    # entering gate that is left in relation to player
+    elif (player['position_x'] - 1) == BOARD[level]['GATE_POSITION_X'] and player['position_y'] == BOARD[level]['GATE_POSITION_Y'] and key == 'a':
+        return BOARD[level]['NEXT_LEVEL']
+
+    # entering gate that is left in relation to player
+    elif (player['position_x'] + 1) == BOARD[level]['GATE_POSITION_X'] and player['position_y'] == BOARD[level]['GATE_POSITION_Y'] and key == 'a':
+        return BOARD[level]['NEXT_LEVEL']
+
+    else:
+        return level
+
+
+
+
+        
 
