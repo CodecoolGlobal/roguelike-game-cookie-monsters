@@ -22,10 +22,31 @@ OTHER_HEALTH = 3
 OTHER2_HEALTH = 3
 OTHER3_HEALTH = 3
 
+OTHER_GOAL = "flour"
+OTHER2_GOAL = "information"
+OTHER3_GOAL = "milk"
+
 OTHER_START_X = 20
-OTHER_START_Y = 20
+OTHER_START_Y = 3
 
 OTHER_STEP = 1
+
+question_prompts = [
+    "What's the first name of 'Ooops I did it again' singer?\n(a) Christina\n(b) Britney\n(c) Jessica\n",
+    "Which river passes through Vienna?\n(a) Vistula\n(b) Douro\n(c) Danube\n",
+    "What color are bananas?\n(a) Red\n(b) Orange\n(c) Yellow\n",
+    "What band Nergal plays in?\n(a) Behemoth\n(b) Acid Drinkers\n(c) Coma\n",
+    "What is the capital of Australia?\n(a) Sydney\n(b) Canberra\n(c) Melbourne\n",
+    "How many islands there are in Faroe Islands?\n(a) 412\n(b) 779\n(c) 18\n"
+    ]
+
+questions = [
+    [question_prompts[0], "b", False],
+    [question_prompts[1], "c", False],
+    [question_prompts[2], "c", False],
+    [question_prompts[3], "b", False],
+    [question_prompts[4], "b", False],
+]
 
 
 def create_player():
@@ -39,7 +60,10 @@ def create_other():
         'position_x': OTHER_START_X,
         'position_y': OTHER_START_Y,
         'step': OTHER_STEP,
-        'other_health': OTHER_HEALTH
+        'other_health': OTHER_HEALTH,
+        'other_quiz': {
+            'goal': OTHER_GOAL
+            }
         }
     return other
 
@@ -85,7 +109,6 @@ def main():
             }
          }
 
-
     empty_board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
     other = create_other()
 
@@ -94,9 +117,8 @@ def main():
     while is_running:
 
         board = engine.put_player_on_board(empty_board, player)
-        
-        if other["other_health"] > 0:
-            board = engine.put_other_on_board(board, other)
+
+        board = engine.put_other_on_board(board, other)
 
         for item_key in item:
             board = engine.put_item_on_board(board, item, item_key)
@@ -109,10 +131,10 @@ def main():
 
         util.clear_screen()
 
-        if engine.player_meets_other(other, player):
-            engine.player_vs_other_quiz(player, other, item, questions_number=2)
-
         engine.item_vs_player(inventory, item, player)
+
+        if engine.player_meets_other(other, player):
+            engine.player_vs_other_quiz(player, other, item, questions)
 
         if key == 'i':
             message = 'This is your inventory content: '

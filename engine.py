@@ -73,7 +73,8 @@ def put_other_on_board(board, other):
 
     height = other['position_y']
     width = other['position_x']
-    board[height][width] = other['other_icon']
+    if other["other_health"] > 0:
+        board[height][width] = other['other_icon']
 
     return board
 
@@ -203,7 +204,7 @@ def item_vs_player(inventory, item, player):
         del item[item_to_delete]
 
 
-def player_vs_other_quiz(player, other, item, questions_number=3):
+def player_vs_other_quiz(player, other, item, questions, questions_number=3):
     """
     Player fights agains the Other Character answering questions.
     When Player replies correctly, the Other Character loses health points.
@@ -211,23 +212,11 @@ def player_vs_other_quiz(player, other, item, questions_number=3):
     Player losing heath - game over. The Other Character losing
     health - it disappears and the Player gets flour.
     """
-    question_prompts = [
-        "What's the first name of 'Ooops I did it again' singer?\n(a) Christina\n(b) Britney\n(c) Jessica\n",
-        "Which river passes through Vienna?\n(a) Vistula\n(b) Douro\n(c) Danube\n",
-        "What color are bananas?\n(a) Red\n(b) Orange\n(c) Yellow\n",
-        "What band Nergal plays in?\n(a) Behemoth\n(b) Acid Drinkers\n(c) Coma\n"
-        ]
 
-    questions = [
-        [question_prompts[0], "b", False],
-        [question_prompts[1], "c", False],
-        [question_prompts[2], "c", False],
-        [question_prompts[3], "a", False]
-    ]
-
-    print("Play the quiz to get flower from the Miller")
+    print("Play the quiz to get %s from the %s" % (other["other_quiz"]["goal"], other["other_name"]))
     q_count = 0
-    while q_count <= questions_number and other["other_health"] > 0 and questions[q_count][2] is False:
+    questions = [question for question in questions if question[2] is False]
+    while q_count <= questions_number and other["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
             player["player_health"] += 1
@@ -240,7 +229,7 @@ def player_vs_other_quiz(player, other, item, questions_number=3):
         q_count += 1
 
     if other["other_health"] > 0:
-        print("To get flour you have to come back and reply correctly to the questions!")
+        print("To get %s you have to come back and reply correctly to the questions!" % other["other_quiz"]["goal"])
     else:
-        item["flour0"]["number"] += 1
-        print("Wonderful! The Miller gave you flour.")
+        item["flour0"]["number"] += 1  # how to add flour to inventory?
+        print("Wonderful! The %s gave you %s." % (other["other_name"], other["other_quiz"]["goal"]))
