@@ -107,41 +107,42 @@ def main():
 
     player = {'player_icon': PLAYER_ICON, 'position_x': PLAYER_START_X, 'position_y': PLAYER_START_Y, 'life_points': 3}
     item = {
-    'eggs0':{ 
-        'type': 'ingridient', 
-        'item_icon': 'E',
-        'position_x': 11,
-        'position_y': 2,
-        'number': 2
-        },
-    'sugar0':{ 
-        'type': 'ingridient', 
-        'item_icon': 'S',
-        'position_x': 9,
-        'position_y': 18,
-        'number': 1
-        },
-    'sugar2':{ 
-        'type': 'ingridient', 
-        'item_icon': 'S',
-        'position_x': 55,
-        'position_y': 25,
-        'number': 1
-        },
-    'sugar3':{ 
-        'type': 'ingridient', 
-        'item_icon': 'S',
-        'position_x': 90,
-        'position_y': 2,
-        'number': 2
-        },
-    'first_aid':{ 
-        'type': 'life', 
-        'item_icon': 'A',
-        'position_x': 70,
-        'position_y': 15,
-        'number': 1
-    },
+        'eggs0':{
+            'type': 'ingridient',
+            'item_icon': 'E',
+            'position_x': 11,
+            'position_y': 2,
+            'number': 2
+            },
+        'sugar0':{ 
+            'type': 'ingridient', 
+            'item_icon': 'S',
+            'position_x': 9,
+            'position_y': 18,
+            'number': 1
+            },
+        'sugar2':{ 
+            'type': 'ingridient', 
+            'item_icon': 'S',
+            'position_x': 55,
+            'position_y': 25,
+            'number': 1
+            },
+        'sugar3':{ 
+            'type': 'ingridient', 
+            'item_icon': 'S',
+            'position_x': 90,
+            'position_y': 2,
+            'number': 2
+            },
+        'first_aid':{ 
+            'type': 'life', 
+            'item_icon': 'A',
+            'position_x': 70,
+            'position_y': 15,
+            'number': 1
+        }
+    }
     player = {
         'player_icon': PLAYER_ICON,
         'position_x': PLAYER_START_X,
@@ -242,33 +243,33 @@ def main():
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
 
-        engine.movement(board, player, key, other)
-        engine.add_life_points(item, player)
-        
-        util.clear_screen()
-                for item_key in item:
-                    board = engine.put_item_on_board(board, item, item_key)
+            engine.movement(board, player, key, other)
+            engine.add_life_points(item, player)
+            
+            util.clear_screen()
+            for item_key in item:
+                board = engine.put_item_on_board(board, item, item_key)
 
-                ui.display_board(board)
+            ui.display_board(board)
 
-                key = util.key_pressed()
-                
-                level = engine.player_enters_gate(level, BOARD, player, key)
+            key = util.key_pressed()
+            
+            level = engine.player_enters_gate(level, BOARD, player, key)
 
-                engine.movement(board, player, key, other)
+            engine.movement(board, player, key, other)
 
-                if engine.player_meets_other(other, player):
-                    engine.player_vs_other_quiz(player, other, item, questions)
+            if engine.player_meets_other(other, player):
+                engine.player_vs_other_quiz(player, other, item, questions)
 
-                if key == 'i':
-                    message = 'This is your inventory content: '
-                    ui.print_message(message)
-                    ui.print_table(inventory)
+            if key == 'i':
+                message = 'This is your inventory content: '
+                ui.print_message(message)
+                ui.print_table(inventory)
 
-                engine.item_vs_player(inventory, item, player)
-                
+            engine.item_vs_player(inventory, item, player)
+            
 
-                util.clear_screen()
+            util.clear_screen()
 
         elif level == 'BOARD_3':
 
@@ -319,10 +320,6 @@ def main():
         elif key == 'q':
             is_running = False
 
-       
-
-        
-        
 
 if __name__ == '__main__':
     main()
