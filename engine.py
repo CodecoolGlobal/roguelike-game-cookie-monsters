@@ -2,26 +2,20 @@ import random
 import ui
 
 
-def create_board(width, height):
-    '''
-    Creates a new game board based on input parameters.
+def create_board(board):
 
-    Args:
-    int: The width of the board
-    int: The height of the board
-
-    Returns:
-    list: Game board
-    '''
+    brick = board['BRICK']
+    width = board['WIDTH']
+    height = board['HEIGHT']
 
     board = []
 
-    board.append([''] + width * ['-'])
+    board.append(width * [brick])
 
     for a in range(height - 2):
-        board.append(['|'] + (width - 2) * [' '] + ['|'])
+        board.append([brick] + (width - 2) * [' '] + [brick])
 
-    board.append([''] + width * ['-'])
+    board.append(width * [brick])
 
     return board
 
@@ -157,6 +151,9 @@ def player_meets_other(other, player):
 
 
 def movement(board, player, key, other, width, height):
+    height = len(board)
+    width = len(board[0])
+
     if key == 'w':
         if player['position_y'] == 1:
             pass
@@ -204,12 +201,12 @@ def item_vs_player(inventory, item, player):
         del item[item_to_delete]
 
 
-def player_vs_other_quiz(player, other, item, questions, questions_number=3):
+def player_vs_other_quiz(player, other, item, questions, questions_number=2):
     """
     Player fights agains the Other Character answering questions.
     When Player replies correctly, the Other Character loses health points.
     Otherwise Player loses health points.
-    Player losing heath - game over. The Other Character losing
+    Player lost all health - game over. The Other Character losing
     health - it disappears and the Player gets flour.
     """
 
@@ -231,5 +228,5 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=3):
     if other["other_health"] > 0:
         print("To get %s you have to come back and reply correctly to the questions!" % other["other_quiz"]["goal"])
     else:
-        item["flour0"]["number"] += 1  # how to add flour to inventory?
+        #  here flour(goal) needs to be added to inventory
         print("Wonderful! The %s gave you %s." % (other["other_name"], other["other_quiz"]["goal"]))

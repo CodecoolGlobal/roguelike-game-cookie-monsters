@@ -26,8 +26,8 @@ OTHER_GOAL = "flour"
 OTHER2_GOAL = "information"
 OTHER3_GOAL = "milk"
 
-OTHER_START_X = 20
-OTHER_START_Y = 3
+OTHER_START_X = 5
+OTHER_START_Y = 5
 
 OTHER_STEP = 1
 
@@ -44,9 +44,37 @@ questions = [
     [question_prompts[0], "b", False],
     [question_prompts[1], "c", False],
     [question_prompts[2], "c", False],
-    [question_prompts[3], "b", False],
+    [question_prompts[3], "a", False],
     [question_prompts[4], "b", False],
+    [question_prompts[5], "b", False],
 ]
+
+BOARD = {
+    'BOARD_1': {
+        'BRICK': '#',
+        'COLOR': 'green',
+        'WIDTH': 100,
+        'HEIGHT': 30,
+        'GATE_POSITION_X': 5,
+        'GATE_POSITION_Y': 0
+        },
+    'BOARD_2': {
+        'BRICK': '%',
+        'COLOR': 'yellow',
+        'WIDTH': 100,
+        'HEIGHT': 30,
+        'GATE_POSITION_X': 5,
+        'GATE_POSITION_Y': 0
+        },
+    'BOARD_3': {
+        'BRICK': 'X',
+        'COLOR': 'yellow',
+        'WIDTH': 100,
+        'HEIGHT': 30,
+        'GATE_POSITION_X': 5,
+        'GATE_POSITION_Y': 0
+        }
+    }
 
 
 def create_player():
@@ -109,7 +137,7 @@ def main():
             }
          }
 
-    empty_board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
+    empty_board = engine.create_board(BOARD['BOARD_1'])
     other = create_other()
 
     is_running = True
