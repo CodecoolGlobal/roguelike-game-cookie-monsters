@@ -44,11 +44,11 @@ def main():
     inventory = {}
     # player = create_player()
 
-    player = {'player_icon': PLAYER_ICON, 'position_x': PLAYER_START_X, 'position_y': PLAYER_START_Y}
+    player = {'player_icon': PLAYER_ICON, 'position_x': PLAYER_START_X, 'position_y': PLAYER_START_Y, 'life_points': 3}
     item = {
-    'flour0':{ 
+    'eggs0':{ 
         'type': 'ingridient', 
-        'item_icon': 'F',
+        'item_icon': 'E',
         'position_x': 11,
         'position_y': 2,
         'number': 2
@@ -73,6 +73,13 @@ def main():
         'position_x': 90,
         'position_y': 2,
         'number': 2
+        },
+    'first_aid':{ 
+        'type': 'life', 
+        'item_icon': 'A',
+        'position_x': 70,
+        'position_y': 15,
+        'number': 1
         }
     }
 
@@ -94,6 +101,7 @@ def main():
         key = util.key_pressed()
 
         engine.movement(board, player, key, other)
+        engine.add_life_points(item, player)
         
         util.clear_screen()
 
@@ -107,6 +115,8 @@ def main():
         
         elif key == 'q':
             is_running = False
+
+       
 
         
         

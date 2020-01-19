@@ -108,7 +108,10 @@ def add_to_inventory(inventory, item_key):
 
     item_key = item_key[:-1]
 
-    if item_key in inventory:
+    if item_key == 'first_ai':
+        pass
+
+    elif item_key in inventory:
         inventory[item_key] += 1
     else:
         inventory[item_key] = 1
@@ -158,10 +161,14 @@ def item_vs_player(inventory, item, player):
     item_to_delete = ''
 
     for item_key in item:
-            if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
-                add_to_inventory(inventory, item_key)
-                item_to_delete = item_key
-                item[item_key]['number'] -= 1 
+        if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
+            add_to_inventory(inventory, item_key)
+            item_to_delete = item_key
+            item[item_key]['number'] -= 1
+
+            if item_key == 'first_aid':
+                ui.print_message(' +1 Life point! ')
+            else:
                 ui.print_message('This item has been added to your inventory!')
                 
 
@@ -170,3 +177,13 @@ def item_vs_player(inventory, item, player):
 
     elif item[item_to_delete]['number'] == 0:
         del item[item_to_delete]
+
+def add_life_points(item, player):
+
+    try:
+
+        if item['first_aid']['position_x'] == player['position_x'] and item['first_aid']['position_y'] == player['position_y']:
+            player['life_points'] += 1
+        
+    except KeyError:
+        pass
