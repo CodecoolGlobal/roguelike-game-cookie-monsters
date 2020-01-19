@@ -18,14 +18,37 @@ OTHER_HEALTH = 3
 OTHER2_HEALTH = 3
 OTHER3_HEALTH = 3
 
-OTHER_START_X = 20
-OTHER_START_Y = 30
+OTHER_START_X = 5
+OTHER_START_Y = 5
 
 OTHER_STEP = 1
 
-BOARD_WIDTH = 100
-BOARD_HEIGHT = 30
-
+BOARD = {
+    'BOARD_1':{
+        'BRICK': '#',
+        'COLOR': 'green',
+        'WIDTH': 100,
+        'HEIGHT': 30,
+        'GATE_POSITION_X': 5,
+        'GATE_POSITION_Y': 0
+        },
+    'BOAR_2':{
+        'BRICK': '%',
+        'COLOR': 'yellow',
+        'WIDTH': 100,
+        'HEIGHT': 30,
+        'GATE_POSITION_X': 5,
+        'GATE_POSITION_Y': 0
+        },
+    'BOAR_3':{
+        'BRICK': 'X',
+        'COLOR': 'yellow',
+        'WIDTH': 100,
+        'HEIGHT': 30,
+        'GATE_POSITION_X': 5,
+        'GATE_POSITION_Y': 0
+        }
+    }
 
 def create_player():
     pass
@@ -49,7 +72,7 @@ def main():
     item = {
         'flour0': {
             'type': 'ingridient',
-            'item_icon': 'F',
+            'item_icon': 'S',
             'position_x': 11,
             'position_y': 2,
             'number': 2
@@ -70,14 +93,14 @@ def main():
             },
         'sugar3': {
             'type': 'ingridient',
-            'item_icon': 'S',
+            'item_icon': 'F',
             'position_x': 90,
             'position_y': 2,
             'number': 2
             }
          }
 
-    empty_board = engine.create_board(BOARD_WIDTH, BOARD_HEIGHT)
+    empty_board = engine.create_board(BOARD['BOARD_1'])
     other = create_other()
 
     is_running = True
@@ -94,7 +117,7 @@ def main():
 
         key = util.key_pressed()
 
-        engine.movement(board, player, key, other, BOARD_WIDTH, BOARD_HEIGHT)
+        engine.movement(board, player, key, other)
         util.clear_screen()
 
         if engine.player_meets_other(other, player):

@@ -2,29 +2,22 @@ import random
 import ui
 
 
-def create_board(width, height):
-    '''
-    Creates a new game board based on input parameters.
+def create_board(board):
 
-    Args:
-    int: The width of the board
-    int: The height of the board
-
-    Returns:
-    list: Game board
-    '''
+    brick = board['BRICK']
+    width = board['WIDTH']
+    height = board['HEIGHT']
 
     board = []
 
-    board.append([''] + width * ['-'])
+    board.append(width * [brick])
 
     for a in range(height - 2):
-        board.append(['|'] + (width - 2) * [' '] + ['|'])
+        board.append([brick] + (width - 2) * [' '] + [brick])
 
-    board.append([''] + width * ['-'])
+    board.append(width * [brick])
 
     return board
-
 
 def put_player_on_board(board, player):
     '''
@@ -153,7 +146,10 @@ def player_meets_other(other, player):
     return if_meet
 
 
-def movement(board, player, key, other, width, height):
+def movement(board, player, key, other):
+    height = len(board)
+    width = len(board[0])
+
     if key == 'w':
         if player['position_y'] == 1:
             pass
