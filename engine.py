@@ -21,6 +21,7 @@ def create_board(board):
 
     return new_board
 
+
 def put_player_on_board(board, player):
     '''
     Modifies the game board by placing the player icon at its coordinates.
@@ -68,7 +69,8 @@ def put_other_on_board(board, other):
 
     height = other['position_y']
     width = other['position_x']
-    board[height][width] = other['other_icon']
+    if other["other_health"] > 0:
+        board[height][width] = other['other_icon']
 
     return board
 
@@ -83,31 +85,32 @@ def get_random_position_of_other(other, width, height):
         BOARD_HEIGHT and BOARD_WEIGHT: int
 
     """
-    random_selection = random.randrange(4)
-    if random_selection == 0:
-        potential_position = other["position_x"] + other["step"]
-        if potential_position >= width - 1:
-            pass
-        else:
-            other["position_x"] += other["step"]
-    if random_selection == 1:
-        potential_position = other["position_x"] - other["step"]
-        if potential_position <= 0:
-            pass
-        else:
-            other["position_x"] -= other["step"]
-    if random_selection == 2:
-        potential_position = other["position_y"] + other["step"]
-        if potential_position >= height - 1:
-            pass
-        else:
-            other["position_y"] += other["step"]
-    if random_selection == 3:
-        potential_position = other["position_y"] - other["step"]
-        if potential_position <= 0:
-            pass
-        else:
-            other["position_y"] -= other["step"]
+    if other["other_health"] > 0:
+        random_selection = random.randrange(4)
+        if random_selection == 0:
+            potential_position = other["position_x"] + other["step"]
+            if potential_position >= width - 1:
+                pass
+            else:
+                other["position_x"] += other["step"]
+        if random_selection == 1:
+            potential_position = other["position_x"] - other["step"]
+            if potential_position <= 0:
+                pass
+            else:
+                other["position_x"] -= other["step"]
+        if random_selection == 2:
+            potential_position = other["position_y"] + other["step"]
+            if potential_position >= height - 1:
+                pass
+            else:
+                other["position_y"] += other["step"]
+        if random_selection == 3:
+            potential_position = other["position_y"] - other["step"]
+            if potential_position <= 0:
+                pass
+            else:
+                other["position_y"] -= other["step"]
 
 
 def add_to_inventory(inventory, item_key):
@@ -138,12 +141,13 @@ def player_meets_other(other, player):
         if_meet: boolean
     """
     if_meet = False
-    if other["position_y"] == player["position_y"] and (other["position_x"] == player["position_x"] + 1 or other["position_x"] == player["position_x"] - 1):
-        if_meet = True
-    elif other["position_x"] == player["position_x"] and (other["position_y"] == player["position_y"] + 1 or other["position_y"] == player["position_y"] - 1):
-        if_meet = True
-    elif other["position_y"] == player["position_y"] and other["position_x"] == player["position_x"]:
-        if_meet = True
+    if other["other_health"] > 0:
+        if other["position_y"] == player["position_y"] and (other["position_x"] == player["position_x"] + 1 or other["position_x"] == player["position_x"] - 1):
+            if_meet = True
+        elif other["position_x"] == player["position_x"] and (other["position_y"] == player["position_y"] + 1 or other["position_y"] == player["position_y"] - 1):
+            if_meet = True
+        elif other["position_y"] == player["position_y"] and other["position_x"] == player["position_x"]:
+            if_meet = True
 
     return if_meet
 
@@ -225,3 +229,33 @@ def player_enters_gate(level, BOARD, player, key):
 
         
 
+
+def player_vs_other_quiz(player, other, item, questions, questions_number=2):
+    """
+    Player fights agains the Other Character answering questions.
+    When Player replies correctly, the Other Character loses health points.
+    Otherwise Player loses health points.
+    Player lost all health - game over. The Other Character losing
+    health - it disappears and the Player gets flour.
+    """
+
+    print("Play the quiz to get %s from the %s" % (other["other_quiz"]["goal"], other["other_name"]))
+    q_count = 0
+    questions = [question for question in questions if question[2] is False]
+    while q_count <= questions_number and other["other_health"] > 0:
+        answer = input(questions[q_count][0])
+        if answer == questions[q_count][1]:
+            player["player_health"] += 1
+            other["other_health"] -= 1
+            questions[q_count][2] = True
+            print("Correct!")
+        else:
+            player["player_health"] -= 1
+            print("Wrong!")
+        q_count += 1
+
+    if other["other_health"] > 0:
+        print("To get %s you have to come back and reply correctly to the questions!" % other["other_quiz"]["goal"])
+    else:
+        #  here flour(goal) needs to be added to inventory
+        print("Wonderful! The %s gave you %s." % (other["other_name"], other["other_quiz"]["goal"]))
