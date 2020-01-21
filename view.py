@@ -1,6 +1,5 @@
 import data_manager
-import players
-import menu_start
+
 
 
 BOARD_WIDTH = 100

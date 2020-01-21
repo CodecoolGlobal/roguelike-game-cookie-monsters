@@ -32,4 +32,3 @@ def run():
         elif choice == '0':
             view.exit_message() 
             sys.exit()   
-run()

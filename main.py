@@ -105,7 +105,6 @@ def create_other():
 def main():
     inventory = {}
 
-
     player = {'player_icon': PLAYER_ICON, 'position_x': PLAYER_START_X, 'position_y': PLAYER_START_Y, 'life_points': 3}
     item = {
         'eggs0':{
@@ -191,7 +190,7 @@ def main():
     is_running = True
 
     while is_running:
-
+        menu_start.run()
         if level == 'BOARD_1':
 
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
