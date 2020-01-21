@@ -1,0 +1,4 @@
+Natalia,CookieBaby,1,3
+Natka,CookieBaby,1,3
+Nati,CookieMen,3,2
+Cookiebaby,CookieBaby,5,1
