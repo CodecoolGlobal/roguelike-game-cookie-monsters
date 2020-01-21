@@ -1,5 +1,6 @@
 import data_manager
 import players
+import menu_start
 
 
 BOARD_WIDTH = 100
@@ -10,7 +11,7 @@ file_results = "results.txt"
 
 label_results = ["Nickname", "Time", "Points", "Life"]
 
-def start_decriptions():
+def start_descriptions():
     print("Hello in our cookie games \n")
     print("Maybe Do you want to play some game :D? \n")
     print("So, first you have to get mi some informations about You :) \n")

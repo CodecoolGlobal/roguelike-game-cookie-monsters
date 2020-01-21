@@ -1,7 +1,7 @@
 import data_manager
 import view
 import sys
-import main
+
 
 
 
@@ -51,7 +51,6 @@ def user_info(list_labels, player_nickname):
 def run():
     
     try:
-        view.print_table(user_info(list_labels,data_manager.read_file_nicknames(file_nicknames)))  
-        main.run()  
+        view.print_table(user_info(list_labels,data_manager.read_file_nicknames(file_nicknames)))    
     except Exception as error:
         print(str(error))

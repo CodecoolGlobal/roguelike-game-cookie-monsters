@@ -4,6 +4,7 @@ import ui
 import time
 import players
 import menu_start
+import view
 
 BOARD_WIDTH = 100
 BOARD_HEIGHT = 30
@@ -101,7 +102,7 @@ def create_other():
 
 
 
-def run():
+def main():
     inventory = {}
 
 

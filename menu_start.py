@@ -20,7 +20,7 @@ label_results = ["Nickname", "Time", "Points", "Life"]
 
 
 def run():
-    view.start_decriptions()
+    view.start_descriptions()
     view.print_menu(list_options)
     choice = input(str('Your choice is:' )) 
     while True:
