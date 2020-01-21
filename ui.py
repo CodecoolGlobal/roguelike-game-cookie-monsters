@@ -24,3 +24,8 @@ def print_table(inventory):
 
 def print_message(message):
     print(message)
+
+def print_player_essential_atributes(player):
+    print()
+    print('LIFE: ', player['player_health'] * '♥️ ', " | ", "POWER: ", player['player_power'] * '🥄')
+    print()
