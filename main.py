@@ -150,36 +150,6 @@ def main():
         'player_power': 1
         }
 
-    item = {
-        'flour0': {
-            'type': 'ingridient',
-            'item_icon': 'F',
-            'position_x': 11,
-            'position_y': 2,
-            'number': 2
-            },
-        'sugar0': {
-            'type': 'ingridient',
-            'item_icon': 'S',
-            'position_x': 9,
-            'position_y': 18,
-            'number': 1
-            },
-        'sugar2': {
-            'type': 'ingridient',
-            'item_icon': 'S',
-            'position_x': 55,
-            'position_y': 25,
-            'number': 1
-            },
-        'sugar3': {
-            'type': 'ingridient',
-            'item_icon': 'S',
-            'position_x': 90,
-            'position_y': 2,
-            'number': 2
-            }
-         }
 
     # initial board
     board = engine.create_board(BOARD['BOARD_1'])
@@ -203,19 +173,10 @@ def main():
 
             while level == 'BOARD_1':
 
-<<<<<<< HEAD
-
-=======
-                # Set up board
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
                 board = engine.create_board(BOARD[level])
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
-<<<<<<< HEAD
-                
-=======
                 board = engine.put_item_on_board(board, item)
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
 
                 # Display essential info
                 ui.print_player_essential_atributes(player)
@@ -223,10 +184,6 @@ def main():
                 # Display board
                 ui.display_board(board)
 
-<<<<<<< HEAD
-                engine.item_vs_player(inventory, item, player)
-                
-=======
                 # Interaction whit items
                 engine.item_vs_player(inventory, item, player)
 
@@ -237,7 +194,6 @@ def main():
                     ui.print_table(inventory)
 
                 # Player input
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
                 key = util.key_pressed()
                 
                 # Movement
@@ -250,26 +206,18 @@ def main():
                 # Gate and level change handling
                 level = engine.player_enters_gate(level, BOARD, player, key)
 
-<<<<<<< HEAD
-                #util.clear_screen()
-                 
-            #level = engine.player_enters_gate(BOARD, player, key)
-    
-        elif level == 'BOARD_2':
-=======
                 # Check if quit
                 if key == 'q':
                     level = 'QUIT'
 
                 # Clear screen
-                util.clear_screen()
+            util.clear_screen()
 
 
 
 
         # BOARD 2
         if level == 'BOARD_2':
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
 
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
             time.sleep(1.0)
@@ -359,16 +307,6 @@ def main():
                 if engine.player_meets_other(other, player):
                     engine.player_vs_other_quiz(player, other, item, questions)
 
-<<<<<<< HEAD
-                
-
-                engine.item_vs_player(inventory, item, player)
-                
-       
-                
-        
-        elif level == 'WIN':
-=======
                 # Gate and level change handling
                 level = engine.player_enters_gate(level, BOARD, player, key)
 
@@ -378,7 +316,6 @@ def main():
 
                 # Clear screen
                 util.clear_screen()
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
 
 
     if level == 'WIN':
