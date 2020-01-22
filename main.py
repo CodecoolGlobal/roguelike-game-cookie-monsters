@@ -105,7 +105,6 @@ menu_start.run()
 def main():
     inventory = {}
 
-    player = {'player_icon': PLAYER_ICON, 'position_x': PLAYER_START_X, 'position_y': PLAYER_START_Y, 'life_points': 3}
     item = {
         'eggs0':{
             'type': 'ingridient',
@@ -147,7 +146,8 @@ def main():
         'player_icon': PLAYER_ICON,
         'position_x': PLAYER_START_X,
         'position_y': PLAYER_START_Y,
-        'player_health': PLAYER_HEALTH
+        'player_health': 3,
+        'player_power': 1
         }
 
     item = {
@@ -187,138 +187,180 @@ def main():
     # initial level
     level = 'BOARD_1'
 
-    is_running = True
+    # initial key
+    key = ''
 
-    while is_running:
-        
+
+    while level != 'WIN' and level != 'QUIT':
+
+
+        # BOARD 1
         if level == 'BOARD_1':
 
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
-            time.sleep(2.0)
+            time.sleep(1.0)
+            util.clear_screen()
 
             while level == 'BOARD_1':
 
+                # Set up board
                 board = engine.create_board(BOARD[level])
-
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
+                board = engine.put_item_on_board(board, item)
 
-                for item_key in item:
-                    board = engine.put_item_on_board(board, item, item_key)
-
+                # Display essential info
+                ui.print_player_essential_atributes(player)
+                
+                # Display board
                 ui.display_board(board)
 
-                key = util.key_pressed()
-                
-                level = engine.player_enters_gate(level, BOARD, player, key)
+                # Interaction whit items
+                engine.item_vs_player(inventory, item, player)
 
-                engine.movement(board, player, key, other)
-
-                if engine.player_meets_other(other, player):
-                    engine.player_vs_other_quiz(player, other, item, questions)
-
+                # Display inventory
                 if key == 'i':
                     message = 'This is your inventory content: '
                     ui.print_message(message)
                     ui.print_table(inventory)
 
-                engine.item_vs_player(inventory, item, player)
+                # Player input
+                key = util.key_pressed()
                 
+                # Movement
+                engine.movement(board, player, key, other)
 
+                # Interaction with other characters
+                if engine.player_meets_other(other, player):
+                    engine.player_vs_other_quiz(player, other, item, questions)
+
+                # Gate and level change handling
+                level = engine.player_enters_gate(level, BOARD, player, key)
+
+                # Check if quit
+                if key == 'q':
+                    level = 'QUIT'
+
+                # Clear screen
                 util.clear_screen()
 
 
-            
-            #level = engine.player_enters_gate(BOARD, player, key)
-    
-        elif level == 'BOARD_2':
+
+
+        # BOARD 2
+        if level == 'BOARD_2':
 
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
-            time.sleep(2.0)
+            time.sleep(1.0)
+            util.clear_screen()
 
             while level == 'BOARD_2':
 
+                # Set up board
                 board = engine.create_board(BOARD[level])
-
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
+                board = engine.put_item_on_board(board, item)
 
-            engine.movement(board, player, key, other)
-            engine.add_life_points(item, player)
-            
-            util.clear_screen()
-            for item_key in item:
-                board = engine.put_item_on_board(board, item, item_key)
-
-            ui.display_board(board)
-
-            key = util.key_pressed()
-            
-            level = engine.player_enters_gate(level, BOARD, player, key)
-
-            engine.movement(board, player, key, other)
-
-            if engine.player_meets_other(other, player):
-                engine.player_vs_other_quiz(player, other, item, questions)
-
-            if key == 'i':
-                message = 'This is your inventory content: '
-                ui.print_message(message)
-                ui.print_table(inventory)
-
-            engine.item_vs_player(inventory, item, player)
-            
-
-            util.clear_screen()
-
-        elif level == 'BOARD_3':
-
-            print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
-            time.sleep(2.0)
-            
-            while level == 'BOARD_3':
+                # Display essential info
+                ui.print_player_essential_atributes(player)
                 
-                board = engine.create_board(BOARD[level])
-
-                board = engine.put_player_on_board(board, player)
-                board = engine.put_other_on_board(board, other)
-
-                for item_key in item:
-                    board = engine.put_item_on_board(board, item, item_key)
-
+                # Display board
                 ui.display_board(board)
 
-                key = util.key_pressed()
-                
-                level = engine.player_enters_gate(level, BOARD, player, key)
+                # Interaction whit items
+                engine.item_vs_player(inventory, item, player)
 
-                engine.movement(board, player, key, other)
-
-                if engine.player_meets_other(other, player):
-                    engine.player_vs_other_quiz(player, other, item, questions)
-
+                # Display inventory
                 if key == 'i':
                     message = 'This is your inventory content: '
                     ui.print_message(message)
                     ui.print_table(inventory)
 
-                engine.item_vs_player(inventory, item, player)
+                # Player input
+                key = util.key_pressed()
                 
+                # Movement
+                engine.movement(board, player, key, other)
 
+                # Interaction with other characters
+                if engine.player_meets_other(other, player):
+                    engine.player_vs_other_quiz(player, other, item, questions)
+
+                # Gate and level change handling
+                level = engine.player_enters_gate(level, BOARD, player, key)
+
+                # Check if quit
+                if key == 'q':
+                    level = 'QUIT'
+
+                # Clear screen
                 util.clear_screen()
-        
-        elif level == 'WIN':
-
-            while True:
-                print('YOU WON!!!')
-                time.sleep(0.7)
-                print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
-                time.sleep(0.7)
 
 
+        # BOARD 3
+        if level == 'BOARD_3':
 
-        elif key == 'q':
-            is_running = False
+            print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+            time.sleep(1.0)
+            util.clear_screen()
+
+            while level == 'BOARD_3':
+
+                # Set up board
+                board = engine.create_board(BOARD[level])
+                board = engine.put_player_on_board(board, player)
+                board = engine.put_other_on_board(board, other)
+                board = engine.put_item_on_board(board, item)
+
+                # Display essential info
+                ui.print_player_essential_atributes(player)
+                
+                # Display board
+                ui.display_board(board)
+
+                # Interaction whit items
+                engine.item_vs_player(inventory, item, player)
+
+                # Display inventory
+                if key == 'i':
+                    message = 'This is your inventory content: '
+                    ui.print_message(message)
+                    ui.print_table(inventory)
+
+                # Player input
+                key = util.key_pressed()
+                
+                # Movement
+                engine.movement(board, player, key, other)
+
+                # Interaction with other characters
+                if engine.player_meets_other(other, player):
+                    engine.player_vs_other_quiz(player, other, item, questions)
+
+                # Gate and level change handling
+                level = engine.player_enters_gate(level, BOARD, player, key)
+
+                # Check if quit
+                if key == 'q':
+                    level = 'QUIT'
+
+                # Clear screen
+                util.clear_screen()
+
+
+    if level == 'WIN':
+
+        while True:
+            print('YOU WON!!!')
+            time.sleep(0.7)
+            print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
+            time.sleep(0.7)
+
+
+
+
+    
 
 
 if __name__ == '__main__':

@@ -127,9 +127,10 @@ def add_to_inventory(inventory, item_key):
         inventory[item_key] = 1
 
 
-def put_item_on_board(board, item, item_key):
+def put_item_on_board(board, item):
 
-    board[item[item_key]['position_y']][item[item_key]['position_x']] = item[item_key]['item_icon']
+    for item_key in item:
+        board[item[item_key]['position_y']][item[item_key]['position_x']] = item[item_key]['item_icon']
 
     return board
 
@@ -198,13 +199,13 @@ def item_vs_player(inventory, item, player):
             add_to_inventory(inventory, item_key)
             item_to_delete = item_key
             item[item_key]['number'] -= 1
+            
 
             if item_key == 'first_aid':
-                ui.print_message(' +1 Life point! ')
+                ui.print_message('\n' + ' +1 Life point! ')
             else:
-                ui.print_message('This item has been added to your inventory!')
+                ui.print_message('\n' + 'This item has been added to your inventory!')
                 
-            ui.print_message('This item has been added to your inventory!')
 
     if item_to_delete == '':
         pass
@@ -217,7 +218,7 @@ def add_life_points(item, player):
     try:
 
         if item['first_aid']['position_x'] == player['position_x'] and item['first_aid']['position_y'] == player['position_y']:
-            player['life_points'] += 1
+            player['player_health'] += 1
         
     except KeyError:
         pass
@@ -275,3 +276,10 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=2):
     else:
         #  here flour(goal) needs to be added to inventory
         print("Wonderful! The %s gave you %s." % (other["other_name"], other["goal_quiz"]))
+        
+def display_inventory(key, inventory):
+
+    if key == 'i':
+        message = 'This is your inventory content: '
+        ui.print_message(message)
+        ui.print_table(inventory)
