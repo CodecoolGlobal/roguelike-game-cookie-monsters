@@ -173,6 +173,10 @@ def main():
 
             while level == 'BOARD_1':
 
+<<<<<<< HEAD
+=======
+                # Set up board
+>>>>>>> df7f52cca7ee48d54141b06018f761cc07386097
                 board = engine.create_board(BOARD[level])
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
