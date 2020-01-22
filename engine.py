@@ -198,13 +198,14 @@ def item_vs_player(inventory, item, player):
             add_to_inventory(inventory, item_key)
             item_to_delete = item_key
             item[item_key]['number'] -= 1
+            
 
             if item_key == 'first_aid':
                 ui.print_message(' +1 Life point! ')
             else:
                 ui.print_message('This item has been added to your inventory!')
                 
-            ui.print_message('This item has been added to your inventory!')
+            
 
     if item_to_delete == '':
         pass
@@ -277,3 +278,10 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=2):
     else:
         #  here flour(goal) needs to be added to inventory
         print("Wonderful! The %s gave you %s." % (other["other_name"], other["goal_quiz"]))
+        
+def display_inventory(key, inventory):
+
+    if key == 'i':
+        message = 'This is your inventory content: '
+        ui.print_message(message)
+        ui.print_table(inventory)

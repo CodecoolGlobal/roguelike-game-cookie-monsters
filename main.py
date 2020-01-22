@@ -198,16 +198,20 @@ def main():
 
             while level == 'BOARD_1':
 
+
                 board = engine.create_board(BOARD[level])
 
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
+                
 
                 for item_key in item:
                     board = engine.put_item_on_board(board, item, item_key)
 
                 ui.display_board(board)
 
+                engine.item_vs_player(inventory, item, player)
+                
                 key = util.key_pressed()
                 
                 level = engine.player_enters_gate(level, BOARD, player, key)
@@ -222,13 +226,8 @@ def main():
                     ui.print_message(message)
                     ui.print_table(inventory)
 
-                engine.item_vs_player(inventory, item, player)
-                
-
-                util.clear_screen()
-
-
-            
+                #util.clear_screen()
+                 
             #level = engine.player_enters_gate(BOARD, player, key)
     
         elif level == 'BOARD_2':
@@ -297,15 +296,12 @@ def main():
                 if engine.player_meets_other(other, player):
                     engine.player_vs_other_quiz(player, other, item, questions)
 
-                if key == 'i':
-                    message = 'This is your inventory content: '
-                    ui.print_message(message)
-                    ui.print_table(inventory)
+                
 
                 engine.item_vs_player(inventory, item, player)
                 
-
-                util.clear_screen()
+       
+                
         
         elif level == 'WIN':
 
@@ -319,6 +315,8 @@ def main():
 
         elif key == 'q':
             is_running = False
+
+    
 
 
 if __name__ == '__main__':
