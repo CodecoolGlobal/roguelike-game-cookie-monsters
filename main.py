@@ -101,7 +101,7 @@ def create_other():
     pass
 
 
-
+menu_start.run()
 def main():
     inventory = {}
 
@@ -190,7 +190,7 @@ def main():
     is_running = True
 
     while is_running:
-        menu_start.run()
+        
         if level == 'BOARD_1':
 
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')

@@ -2,6 +2,7 @@ import data_manager
 import view
 import sys
 import players
+import main
 
 
 file_nicknames = "data_nickname.txt"
@@ -22,10 +23,10 @@ label_results = ["Nickname", "Time", "Points", "Life"]
 def run():
     view.start_descriptions()
     view.print_menu(list_options)
-    choice = input(str('Your choice is:' )) 
     while True:
+        choice = input(str('Your choice is:' )) 
         if choice == '1':
-            players.run()  
+            players.run()
         elif choice == '2':
             view.print_result(label_results,data_manager.read_file_nicknames(file_results))
         #elif choice == '3': write code responsible for that

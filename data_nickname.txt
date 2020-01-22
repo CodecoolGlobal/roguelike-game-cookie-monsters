@@ -2,3 +2,12 @@ Nata,CookieMen,5,1
 Na,CookieMen,5,1
 Nat,CookieMen,5,1
 NA,CookieMen,5,1
+n,CookieMen,5,1
+N,CookieMen,5,1
+Natka,CookieMen,3,2
+Natkas,CookieBaby,5,1
+Natiii,CookieBaby,5,1
+nn,CookieMen,5,1
+b,CookieBaby,5,1
+C,CookieMen,5,1
+Miłosz,CookieMen,1,3

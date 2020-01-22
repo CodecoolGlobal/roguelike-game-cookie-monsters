@@ -13,7 +13,7 @@ label_results = ["Nickname", "Time", "Points", "Life"]
 def start_descriptions():
     print("Hello in our cookie games \n")
     print("Maybe Do you want to play some game :D? \n")
-    print("So, first you have to get mi some informations about You :) \n")
+    print("So, first you have to get me some informations about You :) \n")
 
 
 def print_result(label, result):
