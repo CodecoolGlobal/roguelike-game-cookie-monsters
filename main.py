@@ -150,36 +150,6 @@ def main():
         'player_power': 1
         }
 
-    item = {
-        'flour0': {
-            'type': 'ingridient',
-            'item_icon': 'F',
-            'position_x': 11,
-            'position_y': 2,
-            'number': 2
-            },
-        'sugar0': {
-            'type': 'ingridient',
-            'item_icon': 'S',
-            'position_x': 9,
-            'position_y': 18,
-            'number': 1
-            },
-        'sugar2': {
-            'type': 'ingridient',
-            'item_icon': 'S',
-            'position_x': 55,
-            'position_y': 25,
-            'number': 1
-            },
-        'sugar3': {
-            'type': 'ingridient',
-            'item_icon': 'S',
-            'position_x': 90,
-            'position_y': 2,
-            'number': 2
-            }
-         }
 
     # initial board
     board = engine.create_board(BOARD['BOARD_1'])
@@ -203,7 +173,14 @@ def main():
 
             while level == 'BOARD_1':
 
+<<<<<<< HEAD
                 # Set up board
+=======
+<<<<<<< HEAD
+=======
+                # Set up board
+>>>>>>> df7f52cca7ee48d54141b06018f761cc07386097
+>>>>>>> a2c3265f8e5e0144f3a09d3f0171cb5aa037d800
                 board = engine.create_board(BOARD[level])
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
@@ -242,7 +219,7 @@ def main():
                     level = 'QUIT'
 
                 # Clear screen
-                util.clear_screen()
+            util.clear_screen()
 
 
 
