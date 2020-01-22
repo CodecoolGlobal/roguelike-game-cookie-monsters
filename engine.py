@@ -206,10 +206,6 @@ def item_vs_player(inventory, item, player):
             else:
                 ui.print_message('\n' + 'This item has been added to your inventory!')
                 
-<<<<<<< HEAD
-            
-=======
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
 
     if item_to_delete == '':
         pass

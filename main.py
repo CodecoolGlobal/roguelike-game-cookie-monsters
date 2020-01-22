@@ -203,19 +203,11 @@ def main():
 
             while level == 'BOARD_1':
 
-<<<<<<< HEAD
-
-=======
                 # Set up board
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
                 board = engine.create_board(BOARD[level])
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
-<<<<<<< HEAD
-                
-=======
                 board = engine.put_item_on_board(board, item)
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
 
                 # Display essential info
                 ui.print_player_essential_atributes(player)
@@ -223,10 +215,6 @@ def main():
                 # Display board
                 ui.display_board(board)
 
-<<<<<<< HEAD
-                engine.item_vs_player(inventory, item, player)
-                
-=======
                 # Interaction whit items
                 engine.item_vs_player(inventory, item, player)
 
@@ -237,7 +225,6 @@ def main():
                     ui.print_table(inventory)
 
                 # Player input
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
                 key = util.key_pressed()
                 
                 # Movement
@@ -250,13 +237,6 @@ def main():
                 # Gate and level change handling
                 level = engine.player_enters_gate(level, BOARD, player, key)
 
-<<<<<<< HEAD
-                #util.clear_screen()
-                 
-            #level = engine.player_enters_gate(BOARD, player, key)
-    
-        elif level == 'BOARD_2':
-=======
                 # Check if quit
                 if key == 'q':
                     level = 'QUIT'
@@ -269,7 +249,6 @@ def main():
 
         # BOARD 2
         if level == 'BOARD_2':
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
 
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
             time.sleep(1.0)
@@ -359,16 +338,6 @@ def main():
                 if engine.player_meets_other(other, player):
                     engine.player_vs_other_quiz(player, other, item, questions)
 
-<<<<<<< HEAD
-                
-
-                engine.item_vs_player(inventory, item, player)
-                
-       
-                
-        
-        elif level == 'WIN':
-=======
                 # Gate and level change handling
                 level = engine.player_enters_gate(level, BOARD, player, key)
 
@@ -378,7 +347,6 @@ def main():
 
                 # Clear screen
                 util.clear_screen()
->>>>>>> ec19e26c7d4eb43881050d4d140fe1ead8edddac
 
 
     if level == 'WIN':
