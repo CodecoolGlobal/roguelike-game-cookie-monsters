@@ -285,14 +285,12 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     if others[other]["other_health"] > 0:
         player["player_life"] -= 1
         print("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
-        player["player_life"] -= 1
     else:
         player["player_life"] += 1
         add_to_inventory(inventory, "flour0")
         print("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         print('+1 life point!')
-        add_to_inventory(dictionaries.inventory, 'flour0')
-        player["player_life"] += 1
+
 
         
 
