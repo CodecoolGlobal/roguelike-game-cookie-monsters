@@ -74,7 +74,7 @@ def main():
                     elif other == 'other2':
                         print('Bon Appétit!')
                     else:
-                        engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.others[other]['questions'])
+                        engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
                 # Gate and level change handling
                 level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
