@@ -82,14 +82,14 @@ def put_other_on_board(board, others):
     return board
 
 
-def get_random_position_of_other(others, width, height):
+def get_random_position_of_other(others, board):
     """
     Randomly generates and updates position of Other Character
     based on the Character's step. Other Character respects the walls.
 
     Args:
         other: dictionary
-        BOARD_HEIGHT and BOARD_WEIGHT: int
+        board: list
 
     """
     for other in others:
@@ -97,25 +97,25 @@ def get_random_position_of_other(others, width, height):
         if others[other]["other_health"] > 0:
             random_selection = random.randrange(4)
             if random_selection == 0:
-                potential_position = others[other]["position_x"] + others[other]["step"]
-                if potential_position >= width - 1:
+                potential_position = others[other]["position_x"] + others[other]["step"]  # move to the right
+                if potential_position >= len(board[0]) - 1:
                     pass
                 else:
                     others[other]["position_x"] += others[other]["step"]
             if random_selection == 1:
-                potential_position = others[other]["position_x"] - others[other]["step"]
+                potential_position = others[other]["position_x"] - others[other]["step"]  # move to the left
                 if potential_position <= 0:
                     pass
                 else:
                     others[other]["position_x"] -= others[other]["step"]
             if random_selection == 2:
-                potential_position = others[other]["position_y"] + others[other]["step"]
-                if potential_position >= height - 1:
+                potential_position = others[other]["position_y"] + others[other]["step"]  # move up
+                if potential_position >= len(board) - 1:
                     pass
                 else:
                     others[other]["position_y"] += others[other]["step"]
             if random_selection == 3:
-                potential_position = others[other]["position_y"] - others[other]["step"]
+                potential_position = others[other]["position_y"] - others[other]["step"]  # move down
                 if potential_position <= 0:
                     pass
                 else:
@@ -169,10 +169,8 @@ def player_meets_other(others, player):
             
 def movement(board, player, key, others):
 
-    height = len(board)
-    width = len(board[0])
     if key in ['w', 's', 'a', 'd']:
-        get_random_position_of_other(others, width, height)
+        get_random_position_of_other(others, board)
 
     if key == 'w':
         if player['position_y'] == 1:
