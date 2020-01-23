@@ -22,3 +22,5 @@ Dupa,CookieMen,5,1
 dupadupa,CookieMen,5,1
 >>>>>>> 33fa04a9b066296f47f37eb5169d04c22a313bb3
 2,CookieMen,3,2
+1,CookieMen,5,1
+'1,CookieMen,1,3

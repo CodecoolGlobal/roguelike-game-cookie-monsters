@@ -44,40 +44,109 @@ BOARD = {
 # ITEMS -------------------------
 
 items = {
-        'eggs0':{
+        'Chocolate0':{
             'type': 'ingridient',
-            'item_icon': 'E',
-            'position_x': 11,
-            'position_y': 2,
-            'number': 2
+            'item_icon': 'C',
+            'position_x': 5,
+            'position_y': 20,
+            'number': 1,
+            'board': 3
             },
-        'sugar0':{ 
+        'Jelly0':{ 
             'type': 'ingridient', 
-            'item_icon': 'S',
+            'item_icon': 'J',
             'position_x': 9,
             'position_y': 18,
-            'number': 1
+            'number': 1,
+            'board':3
             },
-        'sugar2':{ 
+        'Pudding0':{ 
             'type': 'ingridient', 
-            'item_icon': 'S',
+            'item_icon': 'P',
             'position_x': 55,
             'position_y': 25,
-            'number': 1
+            'number': 1,
+            'board': 3
             },
-        'sugar3':{ 
+        'Ice Cream0':{ 
             'type': 'ingridient', 
-            'item_icon': 'S',
+            'item_icon': 'I',
             'position_x': 90,
             'position_y': 2,
-            'number': 2
+            'number': 2,
+            'board': 2
+            },
+        'Jam0':{
+            'type': 'ingridient',
+            'item_icon': 'H',
+            'position_x': 11,
+            'position_y': 2,
+            'number': 2,
+            'board': 2
+            },
+        'Biscuits0':{ 
+            'type': 'ingridient', 
+            'item_icon': 'B',
+            'position_x': 9,
+            'position_y': 18,
+            'number': 1,
+            'board':2
+            },
+        'Pralines0':{ 
+            'type': 'ingridient', 
+            'item_icon': 'D',
+            'position_x': 55,
+            'position_y': 25,
+            'number': 1,
+            'board': 2
+            },
+        'Candy0':{ 
+            'type': 'ingridient', 
+            'item_icon': 'C',
+            'position_x': 90,
+            'position_y': 2,
+            'number': 2,
+            'board':2
+            },
+        'Honey0':{
+            'type': 'ingridient',
+            'item_icon': 'H',
+            'position_x': 11,
+            'position_y': 2,
+            'number': 2,
+            'board': 1
+            },
+        'Lollipop0':{ 
+            'type': 'ingridient', 
+            'item_icon': 'L',
+            'position_x': 9,
+            'position_y': 18,
+            'number': 1,
+            'board': 1
+            },
+        'Donut0':{ 
+            'type': 'ingridient', 
+            'item_icon': 'D',
+            'position_x': 55,
+            'position_y': 25,
+            'number': 1,
+            'board': 1
+            },
+        'Candy0':{ 
+            'type': 'ingridient', 
+            'item_icon': 'C',
+            'position_x': 90,
+            'position_y': 2,
+            'number': 2,
+            'board': 1
             },
         'first_aid':{ 
             'type': 'life', 
             'item_icon': 'A',
             'position_x': 70,
             'position_y': 15,
-            'number': 1
+            'number': 1,
+            'board': 1
         }
     }
 
