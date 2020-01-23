@@ -133,10 +133,11 @@ def add_to_inventory(inventory, item_key):
         inventory[item_key] = 1
 
 
-def put_item_on_board(board, item):
+def put_item_on_board(board, items):
 
-    for item_key in item:
-        board[item[item_key]['position_y']][item[item_key]['position_x']] = item[item_key]['item_icon']
+    for item_key in items:
+        if items[item_key]['board'] == 1:
+            board[items[item_key]['position_y']][items[item_key]['position_x']] = items[item_key]['item_icon']
 
     return board
 
@@ -257,7 +258,7 @@ def player_enters_gate(level, BOARD, player, key):
  
 
 
-def player_vs_other_quiz(player, other, others, questions, questions_number=2):
+def player_vs_other_quiz(player, other, others, inventory, questions, questions_number=2):
     """
     Player fights agains the Other Character answering questions.
     When Player replies correctly, the Other Character loses health points.
@@ -272,22 +273,27 @@ def player_vs_other_quiz(player, other, others, questions, questions_number=2):
     while q_count <= questions_number and others[other]["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
+            # player['player_power'] += 1  moze +1 power za kazda dobra odpowiedz?
             others[other]["other_health"] -= 1
             questions[q_count][2] = True
             print("Correct!")
         else:
+            # player['player_power'] -= 1  moze -1 power za kazda bledna odpowiedz?
             print("Wrong!")
         q_count += 1
 
     if others[other]["other_health"] > 0:
+        player["player_life"] -= 1
         print("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
         player["player_life"] -= 1
     else:
-        #  here flour(goal) needs to be added to inventory
+        player["player_life"] += 1
+        add_to_inventory(inventory, "flour0")
         print("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         print('+1 life point!')
         add_to_inventory(dictionaries.inventory, 'flour0')
         player["player_life"] += 1
+
         
 
 
