@@ -58,7 +58,7 @@ items = {
             'position_x': 9,
             'position_y': 18,
             'number': 1,
-            'board':3
+            'board': 3
             },
         'Pudding0':{ 
             'type': 'ingridient', 
@@ -71,16 +71,16 @@ items = {
         'Ice Cream0':{ 
             'type': 'ingridient', 
             'item_icon': 'I',
-            'position_x': 90,
-            'position_y': 2,
+            'position_x': 92,
+            'position_y': 7,
             'number': 2,
             'board': 2
             },
         'Jam0':{
             'type': 'ingridient',
-            'item_icon': 'H',
+            'item_icon': 'M',
             'position_x': 11,
-            'position_y': 2,
+            'position_y': 3,
             'number': 2,
             'board': 2
             },
@@ -88,31 +88,31 @@ items = {
             'type': 'ingridient', 
             'item_icon': 'B',
             'position_x': 9,
-            'position_y': 18,
+            'position_y': 19,
             'number': 1,
-            'board':2
+            'board': 2
             },
         'Pralines0':{ 
             'type': 'ingridient', 
-            'item_icon': 'D',
-            'position_x': 55,
-            'position_y': 25,
+            'item_icon': 'Q',
+            'position_x': 56,
+            'position_y': 26,
             'number': 1,
             'board': 2
             },
         'Candy0':{ 
             'type': 'ingridient', 
-            'item_icon': 'C',
-            'position_x': 90,
+            'item_icon': 'U',
+            'position_x': 91,
             'position_y': 2,
             'number': 2,
-            'board':2
+            'board': 2
             },
         'Honey0':{
             'type': 'ingridient',
             'item_icon': 'H',
             'position_x': 11,
-            'position_y': 2,
+            'position_y': 4,
             'number': 2,
             'board': 1
             },
@@ -120,7 +120,7 @@ items = {
             'type': 'ingridient', 
             'item_icon': 'L',
             'position_x': 9,
-            'position_y': 18,
+            'position_y': 17,
             'number': 1,
             'board': 1
             },
@@ -134,9 +134,9 @@ items = {
             },
         'Candy0':{ 
             'type': 'ingridient', 
-            'item_icon': 'C',
+            'item_icon': 'E',
             'position_x': 90,
-            'position_y': 2,
+            'position_y': 5,
             'number': 2,
             'board': 1
             },
