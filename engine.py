@@ -133,10 +133,12 @@ def add_to_inventory(inventory, item_key):
         inventory[item_key] = 1
 
 
-def put_item_on_board(board, item):
+def put_item_on_board(board, items):
 
-    for item_key in item:
-        board[item[item_key]['position_y']][item[item_key]['position_x']] = item[item_key]['item_icon']
+    for item_key in items:
+        if items[item_key]['board'] == 1:
+            print('dupa!!!!')
+            board[items[item_key]['position_y']][items[item_key]['position_x']] = items[item_key]['item_icon']
 
     return board
 

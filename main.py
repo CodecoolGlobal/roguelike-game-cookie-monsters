@@ -10,7 +10,7 @@ import view
 
 def main():
 
-    menu_start.run()
+    #menu_start.run()
 
     # initial board
     board = engine.create_board(dictionaries.BOARD['BOARD_1'])
