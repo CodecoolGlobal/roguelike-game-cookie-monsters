@@ -11,18 +11,22 @@ file_results = "results.txt"
 label_results = ["Nickname", "Time", "Points", "Life"]
 
 def start_descriptions():
-    print("Hello in our cookie games \n")
-    print("Maybe Do you want to play some game :D? \n")
-    print("So, first you have to get me some informations about You :) \n")
+    print("Hello and welcome to our cookie game! \n")
+    print("Maybe you want to play some :D? \n")
+    print("So, first you have to give me some informations about You :) \n")
 
 
 def print_result(label, result):
+    print('dupa')
+    print(label)
+    print(result)
     table_results = {}
     for elem in result:
         i = 0
         for key in label:
             table_results[key] = elem[i]
             i += 1    
+
     return table_results
 
 

@@ -1,4 +1,5 @@
 import util
+import dictionaries
 import engine
 import ui
 import time
@@ -6,160 +7,20 @@ import players
 import menu_start
 import view
 
-BOARD_WIDTH = 100
-BOARD_HEIGHT = 30
 
-PLAYER_ICON = '@'
-PLAYER_START_X = 1
-PLAYER_START_Y = 2
-PLAYER_HEALTH = 5
-
-question_prompts = [
-    "What's the first name of 'Ooops I did it again' singer?\n(a) Christina\n(b) Britney\n(c) Jessica\n",
-    "Which river passes through Vienna?\n(a) Vistula\n(b) Douro\n(c) Danube\n",
-    "What color are bananas?\n(a) Red\n(b) Orange\n(c) Yellow\n",
-    "What band Nergal plays in?\n(a) Behemoth\n(b) Acid Drinkers\n(c) Coma\n",
-    "What is the capital of Australia?\n(a) Sydney\n(b) Canberra\n(c) Melbourne\n",
-    "How many islands there are in Faroe Islands?\n(a) 412\n(b) 779\n(c) 18\n"
-    ]
-
-questions = [
-    [question_prompts[0], "b", False],
-    [question_prompts[1], "c", False],
-    [question_prompts[2], "c", False],
-    [question_prompts[3], "a", False],
-    [question_prompts[4], "b", False],
-    [question_prompts[5], "b", False],
-]
-
-BOARD = {
-    'BOARD_1': {
-        'BRICK': '#',
-        'COLOR': 'green',
-        'WIDTH': 100,
-        'HEIGHT': 30,
-        'GATE_POSITION_X': 5,
-        'GATE_POSITION_Y': 0,
-        'NEXT_LEVEL': 'BOARD_2'
-        },
-    'BOARD_2':{
-        'BRICK': '%',
-        'COLOR': 'yellow',
-        'WIDTH': 100,
-        'HEIGHT': 30,
-        'GATE_POSITION_X': 0,
-        'GATE_POSITION_Y': 10,
-        'NEXT_LEVEL': 'BOARD_3'
-        },
-    'BOARD_3':{
-        'BRICK': 'X',
-        'COLOR': 'yellow',
-        'WIDTH': 100,
-        'HEIGHT': 30,
-        'GATE_POSITION_X': 60,
-        'GATE_POSITION_Y': 0,
-        'NEXT_LEVEL': 'WIN'
-        }
-    }
-
-other = {
-    'other_type': "enemy",
-    'other_name': "Miller",
-    'other_icon': "M",
-    'position_x': 5,
-    'position_y': 5,
-    'step': 1,
-    'other_health': 3,
-    'goal_quiz': "flour"
-    }
-
-other2: {
-    'other_type': "friend",
-    'other_name': "Cook",
-    'other_icon': "C",
-    'position_x': 20,
-    'position_y': 30,
-    'step': 0,
-    'other_health': 3,
-    'goal_quiz': "information"
-    }
-
-other3: {
-    'other_type': "enemy",
-    'other_name': "Cow",
-    'other_icon': "K",
-    'position_x': 33,
-    'position_y': 15,
-    'step': 2,
-    'other_health': 3,
-    'goal_quiz': "milk"
-    }
-
-
-
-def create_other():
-    pass
-
-
-#menu_start.run()
 def main():
-    inventory = {}
 
-    item = {
-        'cake0':{
-            'type': 'ingridient',
-            'item_icon': 'C',
-            'position_x': 12,
-            'position_y': 2,
-            'number': 2
-            },
-        'honey0':{ 
-            'type': 'ingridient', 
-            'item_icon': 'H',
-            'position_x': 9,
-            'position_y': 18,
-            'number': 1
-            },
-        'pudding0':{ 
-            'type': 'ingridient', 
-            'item_icon': 'S',
-            'position_x': 55,
-            'position_y': 25,
-            'number': 1
-            },
-        'lollipop0':{ 
-            'type': 'ingridient', 
-            'item_icon': 'L',
-            'position_x': 90,
-            'position_y': 2,
-            'number': 2
-            },
-        'first_aid':{ 
-            'type': 'life', 
-            'item_icon': 'A',
-            'position_x': 70,
-            'position_y': 15,
-            'number': 1
-        }
-    }
-    player = {
-        'player_icon': PLAYER_ICON,
-        'position_x': PLAYER_START_X,
-        'position_y': PLAYER_START_Y,
-        'player_life': 3,
-        'player_power': 1
-        }
-
+    menu_start.run()
 
     # initial board
-    board = engine.create_board(BOARD['BOARD_1'])
+    board = engine.create_board(dictionaries.BOARD['BOARD_1'])
 
     # initial level
     level = 'BOARD_1'
 
     # initial key
     key = ''
-    
+
 
     while level != 'WIN' and level != 'QUIT':
 
@@ -173,51 +34,52 @@ def main():
 
             while level == 'BOARD_1':
 
-
-                board = engine.create_board(BOARD[level])
-                board = engine.put_player_on_board(board, player)
-                board = engine.put_other_on_board(board, other)
-                board = engine.put_item_on_board(board, item)
+                # Set up board
+                board = engine.create_board(dictionaries.BOARD[level])
+                board = engine.put_player_on_board(board, dictionaries.player)
+                board = engine.put_other_on_board(board, dictionaries.others)
+                board = engine.put_item_on_board(board, dictionaries.items)
 
                 # Display essential info
-                ui.print_player_essential_atributes(player)
+                ui.print_player_essential_atributes(dictionaries.player)
                 
                 # Display board
                 ui.display_board(board)
 
                 # Interaction whit items
-                engine.item_vs_player(inventory, item, player)
+                engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player)
 
                 # Display inventory
                 if key == 'i':
                     message = 'This is your inventory content: '
                     ui.print_message(message)
-                    ui.print_table(inventory)
+                    ui.print_table(dictionaries.inventory)
 
                 # Player input
                 key = util.key_pressed()
-                
+                                
                 # Movement
-                engine.movement(board, player, key, other)
-                
+                engine.movement(board, dictionaries.player, key, dictionaries.others)
 
+                # Clear screen
                 util.clear_screen()
 
                 # Interaction with other characters
-                if engine.player_meets_other(other, player):
-                    engine.player_vs_other_quiz(player, other, item, questions)
+                if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
+                    other = engine.player_meets_other(dictionaries.others, dictionaries.player)
+                    if other == 'other3':
+                        print("Moooooo!")
+                    elif other == 'other2':
+                        print('Bon Appétit!')
+                    else:
+                        engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.others[other]['questions'])
 
                 # Gate and level change handling
-                level = engine.player_enters_gate(level, BOARD, player, key)
+                level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
 
                 # Check if quit
                 if key == 'q':
                     level = 'QUIT'
-
-                # Clear screen
-            
-
-
 
 
         # BOARD 2
@@ -230,45 +92,51 @@ def main():
             while level == 'BOARD_2':
 
                 # Set up board
-                board = engine.create_board(BOARD[level])
-                board = engine.put_player_on_board(board, player)
-                board = engine.put_other_on_board(board, other)
-                board = engine.put_item_on_board(board, item)
+                board = engine.create_board(dictionaries.BOARD[level])
+                board = engine.put_player_on_board(board, dictionaries.player)
+                board = engine.put_other_on_board(board, dictionaries.others)
+                board = engine.put_item_on_board(board, dictionaries.items)
 
                 # Display essential info
-                ui.print_player_essential_atributes(player)
+                ui.print_player_essential_atributes(dictionaries.player)
                 
                 # Display board
                 ui.display_board(board)
 
                 # Interaction whit items
-                engine.item_vs_player(inventory, item, player)
+                engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player)
 
                 # Display inventory
                 if key == 'i':
                     message = 'This is your inventory content: '
                     ui.print_message(message)
-                    ui.print_table(inventory)
+                    ui.print_table(dictionaries.inventory)
 
                 # Player input
                 key = util.key_pressed()
-                
+                                
                 # Movement
-                engine.movement(board, player, key, other)
+                engine.movement(board, dictionaries.player, key, dictionaries.others)
+
+                # Clear screen
+                util.clear_screen()
 
                 # Interaction with other characters
-                if engine.player_meets_other(other, player):
-                    engine.player_vs_other_quiz(player, other, item, questions)
+                if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
+                    other = engine.player_meets_other(dictionaries.others, dictionaries.player)
+                    if other == 'other3':
+                        print("Moooooo!")
+                    elif other == 'other2':
+                        print('Bon Appétit!')
+                    else:
+                        engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.others[other]['questions'])
 
                 # Gate and level change handling
-                level = engine.player_enters_gate(level, BOARD, player, key)
+                level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
 
                 # Check if quit
                 if key == 'q':
                     level = 'QUIT'
-
-                # Clear screen
-                util.clear_screen()
 
 
         # BOARD 3
@@ -281,45 +149,51 @@ def main():
             while level == 'BOARD_3':
 
                 # Set up board
-                board = engine.create_board(BOARD[level])
-                board = engine.put_player_on_board(board, player)
-                board = engine.put_other_on_board(board, other)
-                board = engine.put_item_on_board(board, item)
+                board = engine.create_board(dictionaries.BOARD[level])
+                board = engine.put_player_on_board(board, dictionaries.player)
+                board = engine.put_other_on_board(board, dictionaries.others)
+                board = engine.put_item_on_board(board, dictionaries.items)
 
                 # Display essential info
-                ui.print_player_essential_atributes(player)
+                ui.print_player_essential_atributes(dictionaries.player)
                 
                 # Display board
                 ui.display_board(board)
 
                 # Interaction whit items
-                engine.item_vs_player(inventory, item, player)
+                engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player)
 
                 # Display inventory
                 if key == 'i':
                     message = 'This is your inventory content: '
                     ui.print_message(message)
-                    ui.print_table(inventory)
+                    ui.print_table(dictionaries.inventory)
 
                 # Player input
                 key = util.key_pressed()
-                
+                                
                 # Movement
-                engine.movement(board, player, key, other)
+                engine.movement(board, dictionaries.player, key, dictionaries.others)
+
+                # Clear screen
+                util.clear_screen()
 
                 # Interaction with other characters
-                if engine.player_meets_other(other, player):
-                    engine.player_vs_other_quiz(player, other, item, questions)
+                if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
+                    other = engine.player_meets_other(dictionaries.others, dictionaries.player)
+                    if other == 'other3':
+                        print("Moooooo!")
+                    elif other == 'other2':
+                        print('Bon Appétit!')
+                    else:
+                        engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.others[other]['questions'])
 
                 # Gate and level change handling
-                level = engine.player_enters_gate(level, BOARD, player, key)
+                level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
 
                 # Check if quit
                 if key == 'q':
                     level = 'QUIT'
-
-                # Clear screen
-                util.clear_screen()
 
 
     if level == 'WIN':
@@ -330,10 +204,7 @@ def main():
             print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
             time.sleep(0.7)
 
-
-
-
-    
+   
 
 
 if __name__ == '__main__':

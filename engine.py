@@ -49,7 +49,7 @@ def put_player_on_board(board, player):
     return board
 
 
-def put_other_on_board(board, other):
+def put_other_on_board(board, others):
     '''
     Modifies the game board by placing the other character icon at its coordinates.
     Args:
@@ -58,25 +58,27 @@ def put_other_on_board(board, other):
     Returns:
     Nothing
     '''
+    
+    for other in others:
+        x = 0
+        for row in board:
+            y = 0
+            for cell in row:
+                if cell == others[other]['other_icon']:
+                    board[x][y] = ' '
+                y += 1
+            x += 1
 
-    x = 0
-    for row in board:
-        y = 0
-        for cell in row:
-            if cell == other['other_icon']:
-                board[x][y] = ' '
-            y += 1
-        x += 1
-
-    height = other['position_y']
-    width = other['position_x']
-    if other["other_health"] > 0:
-        board[height][width] = other['other_icon']
+    for other in others:
+        height = others[other]['position_y']
+        width = others[other]['position_x']
+        if others[other]["other_health"] > 0:
+            board[height][width] = others[other]['other_icon']
 
     return board
 
 
-def get_random_position_of_other(other, width, height):
+def get_random_position_of_other(others, width, height):
     """
     Randomly generates and updates position of Other Character
     based on the Character's step. Other Character respects the walls.
@@ -86,32 +88,34 @@ def get_random_position_of_other(other, width, height):
         BOARD_HEIGHT and BOARD_WEIGHT: int
 
     """
-    if other["other_health"] > 0:
-        random_selection = random.randrange(4)
-        if random_selection == 0:
-            potential_position = other["position_x"] + other["step"]
-            if potential_position >= width - 1:
-                pass
-            else:
-                other["position_x"] += other["step"]
-        if random_selection == 1:
-            potential_position = other["position_x"] - other["step"]
-            if potential_position <= 0:
-                pass
-            else:
-                other["position_x"] -= other["step"]
-        if random_selection == 2:
-            potential_position = other["position_y"] + other["step"]
-            if potential_position >= height - 1:
-                pass
-            else:
-                other["position_y"] += other["step"]
-        if random_selection == 3:
-            potential_position = other["position_y"] - other["step"]
-            if potential_position <= 0:
-                pass
-            else:
-                other["position_y"] -= other["step"]
+    for other in others:
+
+        if others[other]["other_health"] > 0:
+            random_selection = random.randrange(4)
+            if random_selection == 0:
+                potential_position = others[other]["position_x"] + others[other]["step"]
+                if potential_position >= width - 1:
+                    pass
+                else:
+                    others[other]["position_x"] += others[other]["step"]
+            if random_selection == 1:
+                potential_position = others[other]["position_x"] - others[other]["step"]
+                if potential_position <= 0:
+                    pass
+                else:
+                    others[other]["position_x"] -= others[other]["step"]
+            if random_selection == 2:
+                potential_position = others[other]["position_y"] + others[other]["step"]
+                if potential_position >= height - 1:
+                    pass
+                else:
+                    others[other]["position_y"] += others[other]["step"]
+            if random_selection == 3:
+                potential_position = others[other]["position_y"] - others[other]["step"]
+                if potential_position <= 0:
+                    pass
+                else:
+                    others[other]["position_y"] -= others[other]["step"]
 
 
 def add_to_inventory(inventory, item_key):
@@ -136,7 +140,7 @@ def put_item_on_board(board, item):
     return board
 
 
-def player_meets_other(other, player):
+def player_meets_other(others, player):
     """
     Checks if Player meets the Other Character (is next to it, above or under)
     Args:
@@ -146,47 +150,49 @@ def player_meets_other(other, player):
         if_meet: boolean
     """
     if_meet = False
-    if other["other_health"] > 0:
-        if other["position_y"] == player["position_y"] and (other["position_x"] == player["position_x"] + 1 or other["position_x"] == player["position_x"] - 1):
-            if_meet = True
-        elif other["position_x"] == player["position_x"] and (other["position_y"] == player["position_y"] + 1 or other["position_y"] == player["position_y"] - 1):
-            if_meet = True
-        elif other["position_y"] == player["position_y"] and other["position_x"] == player["position_x"]:
-            if_meet = True
+
+    for other in others:
+        if others[other]["other_health"] > 0:
+            if others[other]["position_y"] == player["position_y"] and (others[other]["position_x"] == player["position_x"] + 1 or others[other]["position_x"] == player["position_x"] - 1):
+                return other
+            elif others[other]["position_x"] == player["position_x"] and (others[other]["position_y"] == player["position_y"] + 1 or others[other]["position_y"] == player["position_y"] - 1):
+                return other
+            elif others[other]["position_y"] == player["position_y"] and others[other]["position_x"] == player["position_x"]:
+                return other
 
     return if_meet
-
-
-def movement(board, player, key, other):
+            
+def movement(board, player, key, others):
 
     height = len(board)
     width = len(board[0])
+    if key in ['w', 's', 'a', 'd']:
+        get_random_position_of_other(others, width, height)
 
     if key == 'w':
         if player['position_y'] == 1:
             pass
         else:
             player['position_y'] -= 1
-        get_random_position_of_other(other, width, height)
 
     elif key == 's':
         if player['position_y'] == len(board) - 2:
             pass
         else:
             player['position_y'] += 1
-        get_random_position_of_other(other, width, height)
+
     elif key == 'a':
         if player['position_x'] == 1:
             pass
         else:
             player['position_x'] -= 1
-        get_random_position_of_other(other, width, height)
+
     elif key == 'd':
         if player['position_x'] == len(board[0]) - 3:
             pass
         else:
             player['position_x'] += 1
-        get_random_position_of_other(other, width, height)
+
     else:
         pass
 
@@ -250,7 +256,7 @@ def player_enters_gate(level, BOARD, player, key):
  
 
 
-def player_vs_other_quiz(player, other, item, questions, questions_number=2):
+def player_vs_other_quiz(player, other, others, questions, questions_number=2):
     """
     Player fights agains the Other Character answering questions.
     When Player replies correctly, the Other Character loses health points.
@@ -259,14 +265,14 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=2):
     health - it disappears and the Player gets flour.
     """
 
-    print("Play the quiz to get %s from the %s" % (other["goal_quiz"], other["other_name"]))
+    print("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"]))
     q_count = 0
     questions = [question for question in questions if question[2] is False]
-    while q_count <= questions_number and other["other_health"] > 0:
+    while q_count <= questions_number and others[other]["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
             player["player_life"] += 1
-            other["other_health"] -= 1
+            others[other]["other_health"] -= 1
             questions[q_count][2] = True
             print("Correct!")
         else:
@@ -274,11 +280,12 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=2):
             print("Wrong!")
         q_count += 1
 
-    if other["other_health"] > 0:
-        print("To get %s you have to come back and reply correctly to the questions!" % other["goal_quiz"])
+    if others[other]["other_health"] > 0:
+        print("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
     else:
         #  here flour(goal) needs to be added to inventory
-        print("Wonderful! The %s gave you %s." % (other["other_name"], other["goal_quiz"]))
+        print("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
+        
 
 
 def calculate_player_power(inventory):

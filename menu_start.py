@@ -24,7 +24,7 @@ def run():
     view.start_descriptions()
     view.print_menu(list_options)
     while True:
-        choice = input(str('Your choice is:' )) 
+        choice = input(str('Your choice is: ' )) 
         if choice == '1':
             players.run()
             break
