@@ -2,6 +2,7 @@ import random
 import ui
 import main
 import dictionaries
+import math
 
 
 def create_board(board):
@@ -73,10 +74,18 @@ def put_other_on_board(board, others):
     for other in others:
         height = others[other]['position_y']
         width = others[other]['position_x']
-        if others[other]["other_health"] > 0:
+        if others[other]["other_health"] > 0 and others[other]["width"] == 1:
             board[height][width] = others[other]['other_icon']
+        elif others[other]["other_health"] > 0 and others[other]["width"] > 1:
+            put_bigger_character_on_board(height, others, other, board)
 
     return board
+
+
+def put_bigger_character_on_board(height, others, other, board):
+    for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
+        for cell in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
+            board[row][cell] = others[other]['other_icon']
 
 
 def get_random_position_of_other(others, width, height):
