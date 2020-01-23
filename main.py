@@ -129,7 +129,7 @@ def main():
                     elif other == 'other2':
                         print('Bon Appétit!')
                     else:
-                        engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.others[other]['questions'])
+                        engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
                 # Gate and level change handling
                 level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
@@ -192,9 +192,8 @@ def main():
                 level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
 
                 # Check if quit
-                if key == 'q':
+                if key == 'q' or dictionaries.player['player_life'] < 1:
                     level = 'QUIT'
-
 
     if level == 'WIN':
 
@@ -204,7 +203,11 @@ def main():
             print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
             time.sleep(0.7)
 
-   
+    elif level == 'QUIT':
+
+        while True:
+            print('GAME OVER')
+            time.sleep(0.7)
 
 
 if __name__ == '__main__':
