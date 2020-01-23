@@ -22,18 +22,17 @@ def main():
 
     menu_start.run()
     while level != 'WIN' and level != 'QUIT':
-
-    
+        
         # BOARD 1
         if level == 'BOARD_1':
-
+            
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
             time.sleep(1.0)
             util.clear_screen()
 
             while level == 'BOARD_1':
 
-                
+                view.print_table(players.data_to_print(dictionaries.player))
 
                 # Set up board
                 board = engine.create_board(dictionaries.BOARD[level])
@@ -85,7 +84,7 @@ def main():
 
         # BOARD 2
         if level == 'BOARD_2':
-
+            view.print_table(players.data_to_print(dictionaries.player))
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
             time.sleep(1.0)
             util.clear_screen()
@@ -142,7 +141,7 @@ def main():
 
         # BOARD 3
         if level == 'BOARD_3':
-
+            view.print_table(players.data_to_print(dictionaries.player))
             print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
             time.sleep(1.0)
             util.clear_screen()
