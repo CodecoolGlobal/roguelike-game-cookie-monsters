@@ -8,9 +8,9 @@ import menu_start
 import view
 
 
+
 def main():
 
-    menu_start.run()
 
     # initial board
     board = engine.create_board(dictionaries.BOARD['BOARD_1'])
@@ -21,10 +21,10 @@ def main():
     # initial key
     key = ''
 
-
+    menu_start.run()
     while level != 'WIN' and level != 'QUIT':
 
-        
+    
         # BOARD 1
         if level == 'BOARD_1':
 
