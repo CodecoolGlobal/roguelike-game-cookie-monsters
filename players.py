@@ -29,6 +29,7 @@ def user_info(list_labels, player_nickname):
                 if user_answer == line[5]:
                     raise Exception("This user already exist. Try again and select other name")
             print("\nYou can choose who you want to be :D \nYour options: CookieMan, CookieMum or CookieBaby\n")        
+        
         elif elem == 1:
             if user_answer not in game_player['race']:
                 raise Exception("It's not acceptable choice. Try again\n")   
@@ -42,6 +43,7 @@ def user_info(list_labels, player_nickname):
                 elif user_answer == 'CookieBaby':    
                     print("Hello little boy ;) Because you're still a child, You get a more life_points ")
                     dictionaries.player['player_life'] = 2
+        
         elif elem == 2:
             if user_answer not in game_player['Level_of_difficulty']:
                 raise Exception("You choose only 1 ,2 or 3 level of difficulty\n")
@@ -55,4 +57,11 @@ def user_info(list_labels, player_nickname):
      
         dictionaries.player[list_labels[elem]] = user_answer
     data_manager.add_new_nicknames(dictionaries.player, file_nicknames)    
+    
 
+
+
+def data_to_print(data):
+    keys = ["Nickname", "Type", "Level of difficulty"]
+    data_print = {key : dictionaries.player[key] for key in keys }
+    return data_print
