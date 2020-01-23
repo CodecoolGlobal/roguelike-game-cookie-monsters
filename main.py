@@ -6,8 +6,7 @@ import time
 import players
 import menu_start
 import view
-
-
+from termcolor import colored
 
 def main():
 
