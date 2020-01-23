@@ -19,14 +19,14 @@ game_player = {'race' : ['CookieMan', 'CookieMum', 'CookieBaby'],
 }
 
 def user_info(list_labels, player_nickname):
-    print("Please, provide check data :)!")
+    print("Please, provide your's nickname: ")
     nickname = 0
     for elem in range(len(list_labels)):
         user_answer = input(str(list_labels[elem])+" : ")
         if elem == 0:
             data_manager.read_file_nicknames(file_nicknames)
             for line in player_nickname:
-                if user_answer == line[5]:
+                if user_answer == line:
                     raise Exception("This user already exist. Try again and select other name")
             print("\nYou can choose who you want to be :D \nYour options: CookieMan, CookieMum or CookieBaby\n")        
         

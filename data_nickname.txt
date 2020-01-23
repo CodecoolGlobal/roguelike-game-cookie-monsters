@@ -1,2 +1,4 @@
 @,10,10,5,1,Nati,CookieBaby,2
 
+@,10,10,3,5,ss,CookieMan,2
+@,10,10,5,1,mic,rolling_pin,CookieMum,1
