@@ -3,7 +3,7 @@ import view
 import sys
 import main
 import dictionaries
-
+from termcolor import colored
 
 BOARD_WIDTH = 80
 BOARD_HEIGHT = 20
@@ -27,26 +27,26 @@ def user_info(list_labels, player_nickname):
             data_manager.read_file_nicknames(file_nicknames)
             for line in player_nickname:
                 if user_answer == line[5]:
-                    raise Exception("This user already exist. Try again and select other name")
+                    raise Exception(colored("This user already exist. Try again and select other name", "red"))
             print("\nYou can choose who you want to be :D \nYour options: CookieMan, CookieMum or CookieBaby\n")        
         
         elif elem == 1:
             if user_answer not in game_player['race']:
-                raise Exception("It's not acceptable choice. Try again\n")   
+                raise Exception(colored("It's not acceptable choice. Try again\n", "red"))   
             else:
                 if user_answer == 'CookieMan':
-                    print("You are a CookieMan so You are more powerful than you think")
+                    print(colored("You are a CookieMan so You are more powerful than you think", "magenta"))
                     dictionaries.player['player_power'] = 5
                 elif user_answer == 'CookieMum':
-                    print("You chose CookieMum and you get rolling pin :D!!!It can be useful later")
+                    print(colored("You chose CookieMum and you get rolling pin :D!!!It can be useful later", "magenta"))
                     dictionaries.player['additional_elements'] = 'rolling_pin'
                 elif user_answer == 'CookieBaby':    
-                    print("Hello little boy ;) Because you're still a child, You get a more life_points ")
+                    print(colored("Hello little boy ;) Because you're still a child, You get a more life_points ", "magenta"))
                     dictionaries.player['player_life'] = 2
         
         elif elem == 2:
             if user_answer not in game_player['Level_of_difficulty']:
-                raise Exception("You choose only 1 ,2 or 3 level of difficulty\n")
+                raise Exception(colored("You choose only 1 ,2 or 3 level of difficulty\n", "red"))
             else:
                 if user_answer == '1':
                     dictionaries.player['player_life'] = dictionaries.player['player_life'] + 5
