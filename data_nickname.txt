@@ -11,3 +11,6 @@ nn,CookieMen,5,1
 b,CookieBaby,5,1
 C,CookieMen,5,1
 Miłosz,CookieMen,1,3
+mic,CookieMen,3,2
+michal,CookieBaby,3,2
+mica,CookieMen,3,2

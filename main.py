@@ -101,35 +101,35 @@ def create_other():
     pass
 
 
-menu_start.run()
+#menu_start.run()
 def main():
     inventory = {}
 
     item = {
-        'eggs0':{
+        'cake0':{
             'type': 'ingridient',
-            'item_icon': 'E',
-            'position_x': 11,
+            'item_icon': 'C',
+            'position_x': 12,
             'position_y': 2,
             'number': 2
             },
-        'sugar0':{ 
+        'honey0':{ 
             'type': 'ingridient', 
-            'item_icon': 'S',
+            'item_icon': 'H',
             'position_x': 9,
             'position_y': 18,
             'number': 1
             },
-        'sugar2':{ 
+        'pudding0':{ 
             'type': 'ingridient', 
             'item_icon': 'S',
             'position_x': 55,
             'position_y': 25,
             'number': 1
             },
-        'sugar3':{ 
+        'lollipop0':{ 
             'type': 'ingridient', 
-            'item_icon': 'S',
+            'item_icon': 'L',
             'position_x': 90,
             'position_y': 2,
             'number': 2
@@ -146,7 +146,7 @@ def main():
         'player_icon': PLAYER_ICON,
         'position_x': PLAYER_START_X,
         'position_y': PLAYER_START_Y,
-        'player_health': 3,
+        'player_life': 3,
         'player_power': 1
         }
 
@@ -159,11 +159,11 @@ def main():
 
     # initial key
     key = ''
-
+    
 
     while level != 'WIN' and level != 'QUIT':
 
-
+        
         # BOARD 1
         if level == 'BOARD_1':
 
@@ -173,14 +173,7 @@ def main():
 
             while level == 'BOARD_1':
 
-<<<<<<< HEAD
-                # Set up board
-=======
-<<<<<<< HEAD
-=======
-                # Set up board
->>>>>>> df7f52cca7ee48d54141b06018f761cc07386097
->>>>>>> a2c3265f8e5e0144f3a09d3f0171cb5aa037d800
+
                 board = engine.create_board(BOARD[level])
                 board = engine.put_player_on_board(board, player)
                 board = engine.put_other_on_board(board, other)
@@ -206,6 +199,9 @@ def main():
                 
                 # Movement
                 engine.movement(board, player, key, other)
+                
+
+                util.clear_screen()
 
                 # Interaction with other characters
                 if engine.player_meets_other(other, player):
@@ -219,7 +215,7 @@ def main():
                     level = 'QUIT'
 
                 # Clear screen
-            util.clear_screen()
+            
 
 
 

@@ -27,5 +27,5 @@ def print_message(message):
 
 def print_player_essential_atributes(player):
     print()
-    print('LIFE: ', player['player_health'] * '♥️ ', " | ", "POWER: ", player['player_power'] * '🥄')
+    print('LIFE: ', player['player_life'] * '♥️ ', " | ", "POWER: ", player['player_power'] * '🥄')
     print()

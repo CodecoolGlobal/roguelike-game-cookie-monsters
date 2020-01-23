@@ -1,5 +1,6 @@
 import random
 import ui
+import main
 
 
 def create_board(board):
@@ -196,6 +197,7 @@ def item_vs_player(inventory, item, player):
 
     for item_key in item:
         if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
+
             add_to_inventory(inventory, item_key)
             item_to_delete = item_key
             item[item_key]['number'] -= 1
@@ -203,6 +205,7 @@ def item_vs_player(inventory, item, player):
 
             if item_key == 'first_aid':
                 ui.print_message('\n' + ' +1 Life point! ')
+                player['player_life'] += 1 
             else:
                 ui.print_message('\n' + 'This item has been added to your inventory!')
                 
@@ -218,7 +221,7 @@ def add_life_points(item, player):
     try:
 
         if item['first_aid']['position_x'] == player['position_x'] and item['first_aid']['position_y'] == player['position_y']:
-            player['player_health'] += 1
+            player['player_life'] += 1
         
     except KeyError:
         pass
@@ -262,12 +265,12 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=2):
     while q_count <= questions_number and other["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
-            player["player_health"] += 1
+            player["player_life"] += 1
             other["other_health"] -= 1
             questions[q_count][2] = True
             print("Correct!")
         else:
-            player["player_health"] -= 1
+            player["player_life"] -= 1
             print("Wrong!")
         q_count += 1
 
@@ -276,10 +279,15 @@ def player_vs_other_quiz(player, other, item, questions, questions_number=2):
     else:
         #  here flour(goal) needs to be added to inventory
         print("Wonderful! The %s gave you %s." % (other["other_name"], other["goal_quiz"]))
-        
-def display_inventory(key, inventory):
 
-    if key == 'i':
-        message = 'This is your inventory content: '
-        ui.print_message(message)
-        ui.print_table(inventory)
+
+def calculate_player_power(inventory):
+
+    mylist = []
+
+    for key in inventory.keys():
+        mylist.append(inventory[key])
+
+    power = sum(mylist)
+        
+    return power
