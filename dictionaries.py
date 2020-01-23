@@ -44,30 +44,30 @@ BOARD = {
 # ITEMS -------------------------
 
 items = {
-        'eggs0':{
+        'Honey0':{
             'type': 'ingridient',
-            'item_icon': 'E',
+            'item_icon': 'H',
             'position_x': 11,
             'position_y': 2,
             'number': 2
             },
-        'sugar0':{ 
+        'Lollipop0':{ 
             'type': 'ingridient', 
-            'item_icon': 'S',
+            'item_icon': 'L',
             'position_x': 9,
             'position_y': 18,
             'number': 1
             },
-        'sugar2':{ 
+        'Donut-':{ 
             'type': 'ingridient', 
-            'item_icon': 'S',
+            'item_icon': 'D',
             'position_x': 55,
             'position_y': 25,
             'number': 1
             },
-        'sugar3':{ 
+        'Candy0':{ 
             'type': 'ingridient', 
-            'item_icon': 'S',
+            'item_icon': 'C',
             'position_x': 90,
             'position_y': 2,
             'number': 2
