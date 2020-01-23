@@ -168,7 +168,8 @@ others = {
                         ["What color are bananas?\n(a) Red\n(b) Orange\n(c) Yellow\n", "c", False],
                         ["What band Nergal plays in?\n(a) Behemoth\n(b) Acid Drinkers\n(c) Coma\n", "a", False],
                         ["What is the capital of Australia?\n(a) Sydney\n(b) Canberra\n(c) Melbourne\n", "b", False], 
-                        ["How many islands there are in Faroe Islands?\n(a) 412\n(b) 779\n(c) 18\n", "b", False]]
+                        ["How many islands there are in Faroe Islands?\n(a) 412\n(b) 779\n(c) 18\n", "b", False]],
+        'width': 1
         },
     'other2': {
         'other_type': "friend",
@@ -179,7 +180,8 @@ others = {
         'step': 0,
         'other_health': 3,
         'goal_quiz': "information",
-        'questions': []
+        'questions': [],
+        'width': 1
         },
     'other3': {
         'other_type': "enemy",
@@ -190,9 +192,22 @@ others = {
         'step': 2,
         'other_health': 3,
         'goal_quiz': "milk",
-        'questions': []
+        'questions': [],
+        'width': 1
+        },
+    'boss': {
+        'other_type': "enemy",
+        'other_name': "Boss",
+        'other_icon': "B",
+        'position_x': 50,
+        'position_y': 15,
+        'step': 2,
+        'other_health': 3,
+        'goal_quiz': "winning",
+        'questions': [],
+        'width': 5
         }
-    }   
+    }  
 
 
 # INVENTORY ---------------------

@@ -2,6 +2,7 @@ import random
 import ui
 import main
 import dictionaries
+import math
 
 
 def create_board(board):
@@ -73,20 +74,22 @@ def put_other_on_board(board, others):
     for other in others:
         height = others[other]['position_y']
         width = others[other]['position_x']
-        if others[other]["other_health"] > 0:
-            board[height][width] = others[other]['other_icon']
+
+        for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
+            for cell in range(width - (math.floor(others[other]["width"] / 2)), width + (math.ceil(others[other]["width"] / 2))):
+                board[row][cell] = others[other]['other_icon']
 
     return board
 
 
-def get_random_position_of_other(others, width, height):
+def get_random_position_of_other(others, board):
     """
     Randomly generates and updates position of Other Character
     based on the Character's step. Other Character respects the walls.
 
     Args:
         other: dictionary
-        BOARD_HEIGHT and BOARD_WEIGHT: int
+        board: list
 
     """
     for other in others:
@@ -94,25 +97,25 @@ def get_random_position_of_other(others, width, height):
         if others[other]["other_health"] > 0:
             random_selection = random.randrange(4)
             if random_selection == 0:
-                potential_position = others[other]["position_x"] + others[other]["step"]
-                if potential_position >= width - 1:
+                potential_position = others[other]["position_x"] + others[other]["step"]  # move to the right
+                if potential_position >= len(board[0]) - 1:
                     pass
                 else:
                     others[other]["position_x"] += others[other]["step"]
             if random_selection == 1:
-                potential_position = others[other]["position_x"] - others[other]["step"]
+                potential_position = others[other]["position_x"] - others[other]["step"]  # move to the left
                 if potential_position <= 0:
                     pass
                 else:
                     others[other]["position_x"] -= others[other]["step"]
             if random_selection == 2:
-                potential_position = others[other]["position_y"] + others[other]["step"]
-                if potential_position >= height - 1:
+                potential_position = others[other]["position_y"] + others[other]["step"]  # move up
+                if potential_position >= len(board) - 1:
                     pass
                 else:
                     others[other]["position_y"] += others[other]["step"]
             if random_selection == 3:
-                potential_position = others[other]["position_y"] - others[other]["step"]
+                potential_position = others[other]["position_y"] - others[other]["step"]  # move down
                 if potential_position <= 0:
                     pass
                 else:
@@ -166,10 +169,8 @@ def player_meets_other(others, player):
             
 def movement(board, player, key, others):
 
-    height = len(board)
-    width = len(board[0])
     if key in ['w', 's', 'a', 'd']:
-        get_random_position_of_other(others, width, height)
+        get_random_position_of_other(others, board)
 
     if key == 'w':
         if player['position_y'] == 1:
@@ -268,15 +269,18 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     """
 
     print("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"]))
+
     q_count = 0
+
     questions = [question for question in questions if question[2] is False]
+
     while q_count <= questions_number and others[other]["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
             # player['player_power'] += 1  moze +1 power za kazda dobra odpowiedz?
             others[other]["other_health"] -= 1
             questions[q_count][2] = True
-            print("Correct!")
+            ui.print_message("Correct!")
         else:
             # player['player_power'] -= 1  moze -1 power za kazda bledna odpowiedz?
             print("Wrong!")
@@ -284,12 +288,12 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
 
     if others[other]["other_health"] > 0:
         player["player_life"] -= 1
-        print("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
+        ui.print_message("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
     else:
         player["player_life"] += 1
         add_to_inventory(inventory, "flour0")
-        print("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
-        print('+1 life point!')
+        ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
+        ui.print_message('+1 life point!')
 
 
         
@@ -303,5 +307,11 @@ def calculate_player_power(inventory):
         mylist.append(inventory[key])
 
     inventory_power = sum(mylist)
+
+    character_power = player['player_power']
+
+    life_points_power = player['player_life'] * 2
+
+    total_power = inventory_power + character_power + life_points_power 
         
-    return power
+    
