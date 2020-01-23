@@ -277,15 +277,18 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     """
 
     print("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"]))
+
     q_count = 0
+
     questions = [question for question in questions if question[2] is False]
+
     while q_count <= questions_number and others[other]["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
             # player['player_power'] += 1  moze +1 power za kazda dobra odpowiedz?
             others[other]["other_health"] -= 1
             questions[q_count][2] = True
-            print("Correct!")
+            ui.print_message("Correct!")
         else:
             # player['player_power'] -= 1  moze -1 power za kazda bledna odpowiedz?
             print("Wrong!")
@@ -293,12 +296,12 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
 
     if others[other]["other_health"] > 0:
         player["player_life"] -= 1
-        print("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
+        ui.print_message("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
     else:
         player["player_life"] += 1
         add_to_inventory(inventory, "flour0")
-        print("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
-        print('+1 life point!')
+        ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
+        ui.print_message('+1 life point!')
 
 
         
@@ -312,5 +315,11 @@ def calculate_player_power(inventory):
         mylist.append(inventory[key])
 
     inventory_power = sum(mylist)
+
+    character_power = player['player_power']
+
+    life_points_power = player['player_life'] * 2
+
+    total_power = inventory_power + character_power + life_points_power 
         
-    return power
+    
