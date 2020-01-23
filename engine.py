@@ -1,6 +1,7 @@
 import random
 import ui
 import main
+import dictionaries
 
 
 def create_board(board):
@@ -271,20 +272,22 @@ def player_vs_other_quiz(player, other, others, questions, questions_number=2):
     while q_count <= questions_number and others[other]["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
-            player["player_life"] += 1
             others[other]["other_health"] -= 1
             questions[q_count][2] = True
             print("Correct!")
         else:
-            player["player_life"] -= 1
             print("Wrong!")
         q_count += 1
 
     if others[other]["other_health"] > 0:
         print("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
+        player["player_life"] -= 1
     else:
         #  here flour(goal) needs to be added to inventory
         print("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
+        print('+1 life point!')
+        add_to_inventory(dictionaries.inventory, 'flour0')
+        player["player_life"] += 1
         
 
 
@@ -295,6 +298,6 @@ def calculate_player_power(inventory):
     for key in inventory.keys():
         mylist.append(inventory[key])
 
-    power = sum(mylist)
+    inventory_power = sum(mylist)
         
     return power
