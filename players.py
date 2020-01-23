@@ -28,7 +28,7 @@ def user_info(list_labels, player_nickname):
             data_manager.read_file_nicknames(file_nicknames)
             for line in player_nickname:
                 if user_answer == line[nickname]:
-                    raise Exception("This user just exist. Try again and select other name")
+                    raise Exception("This user already exist. Try again and select other name")
             print("\nYou can choose who you want to be :D \nYour options: CookieMen, CookieWomen or CookieBaby\n")        
         elif elem == 1:
             if user_answer not in game_player['race']:
@@ -52,8 +52,7 @@ def user_info(list_labels, player_nickname):
 def run():
     
     try:
-        view.print_table(user_info(list_labels,data_manager.read_file_nicknames(file_nicknames))) 
-        main.main()  
+        view.print_table(user_info(list_labels,data_manager.read_file_nicknames(file_nicknames)))   
     except Exception as error:
         print(str(error))  
             

@@ -3,12 +3,12 @@ file_results = "results.txt"
 
 
 def read_file_nicknames(file):
-    fil = open(file, "r")
-    lines = fil.readlines()
-    players_info = []
-    for line in lines:
-        item = line.strip("\n").split(",")
-        players_info.append(item)
+    with open(file, "r") as fil:
+        lines = fil.readlines()
+        players_info = []
+        for line in lines:
+            item = line.strip("\n").split(",")
+            players_info.append(item)
      
     return players_info 
 
