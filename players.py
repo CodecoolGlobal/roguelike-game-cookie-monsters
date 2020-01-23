@@ -2,7 +2,7 @@ import data_manager
 import view
 import sys
 import main
-
+import dictionaries
 
 
 BOARD_WIDTH = 80
@@ -19,7 +19,6 @@ game_player = {'race' : ['CookieMen', 'CookieMum', 'CookieBaby'],
 }
 
 def user_info(list_labels, player_nickname):
-    player_data = {}
     print("Please, provide check data :)!")
     nickname = 0
     for elem in range(len(list_labels)):
@@ -27,32 +26,32 @@ def user_info(list_labels, player_nickname):
         if elem == 0:
             data_manager.read_file_nicknames(file_nicknames)
             for line in player_nickname:
-                if user_answer == line[nickname]:
+                if user_answer == line[5]:
                     raise Exception("This user already exist. Try again and select other name")
             print("\nYou can choose who you want to be :D \nYour options: CookieMen, CookieWomen or CookieBaby\n")        
         elif elem == 1:
             if user_answer not in game_player['race']:
-                raise Exception("It's not acceptable choice. Try again\n")       
+                raise Exception("It's not acceptable choice. Try again\n")   
+            else:
+                if user_answer == 'CookieMan':
+                    print("You are a CookieMan so You are more powerful than you think")
+                    dictionaries.player['player_power'] = 5
+                elif user_answer == 'CookieWomen':
+                    print("You chose CookieWomen and you get rolling pin :D!!!It can be useful later")
+                    dictionaries.player['additional_elements'] = 'rolling_pin'
+                elif user_answer == 'CookieBaby':    
+                    print("Hello little boy ;) Because you're still a child, You get a more life_points ")    
         elif elem == 2:
             if user_answer not in game_player['Level_of_difficulty']:
                 raise Exception("You choose only 1 ,2 or 3 level of difficulty\n")
             else:
                 if user_answer == '1':
-                    healthy = 5
+                    dictionaries.player['player_life'] = 5
                 elif user_answer == '2':
-                    healthy = 3
+                    dictionaries.player['player_life'] = 3
                 elif user_answer == '3':
-                    healthy = 1
-                player_data["Healthy"] = healthy  
-        player_data[list_labels[elem]] = user_answer
-    data_manager.add_new_nicknames(player_data, file_nicknames)    
-    return player_data
+                    dictionaries.player['player_life'] = 1
+     
+        dictionaries.player[list_labels[elem]] = user_answer
+    data_manager.add_new_nicknames(dictionaries.player, file_nicknames)    
 
-
-def run():
-    
-    try:
-        view.print_table(user_info(list_labels,data_manager.read_file_nicknames(file_nicknames)))   
-    except Exception as error:
-        print(str(error))  
-            
