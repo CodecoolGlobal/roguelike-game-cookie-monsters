@@ -137,7 +137,6 @@ def put_item_on_board(board, items):
 
     for item_key in items:
         if items[item_key]['board'] == 1:
-            print('dupa!!!!')
             board[items[item_key]['position_y']][items[item_key]['position_x']] = items[item_key]['item_icon']
 
     return board

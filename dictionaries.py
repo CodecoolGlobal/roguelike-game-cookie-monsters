@@ -55,7 +55,7 @@ items = {
         'Jelly0':{ 
             'type': 'ingridient', 
             'item_icon': 'J',
-            'position_x': 9,
+            'position_x': 12,
             'position_y': 18,
             'number': 1,
             'board': 3
@@ -79,7 +79,7 @@ items = {
         'Jam0':{
             'type': 'ingridient',
             'item_icon': 'M',
-            'position_x': 11,
+            'position_x': 13,
             'position_y': 3,
             'number': 2,
             'board': 2
@@ -87,7 +87,7 @@ items = {
         'Biscuits0':{ 
             'type': 'ingridient', 
             'item_icon': 'B',
-            'position_x': 9,
+            'position_x': 10,
             'position_y': 19,
             'number': 1,
             'board': 2
@@ -95,8 +95,8 @@ items = {
         'Pralines0':{ 
             'type': 'ingridient', 
             'item_icon': 'Q',
-            'position_x': 56,
-            'position_y': 26,
+            'position_x': 57,
+            'position_y': 27,
             'number': 1,
             'board': 2
             },
@@ -127,8 +127,8 @@ items = {
         'Donut0':{ 
             'type': 'ingridient', 
             'item_icon': 'D',
-            'position_x': 55,
-            'position_y': 25,
+            'position_x': 56,
+            'position_y': 26,
             'number': 1,
             'board': 1
             },
