@@ -294,6 +294,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
         ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         ui.print_message('+1 life point!')
 
+
         
 
 
