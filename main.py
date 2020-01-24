@@ -38,7 +38,7 @@ def main():
                 board = engine.create_board(dictionaries.BOARD[level])
                 board = engine.put_player_on_board(board, dictionaries.player)
                 board = engine.put_other_on_board(board, dictionaries.others)
-                board = engine.put_item_on_board(board, dictionaries.items) 
+                board = engine.put_item_on_board(board, dictionaries.items,1) 
 
                 # Display essential info
                 ui.print_player_essential_atributes(dictionaries.player)
@@ -95,7 +95,7 @@ def main():
                 board = engine.create_board(dictionaries.BOARD[level])
                 board = engine.put_player_on_board(board, dictionaries.player)
                 board = engine.put_other_on_board(board, dictionaries.others)
-                board = engine.put_item_on_board(board, dictionaries.items)
+                board = engine.put_item_on_board(board, dictionaries.items, 2)
 
                 # Display essential info
                 ui.print_player_essential_atributes(dictionaries.player)
@@ -152,7 +152,7 @@ def main():
                 board = engine.create_board(dictionaries.BOARD[level])
                 board = engine.put_player_on_board(board, dictionaries.player)
                 board = engine.put_other_on_board(board, dictionaries.others)
-                board = engine.put_item_on_board(board, dictionaries.items)
+                board = engine.put_item_on_board(board, dictionaries.items,3)
 
                 # Display essential info
                 ui.print_player_essential_atributes(dictionaries.player)

@@ -14,12 +14,14 @@ file_results = "results.txt"
 
 list_labels = ["Nickname", "Type", "Level of difficulty"]
 
-game_player = {'race' : ['CookieMan', 'CookieMum', 'CookieBaby'],
+game_player = {'race' : ['1', '2', '3'],
             'Level_of_difficulty' : ['1', '2', '3'],
 }
 
 def user_info(list_labels, player_nickname):
+
     print("Please, provide your's nickname: ")
+
     nickname = 0
     for elem in range(len(list_labels)):
         user_answer = input(str(list_labels[elem])+" : ")
@@ -28,19 +30,19 @@ def user_info(list_labels, player_nickname):
             for line in player_nickname:
                 if user_answer == line:
                     raise Exception("This user already exist. Try again and select other name")
-            print("\nYou can choose who you want to be :D \nYour options: CookieMan, CookieMum or CookieBaby\n")        
+            print("\nYou can choose who you want to be :D \nYour options: (1)CookieMan, (2)CookieMum or (3)CookieBaby\n")        
         
         elif elem == 1:
             if user_answer not in game_player['race']:
                 raise Exception("It's not acceptable choice. Try again\n")   
             else:
-                if user_answer == 'CookieMan':
-                    print("You are a CookieMan so You are more powerful than you think")
+                if user_answer == 'a':
+                    print("You are a CookieMan so you are more powerful than you think")
                     dictionaries.player['player_power'] = 5
-                elif user_answer == 'CookieMum':
+                elif user_answer == 'b':
                     print("You chose CookieMum and you get rolling pin :D!!!It can be useful later")
                     dictionaries.player['additional_elements'] = 'rolling_pin'
-                elif user_answer == 'CookieBaby':    
+                elif user_answer == 'c':    
                     print("Hello little boy ;) Because you're still a child, You get a more life_points ")
                     dictionaries.player['player_life'] = 2
         
