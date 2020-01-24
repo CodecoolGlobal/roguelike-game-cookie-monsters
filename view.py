@@ -1,5 +1,5 @@
 import data_manager
-#from termcolor import colored
+from termcolor import colored
 
 BOARD_WIDTH = 100
 BOARD_HEIGHT = 30
