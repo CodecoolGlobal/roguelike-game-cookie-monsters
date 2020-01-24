@@ -22,8 +22,8 @@ def print_table(inventory):
 
     return ''
 
-def print_message(message):
-    print(message)
+def print_message(message, message_2 = '', message_3 = ''):
+    print(message, message_2, message_3)
 
 def print_player_essential_atributes(player):
     print()

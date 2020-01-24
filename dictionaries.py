@@ -50,7 +50,8 @@ items = {
             'position_x': 5,
             'position_y': 20,
             'number': 1,
-            'board': 3
+            'board': 3,
+            'added_power': 0            
             },
         'Jelly0':{ 
             'type': 'ingridient', 
@@ -58,7 +59,8 @@ items = {
             'position_x': 12,
             'position_y': 18,
             'number': 1,
-            'board': 3
+            'board': 3,
+            'added_power': 0
             },
         'Pudding0':{ 
             'type': 'ingridient', 
@@ -66,7 +68,8 @@ items = {
             'position_x': 55,
             'position_y': 25,
             'number': 1,
-            'board': 3
+            'board': 3,
+            'added_power': 0
             },
         'Ice Cream0':{ 
             'type': 'ingridient', 
@@ -74,7 +77,8 @@ items = {
             'position_x': 92,
             'position_y': 7,
             'number': 2,
-            'board': 2
+            'board': 2,
+            'added_power': 0
             },
         'Jam0':{
             'type': 'ingridient',
@@ -82,7 +86,8 @@ items = {
             'position_x': 13,
             'position_y': 3,
             'number': 2,
-            'board': 2
+            'board': 2,
+            'added_power': 0
             },
         'Biscuits0':{ 
             'type': 'ingridient', 
@@ -90,7 +95,8 @@ items = {
             'position_x': 10,
             'position_y': 19,
             'number': 1,
-            'board': 2
+            'board': 2,
+            'added_power': 0
             },
         'Pralines0':{ 
             'type': 'ingridient', 
@@ -98,7 +104,8 @@ items = {
             'position_x': 57,
             'position_y': 27,
             'number': 1,
-            'board': 2
+            'board': 2,
+            'added_power': 0
             },
         'Candy0':{ 
             'type': 'ingridient', 
@@ -106,7 +113,8 @@ items = {
             'position_x': 91,
             'position_y': 2,
             'number': 2,
-            'board': 2
+            'board': 2,
+            'added_power': 0
             },
         'Honey0':{
             'type': 'ingridient',
@@ -114,7 +122,8 @@ items = {
             'position_x': 11,
             'position_y': 4,
             'number': 2,
-            'board': 1
+            'board': 1,
+            'added_power': 0
             },
         'Lollipop0':{ 
             'type': 'ingridient', 
@@ -122,7 +131,8 @@ items = {
             'position_x': 9,
             'position_y': 17,
             'number': 1,
-            'board': 1
+            'board': 1,
+            'added_power': 0
             },
         'Donut0':{ 
             'type': 'ingridient', 
@@ -130,7 +140,8 @@ items = {
             'position_x': 56,
             'position_y': 26,
             'number': 1,
-            'board': 1
+            'board': 1,
+            'added_power': 0
             },
         'Candy0':{ 
             'type': 'ingridient', 
@@ -138,7 +149,8 @@ items = {
             'position_x': 90,
             'position_y': 5,
             'number': 2,
-            'board': 1
+            'board': 1,
+            'added_power': 0
             },
         'first_aid':{ 
             'type': 'life', 
@@ -146,7 +158,8 @@ items = {
             'position_x': 70,
             'position_y': 15,
             'number': 1,
-            'board': 1
+            'board': 1,
+            'added_power': 0
         }
     }
 
@@ -155,7 +168,7 @@ items = {
 
 others = {
     'other': {
-        'other_type': "enemy",
+        'other_type': "quiz",
         'other_name': "Miller",
         'other_icon': "M",
         'position_x': 5,
@@ -169,7 +182,8 @@ others = {
                         ["What band Nergal plays in?\n(a) Behemoth\n(b) Acid Drinkers\n(c) Coma\n", "a", False],
                         ["What is the capital of Australia?\n(a) Sydney\n(b) Canberra\n(c) Melbourne\n", "b", False], 
                         ["How many islands there are in Faroe Islands?\n(a) 412\n(b) 779\n(c) 18\n", "b", False]],
-        'width': 1
+        'width': 1,
+        'other_power': 1
         },
     'other2': {
         'other_type': "friend",
@@ -181,7 +195,8 @@ others = {
         'other_health': 3,
         'goal_quiz': "information",
         'questions': [],
-        'width': 1
+        'width': 1,
+        'other_power': 1
         },
     'other3': {
         'other_type': "enemy",
@@ -189,11 +204,12 @@ others = {
         'other_icon': "K",
         'position_x': 33,
         'position_y': 15,
-        'step': 2,
+        'step': 0,
         'other_health': 3,
         'goal_quiz': "milk",
         'questions': [],
-        'width': 1
+        'width': 1,
+        'other_power': 1
         },
     'boss': {
         'other_type': "enemy",
@@ -205,7 +221,8 @@ others = {
         'other_health': 3,
         'goal_quiz': "winning",
         'questions': [],
-        'width': 5
+        'width': 5,
+        'other_power': 1
         }
     }  
 

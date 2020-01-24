@@ -3,6 +3,9 @@ import ui
 import main
 import dictionaries
 import math
+import util
+import view
+import players
 
 
 def create_board(board):
@@ -74,22 +77,28 @@ def put_other_on_board(board, others):
     for other in others:
         height = others[other]['position_y']
         width = others[other]['position_x']
-
-        for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
-            for cell in range(width - (math.floor(others[other]["width"] / 2)), width + (math.ceil(others[other]["width"] / 2))):
-                board[row][cell] = others[other]['other_icon']
+        if others[other]["other_health"] > 0 and others[other]["width"] == 1:
+            board[height][width] = others[other]['other_icon']
+        elif others[other]["other_health"] > 0 and others[other]["width"] > 1:
+            put_bigger_character_on_board(height, width, others, other, board)
 
     return board
 
 
-def get_random_position_of_other(others, board):
+def put_bigger_character_on_board(height, width, others, other, board):
+    for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
+        for cell in range(width - (math.floor(others[other]["width"] / 2)), width + (math.ceil(others[other]["width"] / 2))):
+            board[row][cell] = others[other]['other_icon']
+
+
+def get_random_position_of_other(others, width, height):
     """
     Randomly generates and updates position of Other Character
     based on the Character's step. Other Character respects the walls.
 
     Args:
         other: dictionary
-        board: list
+        BOARD_HEIGHT and BOARD_WEIGHT: int
 
     """
     for other in others:
@@ -97,25 +106,25 @@ def get_random_position_of_other(others, board):
         if others[other]["other_health"] > 0:
             random_selection = random.randrange(4)
             if random_selection == 0:
-                potential_position = others[other]["position_x"] + others[other]["step"]  # move to the right
-                if potential_position >= len(board[0]) - 1:
+                potential_position = others[other]["position_x"] + others[other]["step"]
+                if potential_position >= width - 1:
                     pass
                 else:
                     others[other]["position_x"] += others[other]["step"]
             if random_selection == 1:
-                potential_position = others[other]["position_x"] - others[other]["step"]  # move to the left
+                potential_position = others[other]["position_x"] - others[other]["step"]
                 if potential_position <= 0:
                     pass
                 else:
                     others[other]["position_x"] -= others[other]["step"]
             if random_selection == 2:
-                potential_position = others[other]["position_y"] + others[other]["step"]  # move up
-                if potential_position >= len(board) - 1:
+                potential_position = others[other]["position_y"] + others[other]["step"]
+                if potential_position >= height - 1:
                     pass
                 else:
                     others[other]["position_y"] += others[other]["step"]
             if random_selection == 3:
-                potential_position = others[other]["position_y"] - others[other]["step"]  # move down
+                potential_position = others[other]["position_y"] - others[other]["step"]
                 if potential_position <= 0:
                     pass
                 else:
@@ -136,10 +145,10 @@ def add_to_inventory(inventory, item_key):
         inventory[item_key] = 1
 
 
-def put_item_on_board(board, items):
+def put_item_on_board(board, items, board_lvl):
 
     for item_key in items:
-        if items[item_key]['board'] == 1:
+        if items[item_key]['board'] == board_lvl:
             board[items[item_key]['position_y']][items[item_key]['position_x']] = items[item_key]['item_icon']
 
     return board
@@ -169,8 +178,10 @@ def player_meets_other(others, player):
             
 def movement(board, player, key, others):
 
+    height = len(board)
+    width = len(board[0])
     if key in ['w', 's', 'a', 'd']:
-        get_random_position_of_other(others, board)
+        get_random_position_of_other(others, width, height)
 
     if key == 'w':
         if player['position_y'] == 1:
@@ -268,7 +279,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     health - it disappears and the Player gets flour.
     """
 
-    print("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"]))
+    ui.print_message(("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"])))
 
     q_count = 0
 
@@ -283,7 +294,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
             ui.print_message("Correct!")
         else:
             # player['player_power'] -= 1  moze -1 power za kazda bledna odpowiedz?
-            print("Wrong!")
+            ui.print_message("Wrong!")
         q_count += 1
 
     if others[other]["other_health"] > 0:
@@ -294,24 +305,205 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
         add_to_inventory(inventory, "flour0")
         ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         ui.print_message('+1 life point!')
-
-
-        
-
-
-def calculate_player_power(inventory):
-
-    mylist = []
-
-    for key in inventory.keys():
-        mylist.append(inventory[key])
-
-    inventory_power = sum(mylist)
-
-    character_power = player['player_power']
-
-    life_points_power = player['player_life'] * 2
-
-    total_power = inventory_power + character_power + life_points_power 
-        
     
+
+def first_level(board, inventory, player, level, others, items, number, key, time, BOARD):
+
+    view.print_table(players.data_to_print(player))
+    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    ui.print_message(message)
+    time.sleep(1.0)
+    util.clear_screen()
+
+    while level == 'BOARD_1':
+
+        view.print_table(players.data_to_print(player))
+
+        # Set up board
+        board = create_board(dictionaries.BOARD[level])
+        board = put_player_on_board(board, player)
+        board = put_other_on_board(board, others)
+        board = put_item_on_board(board, items, number) 
+
+        # Display essential info
+        ui.print_player_essential_atributes(player)
+        
+        # Display board
+        ui.display_board(board)
+
+        # Interaction whit items
+        item_vs_player(inventory, items, player)
+
+        # Display inventory
+        if key == 'i':
+            message = 'This is your inventory content: '
+            ui.print_message(message)
+            ui.print_table(inventory)
+
+        # Player input
+        key = util.key_pressed()
+                        
+        # Movement
+        movement(board,player, key, others)
+
+        # Clear screen
+        util.clear_screen()
+
+        # Interaction with other characters
+        if player_meets_other(others, player) != False:
+            other = player_meets_other(others, player)
+            if dictionaries.others[other]['other_type'] == 'enemy':
+                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
+            elif dictionaries.others[other]['other_type'] == 'quiz':
+                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
+
+        # Gate and level change handling
+        level = player_enters_gate(level, BOARD, player, key)
+
+        # Check if quit
+        if key == 'q':
+            level = 'QUIT'
+
+
+def second_level(board, inventory, player, level, others, items, number, key, time, BOARD):
+
+    view.print_table(players.data_to_print(player))
+    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    ui.print_message(message)
+    time.sleep(1.0)
+    util.clear_screen()
+
+    while level == 'BOARD_1':
+
+        view.print_table(players.data_to_print(player))
+
+        # Set up board
+        board = create_board(dictionaries.BOARD[level])
+        board = put_player_on_board(board, player)
+        board = put_other_on_board(board, others)
+        board = put_item_on_board(board, items, number) 
+
+        # Display essential info
+        ui.print_player_essential_atributes(player)
+        
+        # Display board
+        ui.display_board(board)
+
+        # Interaction whit items
+        item_vs_player(inventory, items, player)
+
+        # Display inventory
+        if key == 'i':
+            message = 'This is your inventory content: '
+            ui.print_message(message)
+            ui.print_table(inventory)
+
+        # Player input
+        key = util.key_pressed()
+                        
+        # Movement
+        movement(board,player, key, others)
+
+        # Clear screen
+        util.clear_screen()
+
+        # Interaction with other characters
+        if player_meets_other(others, player) != False:
+            other = player_meets_other(others, player)
+            if dictionaries.others[other]['other_type'] == 'enemy':
+                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
+            elif dictionaries.others[other]['other_type'] == 'quiz':
+                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
+
+        # Gate and level change handling
+        level = player_enters_gate(level, BOARD, player, key)
+
+        # Check if quit
+        if key == 'q':
+            level = 'QUIT'
+
+def third_level(board, inventory, player, level, others, items, number, key, time, BOARD):
+
+    view.print_table(players.data_to_print(player))
+    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    ui.print_message(message)
+    time.sleep(1.0)
+    util.clear_screen()
+
+    while level == 'BOARD_1':
+
+        view.print_table(players.data_to_print(player))
+
+        # Set up board
+        board = create_board(dictionaries.BOARD[level])
+        board = put_player_on_board(board, player)
+        board = put_other_on_board(board, others)
+        board = put_item_on_board(board, items, number) 
+
+        # Display essential info
+        ui.print_player_essential_atributes(player)
+        
+        # Display board
+        ui.display_board(board)
+
+        # Interaction whit items
+        item_vs_player(inventory, items, player)
+
+        # Display inventory
+        if key == 'i':
+            message = 'This is your inventory content: '
+            ui.print_message(message)
+            ui.print_table(inventory)
+
+        # Player input
+        key = util.key_pressed()
+                        
+        # Movement
+        movement(board,player, key, others)
+
+        # Clear screen
+        util.clear_screen()
+
+        # Interaction with other characters
+        if player_meets_other(others, player) != False:
+            other = player_meets_other(others, player)
+            if dictionaries.others[other]['other_type'] == 'enemy':
+                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
+            elif dictionaries.others[other]['other_type'] == 'quiz':
+                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
+
+        # Gate and level change handling
+        level = player_enters_gate(level, BOARD, player, key)
+
+        # Check if quit
+        if key == 'q':
+            level = 'QUIT'
+
+
+def fight(player, others, other, inventory, items):
+    
+    player_x = player['position_x']
+    player_y = player['position_y']
+    other_x = others[other]['position_x']
+    other_y = others[other]['position_y']
+
+    items_sumaric_power = 0
+    if player_x == other_x and player_y == other_y:
+        for item in inventory:
+            items_sumaric_power += items[item]['added_power']
+        
+    player_hit = (player['player_power'] + items_sumaric_power) * random.randrange(2)
+    other_hit = others[other]['other_power'] #* random.randrange(2)
+
+    if player_hit > other_hit:
+        ui.print_message('You just won the fight with', message_2 = others[other]['other_name'], message_3 = '! +1 to power for you!')
+        player['player_power'] += 1
+        others[other]['other_health'] -= 1
+
+    elif player_hit == other_hit:
+        ui.print_message('You just fought with', message_2 = others[other]['other_name'], message_3 = '! It was a draw!')
+    
+    else:
+
+        ui.print_message('You just lost fight with', message_2 = others[other]['other_name'], message_3 = '! You loose one life point')
+        player['player_life'] -= 1
