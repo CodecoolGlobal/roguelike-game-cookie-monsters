@@ -82,7 +82,7 @@ items = {
             },
         'Jam0':{
             'type': 'ingridient',
-            'item_icon': 'M',
+            'item_icon': 'Z',
             'position_x': 13,
             'position_y': 3,
             'number': 2,
@@ -168,7 +168,7 @@ items = {
 
 others = {
     'other': {
-        'other_type': "enemy",
+        'other_type': "quiz",
         'other_name': "Miller",
         'other_icon': "M",
         'position_x': 5,

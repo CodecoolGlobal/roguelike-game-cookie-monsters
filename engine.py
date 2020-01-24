@@ -145,10 +145,10 @@ def add_to_inventory(inventory, item_key):
         inventory[item_key] = 1
 
 
-def put_item_on_board(board, items, board_lvl):
+def put_item_on_board(board, items, level):
 
     for item_key in items:
-        if items[item_key]['board'] == board_lvl:
+        if items[item_key]['board'] == int(level[-1]):
             board[items[item_key]['position_y']][items[item_key]['position_x']] = items[item_key]['item_icon']
 
     return board
@@ -245,6 +245,7 @@ def add_life_points(item, player):
         
     except KeyError:
         pass
+    
 def player_enters_gate(level, BOARD, player, key):
 
     # entering gate that is up in relation to player
@@ -307,177 +308,6 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
         ui.print_message('+1 life point!')
     
 
-def first_level(board, inventory, player, level, others, items, number, key, time, BOARD):
-
-    view.print_table(players.data_to_print(player))
-    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
-    ui.print_message(message)
-    time.sleep(1.0)
-    util.clear_screen()
-
-    while level == 'BOARD_1':
-
-        view.print_table(players.data_to_print(player))
-
-        # Set up board
-        board = create_board(dictionaries.BOARD[level])
-        board = put_player_on_board(board, player)
-        board = put_other_on_board(board, others)
-        board = put_item_on_board(board, items, number) 
-
-        # Display essential info
-        ui.print_player_essential_atributes(player)
-        
-        # Display board
-        ui.display_board(board)
-
-        # Interaction whit items
-        item_vs_player(inventory, items, player)
-
-        # Display inventory
-        if key == 'i':
-            message = 'This is your inventory content: '
-            ui.print_message(message)
-            ui.print_table(inventory)
-
-        # Player input
-        key = util.key_pressed()
-                        
-        # Movement
-        movement(board,player, key, others)
-
-        # Clear screen
-        util.clear_screen()
-
-        # Interaction with other characters
-        if player_meets_other(others, player) != False:
-            other = player_meets_other(others, player)
-            if dictionaries.others[other]['other_type'] == 'enemy':
-                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
-            elif dictionaries.others[other]['other_type'] == 'quiz':
-                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
-
-        # Gate and level change handling
-        level = player_enters_gate(level, BOARD, player, key)
-
-        # Check if quit
-        if key == 'q':
-            level = 'QUIT'
-
-
-def second_level(board, inventory, player, level, others, items, number, key, time, BOARD):
-
-    view.print_table(players.data_to_print(player))
-    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
-    ui.print_message(message)
-    time.sleep(1.0)
-    util.clear_screen()
-
-    while level == 'BOARD_1':
-
-        view.print_table(players.data_to_print(player))
-
-        # Set up board
-        board = create_board(dictionaries.BOARD[level])
-        board = put_player_on_board(board, player)
-        board = put_other_on_board(board, others)
-        board = put_item_on_board(board, items, number) 
-
-        # Display essential info
-        ui.print_player_essential_atributes(player)
-        
-        # Display board
-        ui.display_board(board)
-
-        # Interaction whit items
-        item_vs_player(inventory, items, player)
-
-        # Display inventory
-        if key == 'i':
-            message = 'This is your inventory content: '
-            ui.print_message(message)
-            ui.print_table(inventory)
-
-        # Player input
-        key = util.key_pressed()
-                        
-        # Movement
-        movement(board,player, key, others)
-
-        # Clear screen
-        util.clear_screen()
-
-        # Interaction with other characters
-        if player_meets_other(others, player) != False:
-            other = player_meets_other(others, player)
-            if dictionaries.others[other]['other_type'] == 'enemy':
-                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
-            elif dictionaries.others[other]['other_type'] == 'quiz':
-                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
-
-        # Gate and level change handling
-        level = player_enters_gate(level, BOARD, player, key)
-
-        # Check if quit
-        if key == 'q':
-            level = 'QUIT'
-
-def third_level(board, inventory, player, level, others, items, number, key, time, BOARD):
-
-    view.print_table(players.data_to_print(player))
-    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
-    ui.print_message(message)
-    time.sleep(1.0)
-    util.clear_screen()
-
-    while level == 'BOARD_1':
-
-        view.print_table(players.data_to_print(player))
-
-        # Set up board
-        board = create_board(dictionaries.BOARD[level])
-        board = put_player_on_board(board, player)
-        board = put_other_on_board(board, others)
-        board = put_item_on_board(board, items, number) 
-
-        # Display essential info
-        ui.print_player_essential_atributes(player)
-        
-        # Display board
-        ui.display_board(board)
-
-        # Interaction whit items
-        item_vs_player(inventory, items, player)
-
-        # Display inventory
-        if key == 'i':
-            message = 'This is your inventory content: '
-            ui.print_message(message)
-            ui.print_table(inventory)
-
-        # Player input
-        key = util.key_pressed()
-                        
-        # Movement
-        movement(board,player, key, others)
-
-        # Clear screen
-        util.clear_screen()
-
-        # Interaction with other characters
-        if player_meets_other(others, player) != False:
-            other = player_meets_other(others, player)
-            if dictionaries.others[other]['other_type'] == 'enemy':
-                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
-            elif dictionaries.others[other]['other_type'] == 'quiz':
-                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
-
-        # Gate and level change handling
-        level = player_enters_gate(level, BOARD, player, key)
-
-        # Check if quit
-        if key == 'q':
-            level = 'QUIT'
 
 
 def fight(player, others, other, inventory, items):
@@ -496,14 +326,13 @@ def fight(player, others, other, inventory, items):
     other_hit = others[other]['other_power'] #* random.randrange(2)
 
     if player_hit > other_hit:
-        ui.print_message('You just won the fight with', message_2 = others[other]['other_name'], message_3 = '! +1 to power for you!')
+        ui.print_message('You just won the fight with %s! +1 to power for you!' %(others[other]['other_name']))
         player['player_power'] += 1
         others[other]['other_health'] -= 1
 
     elif player_hit == other_hit:
-        ui.print_message('You just fought with', message_2 = others[other]['other_name'], message_3 = '! It was a draw!')
+        ui.print_message('You just fought with %s! It was a draw' %(others[other]['other_name']))
     
     else:
-
-        ui.print_message('You just lost fight with', message_2 = others[other]['other_name'], message_3 = '! You loose one life point')
+        ui.print_message('You just lost fight with %s! You loose one life point' %(others[other]['other_name']))
         player['player_life'] -= 1
