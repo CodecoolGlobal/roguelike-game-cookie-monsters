@@ -3,7 +3,7 @@ import view
 import sys
 import main
 import dictionaries
-
+#from termcolor import colored
 
 BOARD_WIDTH = 80
 BOARD_HEIGHT = 20
@@ -34,21 +34,21 @@ def user_info(list_labels, player_nickname):
         
         elif elem == 1:
             if user_answer not in game_player['race']:
-                raise Exception("It's not acceptable choice. Try again\n")   
+                raise Exception(colored("It's not acceptable choice. Try again\n", "red"))   
             else:
-                if user_answer == 'a':
+                if user_answer == '1':
                     print("You are a CookieMan so you are more powerful than you think")
                     dictionaries.player['player_power'] = 5
-                elif user_answer == 'b':
+                elif user_answer == '2':
                     print("You chose CookieMum and you get rolling pin :D!!!It can be useful later")
                     dictionaries.player['additional_elements'] = 'rolling_pin'
-                elif user_answer == 'c':    
+                elif user_answer == '3':    
                     print("Hello little boy ;) Because you're still a child, You get a more life_points ")
                     dictionaries.player['player_life'] = 2
         
         elif elem == 2:
             if user_answer not in game_player['Level_of_difficulty']:
-                raise Exception("You choose only 1 ,2 or 3 level of difficulty\n")
+                raise Exception(colored("You choose only 1 ,2 or 3 level of difficulty\n", "red"))
             else:
                 if user_answer == '1':
                     dictionaries.player['player_life'] = dictionaries.player['player_life'] + 5

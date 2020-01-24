@@ -1,4 +1,5 @@
 @,10,10,5,1,Nati,CookieBaby,2
+<<<<<<< HEAD
 
 @,10,10,3,5,ss,CookieMan,2
 @,10,10,5,1,mic,rolling_pin,CookieMum,1
@@ -12,3 +13,8 @@
 @,10,10,3,1,1,CookieMan,2
 @,10,10,5,1,asd,1,1
 @,10,10,3,1,2,2,2
+=======
+@,10,10,6,5,fghj,CookieMan,2
+@,10,10,6,5,oiu,CookieMan,2
+ 
+>>>>>>> 67dfc8b5df7fec97793c7c1839e2febca2bad668
