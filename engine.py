@@ -279,7 +279,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     health - it disappears and the Player gets flour.
     """
 
-    print("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"]))
+    print_message("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"]))
 
     q_count = 0
 
@@ -294,7 +294,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
             ui.print_message("Correct!")
         else:
             # player['player_power'] -= 1  moze -1 power za kazda bledna odpowiedz?
-            print("Wrong!")
+            print_message("Wrong!")
         q_count += 1
 
     if others[other]["other_health"] > 0:
@@ -309,8 +309,9 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
 
 def first_level(board, inventory, player, level, others, items, number, key, time, BOARD):
 
-    
-    print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    view.print_table(players.data_to_print(player))
+    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    ui.print_message(message)
     time.sleep(1.0)
     util.clear_screen()
 
@@ -352,9 +353,9 @@ def first_level(board, inventory, player, level, others, items, number, key, tim
         if player_meets_other(others, player) != False:
             other = player_meets_other(others, player)
             if other == 'other3':
-                print("Moooooo!")
+                print_message("Moooooo!")
             elif other == 'other2':
-                print('Bon Appétit!')
+                print_message('Bon Appétit!')
             else:
                 player_vs_other_quiz(player, other, others, inventory, dictionaries.others[other]['questions'])
 
@@ -370,7 +371,9 @@ def second_level(board, inventory, player, level, others, items, number, key, ti
 
 
     view.print_table(players.data_to_print(dictionaries.player))
-    print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    print_message(message)
+
     time.sleep(1.0)
     util.clear_screen()
 
@@ -410,9 +413,9 @@ def second_level(board, inventory, player, level, others, items, number, key, ti
         if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
             other = engine.player_meets_other(dictionaries.others, dictionaries.player)
             if other == 'other3':
-                print("Moooooo!")
+                print_message("Moooooo!")
             elif other == 'other2':
-                print('Bon Appétit!')
+                print_message('Bon Appétit!')
             else:
                 engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
@@ -426,8 +429,10 @@ def second_level(board, inventory, player, level, others, items, number, key, ti
 def third_level(board, inventory, player, level, others, items, number, key, time, BOARD):
 
 
-    view.print_table(players.data_to_print(dictionaries.player))
-    print(3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    view.print_table(players.data_to_print(player))
+    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    print_message(message)
+    
     time.sleep(1.0)
     util.clear_screen()
 
@@ -467,9 +472,9 @@ def third_level(board, inventory, player, level, others, items, number, key, tim
         if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
             other = engine.player_meets_other(dictionaries.others, dictionaries.player)
             if other == 'other3':
-                print("Moooooo!")
+                print_message("Moooooo!")
             elif other == 'other2':
-                print('Bon Appétit!')
+                print_message('Bon Appétit!')
             else:
                 engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.others[other]['questions'])
 

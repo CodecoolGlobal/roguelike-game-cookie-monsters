@@ -16,7 +16,7 @@ def main():
     # initial level
     level = 'BOARD_1'   #tutaj bedzie musialo sie zmieniac, zeby odpalil drugi level 
 
-    # initial key
+    # initial key`
     key = ''
 
     menu_start.run()
