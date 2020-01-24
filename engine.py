@@ -352,12 +352,10 @@ def first_level(board, inventory, player, level, others, items, number, key, tim
         # Interaction with other characters
         if player_meets_other(others, player) != False:
             other = player_meets_other(others, player)
-            if other == 'other3':
-                print_message("Moooooo!")
-            elif other == 'other2':
-                print_message('Bon Appétit!')
-            else:
-                player_vs_other_quiz(player, other, others, inventory, dictionaries.others[other]['questions'])
+            if dictionaries.others[other]['other_type'] == 'enemy':
+                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
+            elif dictionaries.others[other]['other_type'] == 'quiz':
+                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
         # Gate and level change handling
         level = player_enters_gate(level, BOARD, player, key)
@@ -369,58 +367,56 @@ def first_level(board, inventory, player, level, others, items, number, key, tim
 
 def second_level(board, inventory, player, level, others, items, number, key, time, BOARD):
 
-
-    view.print_table(players.data_to_print(dictionaries.player))
+    view.print_table(players.data_to_print(player))
     message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
-    print_message(message)
-
+    ui.print_message(message)
     time.sleep(1.0)
     util.clear_screen()
 
-    while level == 'BOARD_2':
+    while level == 'BOARD_1':
 
-        
-        board = engine.create_board(dictionaries.BOARD[level])
-        board = engine.put_player_on_board(board, dictionaries.player)
-        board = engine.put_other_on_board(board, dictionaries.others)
-        board = engine.put_item_on_board(board, dictionaries.items, 2)
+        view.print_table(players.data_to_print(player))
 
+        # Set up board
+        board = create_board(dictionaries.BOARD[level])
+        board = put_player_on_board(board, player)
+        board = put_other_on_board(board, others)
+        board = put_item_on_board(board, items, number) 
+
+        # Display essential info
+        ui.print_player_essential_atributes(player)
         
-        ui.print_player_essential_atributes(dictionaries.player)
-        
-        
+        # Display board
         ui.display_board(board)
 
-        
-        engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player)
+        # Interaction whit items
+        item_vs_player(inventory, items, player)
 
-        
+        # Display inventory
         if key == 'i':
             message = 'This is your inventory content: '
             ui.print_message(message)
-            ui.print_table(dictionaries.inventory)
+            ui.print_table(inventory)
 
         # Player input
         key = util.key_pressed()
                         
         # Movement
-        engine.movement(board, dictionaries.player, key, dictionaries.others)
+        movement(board,player, key, others)
 
         # Clear screen
         util.clear_screen()
 
         # Interaction with other characters
-        if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
-            other = engine.player_meets_other(dictionaries.others, dictionaries.player)
-            if other == 'other3':
-                print_message("Moooooo!")
-            elif other == 'other2':
-                print_message('Bon Appétit!')
-            else:
-                engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
+        if player_meets_other(others, player) != False:
+            other = player_meets_other(others, player)
+            if dictionaries.others[other]['other_type'] == 'enemy':
+                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
+            elif dictionaries.others[other]['other_type'] == 'quiz':
+                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
         # Gate and level change handling
-        level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
+        level = player_enters_gate(level, BOARD, player, key)
 
         # Check if quit
         if key == 'q':
@@ -428,59 +424,86 @@ def second_level(board, inventory, player, level, others, items, number, key, ti
 
 def third_level(board, inventory, player, level, others, items, number, key, time, BOARD):
 
-
     view.print_table(players.data_to_print(player))
     message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
-    print_message(message)
-    
+    ui.print_message(message)
     time.sleep(1.0)
     util.clear_screen()
 
-    while level == 'BOARD_3':
+    while level == 'BOARD_1':
+
+        view.print_table(players.data_to_print(player))
 
         # Set up board
-        board = engine.create_board(dictionaries.BOARD[level])
-        board = engine.put_player_on_board(board, dictionaries.player)
-        board = engine.put_other_on_board(board, dictionaries.others)
-        board = engine.put_item_on_board(board, dictionaries.items,3)
+        board = create_board(dictionaries.BOARD[level])
+        board = put_player_on_board(board, player)
+        board = put_other_on_board(board, others)
+        board = put_item_on_board(board, items, number) 
 
         # Display essential info
-        ui.print_player_essential_atributes(dictionaries.player)
+        ui.print_player_essential_atributes(player)
         
         # Display board
         ui.display_board(board)
 
         # Interaction whit items
-        engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player)
+        item_vs_player(inventory, items, player)
 
         # Display inventory
         if key == 'i':
             message = 'This is your inventory content: '
             ui.print_message(message)
-            ui.print_table(dictionaries.inventory)
+            ui.print_table(inventory)
 
         # Player input
         key = util.key_pressed()
                         
         # Movement
-        engine.movement(board, dictionaries.player, key, dictionaries.others)
+        movement(board,player, key, others)
 
         # Clear screen
         util.clear_screen()
 
         # Interaction with other characters
-        if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
-            other = engine.player_meets_other(dictionaries.others, dictionaries.player)
-            if other == 'other3':
-                print_message("Moooooo!")
-            elif other == 'other2':
-                print_message('Bon Appétit!')
-            else:
-                engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.others[other]['questions'])
+        if player_meets_other(others, player) != False:
+            other = player_meets_other(others, player)
+            if dictionaries.others[other]['other_type'] == 'enemy':
+                fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
+            elif dictionaries.others[other]['other_type'] == 'quiz':
+                player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
         # Gate and level change handling
-        level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
+        level = player_enters_gate(level, BOARD, player, key)
 
         # Check if quit
-        if key == 'q' or dictionaries.player['player_life'] < 1:
+        if key == 'q':
             level = 'QUIT'
+
+
+def fight(player, others, other, inventory, items):
+    
+    player_x = player['position_x']
+    player_y = player['position_y']
+    other_x = others[other]['position_x']
+    other_y = others[other]['position_y']
+
+    items_sumaric_power = 0
+    if player_x == other_x and player_y == other_y:
+        for item in inventory:
+            items_sumaric_power += items[item]['added_power']
+        
+    player_hit = (player['player_power'] + items_sumaric_power) * random.randrange(2)
+    other_hit = others[other]['other_power'] #* random.randrange(2)
+
+    if player_hit > other_hit:
+        ui.print_message('You just won the fight with', message_2 = others[other]['other_name'], message_3 = '! +1 to power for you!')
+        player['player_power'] += 1
+        others[other]['other_health'] -= 1
+
+    elif player_hit == other_hit:
+        ui.print_message('You just fought with', message_2 = others[other]['other_name'], message_3 = '! It was a draw!')
+    
+    else:
+
+        ui.print_message('You just lost fight with', message_2 = others[other]['other_name'], message_3 = '! You loose one life point')
+        player['player_life'] -= 1
