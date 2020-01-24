@@ -168,7 +168,7 @@ items = {
 
 others = {
     'other': {
-        'other_type': "enemy",
+        'other_type': "quiz",
         'other_name': "Miller",
         'other_icon': "M",
         'position_x': 5,
