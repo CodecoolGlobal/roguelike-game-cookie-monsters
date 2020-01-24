@@ -6,6 +6,7 @@ import time
 import players
 import menu_start
 import view
+from art import text2art
 from termcolor import colored
 
 def main():
@@ -77,7 +78,7 @@ def main():
                 level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
 
                 # Check if quit
-                if key == 'q':
+                if key == 'q' or dictionaries.player['player_life'] < 1:
                     level = 'QUIT'
 
 
@@ -134,7 +135,7 @@ def main():
                 level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
 
                 # Check if quit
-                if key == 'q':
+                if key == 'q' or dictionaries.player['player_life'] < 1:
                     level = 'QUIT'
 
 
@@ -195,18 +196,19 @@ def main():
                     level = 'QUIT'
 
     if level == 'WIN':
-
+        util.clear_screen()
+        ui.display_board(board)
+        print(text2art("VICTORY!",font='block',chr_ignore=True))
         while True:
-            print('YOU WON!!!')
             time.sleep(0.7)
             print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
-            time.sleep(0.7)
 
     elif level == 'QUIT':
-
-        while True:
-            print('GAME OVER')
-            time.sleep(0.7)
+        util.clear_screen()
+        ui.display_board(board)
+        print(text2art("GAME OVER!",font='block',chr_ignore=True))
+        time.sleep(10.7)
+        
 
 
 if __name__ == '__main__':
