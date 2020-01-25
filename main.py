@@ -61,13 +61,13 @@ def main():
             message = 'This is your inventory content: '
             ui.print_message(message)
             ui.print_table(dictionaries.inventory)
-        
-        # Player input
-        key = util.key_pressed()
 
         # Insert secret code
         if key == "c":
             engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
+
+        # Player input
+        key = util.key_pressed()
 
         # Movement
         engine.movement(board, dictionaries.player, key, dictionaries.others)

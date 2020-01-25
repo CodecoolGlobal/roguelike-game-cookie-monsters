@@ -356,11 +356,16 @@ def fight(player, others, other, inventory, items):
         player['player_life'] -= 1
 
 
+def add_secret_code(codes):
+    added_code = input("Insert the code: ")
+    if added_code not in codes.values():
+        raise TypeError("Code incorrect")
+    return added_code
+
+
 def use_secret_code(player, others, level, codes):
     try:
-        added_code = input("Insert the code: ")
-        if added_code not in codes.values():
-            raise TypeError("Code incorrect")
+        added_code = add_secret_code(codes)
     except TypeError as err:
         print(err)
     else:
@@ -369,3 +374,4 @@ def use_secret_code(player, others, level, codes):
                 others[other]['other_health'] = 0
         elif added_code == codes["extra_lives"]:
             player['player_life'] += 3
+
