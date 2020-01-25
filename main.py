@@ -9,12 +9,18 @@ import view
 from art import text2art
 from termcolor import colored
 from PIL import Image
+from pygame import mixer
+import data_manager
 
 
 
 def main():
-    with Image.open("cookiemonster.jpg") as img:
-        img.show()
+    MUSIC_FILE = "Cookie Monster Sings C is for Cookie.wav"
+    mixer.init()
+    mixer.music.load(MUSIC_FILE)
+    mixer.music.play()
+    view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
+    view.start_descriptions()    
     # initial level
     level = 'BOARD_1'   
 
@@ -113,6 +119,9 @@ def main():
     
     print('\n\n\n Goodbye, see you soon!')
     time.sleep(1.0)
+
+    with Image.open("cookiemonster.jpg") as img:
+        img.show()
 
 
 if __name__ == '__main__':
