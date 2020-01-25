@@ -307,7 +307,27 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
         ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         ui.print_message('+1 life point!')
     
+<<<<<<< HEAD
+=======
 
+def first_level(board, inventory, player, level, others, items, number, key, time, BOARD):
+
+    view.print_table(players.data_to_print(player))
+    message = (3 * '\n' + "LEVEL ", level[-1], 3 * '\n')
+    ui.print_message(message)
+    time.sleep(1.0)
+    util.clear_screen()
+
+    while level == 'BOARD_1':
+
+        view.print_table(players.data_to_print(player))
+>>>>>>> 3d464c2c4d2801cedcc81a776ff125aa7ea06428
+
+        # Set up board
+        board = create_board(dictionaries.BOARD[level])
+        board = put_player_on_board(board, player)
+        board = put_other_on_board(board, others)
+        board = put_item_on_board(board, items, number) 
 
 
 def fight(player, others, other, inventory, items):
