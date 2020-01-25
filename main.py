@@ -6,6 +6,7 @@ import time
 import players
 import menu_start
 import view
+from art import text2art
 from termcolor import colored
 
 def main():
@@ -102,7 +103,6 @@ def main():
             print('YOU WON!!!')
             time.sleep(0.7)
             print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
-            time.sleep(0.7)
 
     elif level == 'LOSE':
         util.clear_screen()
