@@ -10,9 +10,15 @@ file_results = "results.txt"
 label_results = ["Nickname", "Time", "Points"]
 
 def start_descriptions():
+<<<<<<< HEAD
     print(colored("Welcome to our cookie game! \n", "yellow"))
     print(colored("Maybe you want to play some game:D? \n", "yellow"))
     print(colored("So, first you have to give me some informations about You or who You want to be in our Magic World :) \n", "yellow"))
+=======
+    print(colored("\n Hello and welcome to our cookie game! \n", "yellow"))
+    print(colored(" Maybe you want to play some game :D? \n", "yellow"))
+    print(colored(" So, first you'll need to give me some informations about You and who You want to be in our Magic World :) \n", "yellow"))
+>>>>>>> 4bff7847b7fca9f21c7d57c7cd99784a5fda9979
 
 def bubble_sort(table):
     """function which sort all records in our table"""
