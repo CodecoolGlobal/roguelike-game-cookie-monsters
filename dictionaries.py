@@ -51,7 +51,8 @@ items = {
             'position_y': 20,
             'number': 1,
             'board': 3,
-            'added_power': 0            
+            'added_power': 0,
+            'added_protection': 0        
             },
         'Jelly0':{ 
             'type': 'ingridient', 
@@ -60,7 +61,8 @@ items = {
             'position_y': 18,
             'number': 1,
             'board': 3,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Pudding0':{ 
             'type': 'ingridient', 
@@ -69,7 +71,8 @@ items = {
             'position_y': 25,
             'number': 1,
             'board': 3,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Ice Cream0':{ 
             'type': 'ingridient', 
@@ -78,7 +81,8 @@ items = {
             'position_y': 7,
             'number': 2,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Jam0':{
             'type': 'ingridient',
@@ -87,7 +91,8 @@ items = {
             'position_y': 3,
             'number': 2,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Biscuits0':{ 
             'type': 'ingridient', 
@@ -96,7 +101,8 @@ items = {
             'position_y': 19,
             'number': 1,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Pralines0':{ 
             'type': 'ingridient', 
@@ -105,7 +111,8 @@ items = {
             'position_y': 27,
             'number': 1,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Candy0':{ 
             'type': 'ingridient', 
@@ -114,7 +121,8 @@ items = {
             'position_y': 2,
             'number': 2,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Honey0':{
             'type': 'ingridient',
@@ -123,16 +131,18 @@ items = {
             'position_y': 4,
             'number': 2,
             'board': 1,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Lollipop0':{ 
-            'type': 'ingridient', 
+            'type': 'weapon', 
             'item_icon': 'L',
             'position_x': 9,
             'position_y': 17,
             'number': 1,
             'board': 1,
-            'added_power': 0
+            'added_power': 5,
+            'added_protection': 0    
             },
         'Donut0':{ 
             'type': 'ingridient', 
@@ -141,7 +151,8 @@ items = {
             'position_y': 26,
             'number': 1,
             'board': 1,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Candy0':{ 
             'type': 'ingridient', 
@@ -150,7 +161,18 @@ items = {
             'position_y': 5,
             'number': 2,
             'board': 1,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
+            },
+        'Sugar_wall0':{ 
+            'type': 'Shield', 
+            'item_icon': 'W',
+            'position_x': 40,
+            'position_y': 2,
+            'number': 2,
+            'board': 1,
+            'added_power': 0,
+            'added_protection': 5    
             },
         'first_aid':{ 
             'type': 'life', 
@@ -159,7 +181,8 @@ items = {
             'position_y': 15,
             'number': 1,
             'board': 1,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
         }
     }
 

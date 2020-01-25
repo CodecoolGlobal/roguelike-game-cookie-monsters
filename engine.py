@@ -75,9 +75,10 @@ def put_other_on_board(board, others):
             x += 1
 
     for other in others:
+        if other['other_life'] == 0:
+            pass
         height = others[other]['position_y']
         width = others[other]['position_x']
-
         for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
             for cell in range(width - (math.floor(others[other]["width"] / 2)), width + (math.ceil(others[other]["width"] / 2))):
                 board[row][cell] = others[other]['other_icon']
@@ -312,12 +313,14 @@ def fight(player, others, other, inventory, items):
     other_y = others[other]['position_y']
 
     items_sumaric_power = 0
+    items_summaric_protection = 0
     if player_x == other_x and player_y == other_y:
         for item in inventory:
             items_sumaric_power += items[item]['added_power']
-        
+            items_sumaric_protection += items[item]['added_protection']
+
     player_hit = (player['player_power'] + items_sumaric_power) * random.randrange(2)
-    other_hit = others[other]['other_power'] #* random.randrange(2)
+    other_hit = (others[other]['other_power'] - items_summaric_protection) * random.randrange(2)
 
     if player_hit > other_hit:
         ui.print_message('You just won the fight with %s! +1 to power for you!' %(others[other]['other_name']))
