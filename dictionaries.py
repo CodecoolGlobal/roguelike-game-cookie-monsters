@@ -4,7 +4,7 @@ player = {
     'player_icon': '@',
     'position_x': 10,
     'position_y': 10,
-    'player_life': 3,
+    'player_life': 0,
     'player_power': 1
     }
 
@@ -16,10 +16,17 @@ BOARD = {
         'COLOR': 'green',
         'WIDTH': 100,
         'HEIGHT': 30,
-        'GATE_POSITION_X': 5,
-        'GATE_POSITION_Y': 0,
-        'NEXT_LEVEL': 'BOARD_2'
-        },
+        'NEXT_LEVEL': 'BOARD_2',
+        'GATES': {
+            'GATE_UP': {
+                'GATE_POSITION_X': 5,
+                'GATE_POSITION_Y': 0},
+            'GATE_DOWN': {
+                'GATE_POSITION_X': None,
+                'GATE_POSITION_Y': None}
+                }
+    },
+
     'BOARD_2':{
         'BRICK': '%',
         'COLOR': 'yellow',
@@ -27,8 +34,17 @@ BOARD = {
         'HEIGHT': 30,
         'GATE_POSITION_X': 0,
         'GATE_POSITION_Y': 10,
-        'NEXT_LEVEL': 'BOARD_3'
-        },
+        'NEXT_LEVEL': 'BOARD_3',
+        'GATES': {
+            'GATE_UP': {
+                'GATE_POSITION_X': 15,
+                'GATE_POSITION_Y': 0},
+            'GATE_DOWN': {
+                'GATE_POSITION_X': 0,
+                'GATE_POSITION_Y': 5}
+        }        
+    },
+
     'BOARD_3':{
         'BRICK': 'X',
         'COLOR': 'yellow',
@@ -36,9 +52,19 @@ BOARD = {
         'HEIGHT': 30,
         'GATE_POSITION_X': 60,
         'GATE_POSITION_Y': 0,
-        'NEXT_LEVEL': 'WIN'
+        'NEXT_LEVEL': 'WIN',
+        'GATES': {
+            'GATE_UP': {
+                'GATE_POSITION_X': None,
+                'GATE_POSITION_Y': None},
+            'GATE_DOWN': {
+                'GATE_POSITION_X': 0,
+                'GATE_POSITION_Y': 5} 
+            }
         }
     }
+
+#w boardzie dac key gate up and get down i to bylyby slowniki i w funkcji board daje get up i get down 
 
 
 # ITEMS -------------------------
@@ -84,7 +110,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Jam0':{
+        'Jam':{
             'type': 'ingridient',
             'item_icon': 'Z',
             'position_x': 13,
@@ -258,3 +284,11 @@ others = {
 
 inventory = {}
 
+
+# CODES ---------------------
+
+codes = {
+    "kill_others": "KILLEMALL",
+    "last_board": "DESPERATE",
+    "extra_lives": "SHOWMUSTGOON"
+}

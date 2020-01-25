@@ -23,7 +23,7 @@ def main():
     # initial key`
     key = ''
 
-    menu_start.run()
+    #menu_start.run()
         
     ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
     time.sleep(1.0)
@@ -31,9 +31,10 @@ def main():
 
     while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
 
-        view.print_table(players.data_to_print(dictionaries.player))
+        #view.print_table(players.data_to_print(dictionaries.player))
 
         # Set up board
+        print(level)
         board = engine.create_board(dictionaries.BOARD[level])
         board = engine.put_player_on_board(board, dictionaries.player)
         board = engine.put_other_on_board(board, dictionaries.others, level)
@@ -54,15 +55,19 @@ def main():
             message = 'This is your inventory content: '
             ui.print_message(message)
             ui.print_table(dictionaries.inventory)
-
+        
         # Player input
         key = util.key_pressed()
-                        
+
+        # Insert secret code
+        if key == "c":
+            engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
+
         # Movement
-        engine.movement(board,dictionaries.player, key, dictionaries.others)
+        engine.movement(board, dictionaries.player, key, dictionaries.others)
 
         # Clear screen
-        util.clear_screen()
+        #util.clear_screen()
 
         # Interaction with other characters
         if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
@@ -73,13 +78,17 @@ def main():
                 engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
         # Gate and level change handling
+      
         if engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key) != level:
             util.clear_screen()
             level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
+    
             if level == 'WIN':
                 pass
             else:
-                ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
+               
+                #print(level[-1])
+                #ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
                 time.sleep(1.0)
                 util.clear_screen()
 
