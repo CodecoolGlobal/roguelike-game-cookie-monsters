@@ -6,6 +6,7 @@ player = {
     'position_y': 10,
     'player_life': 0,
     'player_power': 1
+    'used_code': False
     }
 
 # BOARD -------------------------
@@ -224,7 +225,7 @@ others = {
         'position_y': 5,
         'step': 1,
         'other_health': 3,
-        'goal_quiz': "flour",
+        'goal_quiz': "jelly",
         'questions':   [["What's the first name of 'Ooops I did it again' singer?\n(a) Christina\n(b) Britney\n(c) Jessica\n", "b", False],
                         ["Which river passes through Vienna?\n(a) Vistula\n(b) Douro\n(c) Danube\n", "c", False],
                         ["What color are bananas?\n(a) Red\n(b) Orange\n(c) Yellow\n", "c", False],
@@ -288,7 +289,7 @@ inventory = {}
 # CODES ---------------------
 
 codes = {
-    "kill_others": "KILLEMALL",
-    "last_board": "DESPERATE",
-    "extra_lives": "SHOWMUSTGOON"
+    "kill_others": "killemall",
+    "last_board": "desparate",
+    "extra_lives": "showmustgoon"
 }
