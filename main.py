@@ -15,15 +15,15 @@ from PIL import Image
         #img.show()
 
 def main():
-    with Image.open("cookiemonster.jpg") as img:
-        img.show()
+    #with Image.open("cookiemonster.jpg") as img:
+        #img.show()
     # initial level
     level = 'BOARD_1'   
 
     # initial key`
     key = ''
 
-    #menu_start.run()
+    menu_start.run()
         
     ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
     time.sleep(1.0)
@@ -31,7 +31,7 @@ def main():
 
     while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
 
-        #view.print_table(players.data_to_print(dictionaries.player))
+        view.print_table(players.data_to_print(dictionaries.player))
 
         # Set up board
         print(level)
