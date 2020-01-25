@@ -82,7 +82,7 @@ items = {
             },
         'Jam0':{
             'type': 'ingridient',
-            'item_icon': 'M',
+            'item_icon': 'Z',
             'position_x': 13,
             'position_y': 3,
             'number': 2,

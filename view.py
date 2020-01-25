@@ -10,9 +10,9 @@ file_results = "results.txt"
 label_results = ["Nickname", "Time", "Points", "Life"]
 
 def start_descriptions():
-    print(colored("Hello and welcome to our cookie game! \n", "yellow"))
-    print(colored("Maybe you want to play some game:D? \n", "yellow"))
-    print(colored("So, first you have to give me some informations about You or who You want to be in our Magic World :) \n", "yellow"))
+    print(colored("\n Hello and welcome to our cookie game! \n", "yellow"))
+    print(colored(" Maybe you want to play some game :D? \n", "yellow"))
+    print(colored(" So, first you'll need to give me some informations about You and who You want to be in our Magic World :) \n", "yellow"))
 
 def print_result(label, result):
     table_results = []
