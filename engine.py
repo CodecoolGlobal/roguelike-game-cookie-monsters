@@ -54,7 +54,7 @@ def put_player_on_board(board, player):
     return board
 
 
-def put_other_on_board(board, others):
+def put_other_on_board(board, others, level):
     '''
     Modifies the game board by placing the other character icon at its coordinates.
     Args:
@@ -75,12 +75,13 @@ def put_other_on_board(board, others):
             x += 1
 
     for other in others:
-        height = others[other]['position_y']
-        width = others[other]['position_x']
+        if others[other]["board"] == int(level[-1]) and others[other]['other_health'] > 1:
+            height = others[other]['position_y']
+            width = others[other]['position_x']
 
-        for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
-            for cell in range(width - (math.floor(others[other]["width"] / 2)), width + (math.ceil(others[other]["width"] / 2))):
-                board[row][cell] = others[other]['other_icon']
+            for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
+                for cell in range(width - (math.floor(others[other]["width"] / 2)), width + (math.ceil(others[other]["width"] / 2))):
+                    board[row][cell] = others[other]['other_icon']
 
     return board
 
@@ -128,7 +129,6 @@ def get_random_position_of_other(others, width, height):
 def add_to_inventory(inventory, item_key):
     """Add to the inventory dictionary a list of items"""
 
-    item_key = item_key[:-1]
 
     if item_key == 'first_ai':
         pass
@@ -297,7 +297,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
         ui.print_message("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
     else:
         player["player_life"] += 1
-        add_to_inventory(inventory, "flour0")
+        add_to_inventory(inventory, "jelly")
         ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         ui.print_message('+1 life point!')
 
