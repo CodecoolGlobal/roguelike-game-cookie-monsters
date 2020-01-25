@@ -23,7 +23,18 @@ def create_board(board):
 
     new_board.append(width * [brick])
 
-    new_board[board['GATE_POSITION_Y']][board['GATE_POSITION_X']] = ' '
+    if board['GATES']['GATE_UP']['GATE_POSITION_Y'] == None:
+        pass
+    else:
+        print(board['GATES']['GATE_UP']['GATE_POSITION_Y'])
+        print(board['GATES']['GATE_UP']['GATE_POSITION_X'])
+        new_board[board['GATES']['GATE_UP']['GATE_POSITION_Y']][board['GATES']['GATE_UP']['GATE_POSITION_X']] = ' '
+    
+    
+    if board['GATES']['GATE_DOWN']['GATE_POSITION_Y'] == None:
+        pass
+    else:
+        new_board[board['GATES']['GATE_DOWN']['GATE_POSITION_Y']][board['GATES']['GATE_UP']['GATE_POSITION_X']] = ' '
 
     return new_board
 
@@ -134,7 +145,6 @@ def get_random_position_of_other(others, width, height):
 def add_to_inventory(inventory, item_key):
     """Add to the inventory dictionary a list of items"""
 
-    item_key = item_key[:-1]
 
     if item_key == 'first_ai':
         pass
@@ -247,28 +257,39 @@ def add_life_points(item, player):
         pass
     
 def player_enters_gate(level, BOARD, player, key):
+    BOARD_level = BOARD[level]
+
 
     # entering gate that is up in relation to player
-    if player['position_x'] == BOARD[level]['GATE_POSITION_X'] and (player['position_y'] - 1) == BOARD[level]['GATE_POSITION_Y'] and key == 'w':
-        return BOARD[level]['NEXT_LEVEL']
+    for board_ in BOARD:
+        for key_ in BOARD[board_]:
+            if key_ == 'GATES':
+                for gate_ in BOARD[board_][key_]:
+                    print((player['position_y'] - 1))
+                    print(player['position_x'])
+                    print(BOARD[board_][key_][gate_]['GATE_POSITION_Y'])
+                    print(BOARD[board_][key_][gate_]['GATE_POSITION_X'])
+                    print(key)
+                    if (player['position_y'] - 1) == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and (player['position_x']) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and key == 'w':
+                        print('dupa')
+                        return BOARD_level['NEXT_LEVEL']
 
-    # entering gate that is down in relation to player
-    elif player['position_x'] == BOARD[level]['GATE_POSITION_X'] and (player['position_y'] + 1) == BOARD[level]['GATE_POSITION_Y'] and key == 's':
-        return BOARD[level]['NEXT_LEVEL']
+                    # entering gate that is down in relation to player
+                    elif (player['position_y'] +1 ) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and (player['position_x']) == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and key == 's':
+                        return BOARD_level['NEXT_LEVEL']
 
-    # entering gate that is left in relation to player
-    elif (player['position_x'] - 1) == BOARD[level]['GATE_POSITION_X'] and player['position_y'] == BOARD[level]['GATE_POSITION_Y'] and key == 'a':
-        return BOARD[level]['NEXT_LEVEL']
+                    # entering gate that is left in relation to player
+                    elif (player['position_x'] - 1) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and player['position_y'] == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and key == 'a':
+                        return BOARD_level['NEXT_LEVEL']
 
-    # entering gate that is left in relation to player
-    elif (player['position_x'] + 1) == BOARD[level]['GATE_POSITION_X'] and player['position_y'] == BOARD[level]['GATE_POSITION_Y'] and key == 'a':
-        return BOARD[level]['NEXT_LEVEL']
+                    # entering gate that is left in relation to player
+                    elif (player['position_x'] + 1) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and player['position_y'] == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and key == 'a':
+                        return BOARD_level['NEXT_LEVEL']
 
-    else:
-        return level
+                    else:
+                        return level
 
 
- 
 
 
 def player_vs_other_quiz(player, other, others, inventory, questions, questions_number=2):

@@ -15,7 +15,7 @@ file_results = "results.txt"
 list_labels = ["Nickname", "Type", "Level of difficulty"]
 
 game_player = {'race' : ['1', '2', '3'],
-            'Level_of_difficulty' : ['1', '2', '3'],
+            'Level_of_difficulty' : ['1', '2', '3a'],
 }
 
 def user_info(list_labels, player_nickname):

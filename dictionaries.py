@@ -2,8 +2,8 @@
 
 player = {
     'player_icon': '@',
-    'position_x': 10,
-    'position_y': 10,
+    'position_x': 5,
+    'position_y': 1,
     'player_life': 3,
     'player_power': 1
     }
@@ -16,10 +16,17 @@ BOARD = {
         'COLOR': 'green',
         'WIDTH': 100,
         'HEIGHT': 30,
-        'GATE_POSITION_X': 5,
-        'GATE_POSITION_Y': 0,
-        'NEXT_LEVEL': 'BOARD_2'
-        },
+        'NEXT_LEVEL': 'BOARD_2',
+        'GATES': {
+            'GATE_UP': {
+                'GATE_POSITION_X': 5,
+                'GATE_POSITION_Y': 0},
+            'GATE_DOWN': {
+                'GATE_POSITION_X': None,
+                'GATE_POSITION_Y': None}
+                }
+    },
+
     'BOARD_2':{
         'BRICK': '%',
         'COLOR': 'yellow',
@@ -27,8 +34,17 @@ BOARD = {
         'HEIGHT': 30,
         'GATE_POSITION_X': 0,
         'GATE_POSITION_Y': 10,
-        'NEXT_LEVEL': 'BOARD_3'
-        },
+        'NEXT_LEVEL': 'BOARD_3',
+        'GATES': {
+            'GATE_UP': {
+                'GATE_POSITION_X': 15,
+                'GATE_POSITION_Y': 0},
+            'GATE_DOWN': {
+                'GATE_POSITION_X': 0,
+                'GATE_POSITION_Y': 5}
+        }        
+    },
+
     'BOARD_3':{
         'BRICK': 'X',
         'COLOR': 'yellow',
@@ -36,15 +52,25 @@ BOARD = {
         'HEIGHT': 30,
         'GATE_POSITION_X': 60,
         'GATE_POSITION_Y': 0,
-        'NEXT_LEVEL': 'WIN'
+        'NEXT_LEVEL': 'WIN',
+        'GATES': {
+            'GATE_UP': {
+                'GATE_POSITION_X': None,
+                'GATE_POSITION_Y': None},
+            'GATE_DOWN': {
+                'GATE_POSITION_X': 0,
+                'GATE_POSITION_Y': 5} 
+            }
         }
     }
+
+#w boardzie dac key gate up and get down i to bylyby slowniki i w funkcji board daje get up i get down 
 
 
 # ITEMS -------------------------
 
 items = {
-        'Chocolate0':{
+        'Chocolate':{
             'type': 'ingridient',
             'item_icon': 'C',
             'position_x': 5,
@@ -53,7 +79,7 @@ items = {
             'board': 3,
             'added_power': 0            
             },
-        'Jelly0':{ 
+        'Jelly':{ 
             'type': 'ingridient', 
             'item_icon': 'J',
             'position_x': 12,
@@ -62,7 +88,7 @@ items = {
             'board': 3,
             'added_power': 0
             },
-        'Pudding0':{ 
+        'Pudding':{ 
             'type': 'ingridient', 
             'item_icon': 'P',
             'position_x': 55,
@@ -71,7 +97,7 @@ items = {
             'board': 3,
             'added_power': 0
             },
-        'Ice Cream0':{ 
+        'Ice Cream':{ 
             'type': 'ingridient', 
             'item_icon': 'I',
             'position_x': 92,
@@ -80,7 +106,7 @@ items = {
             'board': 2,
             'added_power': 0
             },
-        'Jam0':{
+        'Jam':{
             'type': 'ingridient',
             'item_icon': 'Z',
             'position_x': 13,
@@ -89,7 +115,7 @@ items = {
             'board': 2,
             'added_power': 0
             },
-        'Biscuits0':{ 
+        'Biscuits':{ 
             'type': 'ingridient', 
             'item_icon': 'B',
             'position_x': 10,
@@ -98,7 +124,7 @@ items = {
             'board': 2,
             'added_power': 0
             },
-        'Pralines0':{ 
+        'Pralines':{ 
             'type': 'ingridient', 
             'item_icon': 'Q',
             'position_x': 57,
@@ -107,7 +133,7 @@ items = {
             'board': 2,
             'added_power': 0
             },
-        'Candy0':{ 
+        'Candy':{ 
             'type': 'ingridient', 
             'item_icon': 'U',
             'position_x': 91,
@@ -116,7 +142,7 @@ items = {
             'board': 2,
             'added_power': 0
             },
-        'Honey0':{
+        'Honey':{
             'type': 'ingridient',
             'item_icon': 'H',
             'position_x': 11,
@@ -125,7 +151,7 @@ items = {
             'board': 1,
             'added_power': 0
             },
-        'Lollipop0':{ 
+        'Lollipop':{ 
             'type': 'ingridient', 
             'item_icon': 'L',
             'position_x': 9,
@@ -134,7 +160,7 @@ items = {
             'board': 1,
             'added_power': 0
             },
-        'Donut0':{ 
+        'Donut':{ 
             'type': 'ingridient', 
             'item_icon': 'D',
             'position_x': 56,
@@ -143,7 +169,7 @@ items = {
             'board': 1,
             'added_power': 0
             },
-        'Candy0':{ 
+        'Candy':{ 
             'type': 'ingridient', 
             'item_icon': 'E',
             'position_x': 90,
