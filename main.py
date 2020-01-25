@@ -15,7 +15,8 @@ from PIL import Image
         #img.show()
 
 def main():
-   
+    with Image.open("cookiemonster.jpg") as img:
+        img.show()
     # initial level
     level = 'BOARD_1'   
 
