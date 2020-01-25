@@ -7,9 +7,14 @@ import players
 import menu_start
 import view
 from termcolor import colored
+from PIL import Image
+
+
+with Image.open("cookiemonster.jpg") as img:
+        img.show()
 
 def main():
-
+   
     # initial board
     board = engine.create_board(dictionaries.BOARD['BOARD_1'])
 

@@ -1,1 +1,3 @@
 @,10,10,4,5,Nati,CookieMan,3
+@,10,10,8,5,Natka,CookieMan,1
+@,10,10,4,5,d,CookieMan,3
