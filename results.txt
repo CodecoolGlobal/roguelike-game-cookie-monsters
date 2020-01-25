@@ -3,3 +3,5 @@ Nat,4,2
 Milosz,5,5
 Michal,3,2
 Aga,6,10
+Ktos,3,6
+Tak,3,0

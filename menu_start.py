@@ -13,18 +13,19 @@ list_labels = ["Nickname", "Type", "Level of difficulty"]
 player_nickname = data_manager.read_file_nicknames(file_nicknames)
 list_options = {
                 1 : 'Start Play',
-                2 : 'Check the best Player',
-                3 : 'Check options games',
+                2 : 'Check all of results',
+                3 : 'Check instruction game',
+                4 : 'Hall of Fame',
                 0 : 'Exit'
 } 
 
-choice_options = ['0', '1', '2', '3']
+choice_options = ['0', '1', '2', '3', '4']
 
 label_results = ["Nickname", "Time", "Points"]
 
 
 def run():
-    view.start_descriptions()
+    
     view.print_menu(list_options)
     print("\n")
     choice = input(str(colored('Your choice is: ', "green")))
@@ -38,18 +39,25 @@ def run():
                 continue
         elif choice == '2':
             view.print_result(label_results,data_manager.read_file_nicknames(file_results))
-            user_decision = input("And what now ;)? If you want to come to main menu, please press 0:")
+            user_decision = input("And what now ;)? If you want to come to main menu, please press 0 :")
             if user_decision == "0" :
                 run()
             else:
                 print("try again")
         elif choice == '3':
             view.print_instruction()
-            user_decision = input("And what now ;)? If you want to come to main menu, please press 0:")
+            user_decision = input("And what now ;)? If you want to come to main menu, please press 0 :")
             if user_decision == "0" :
                 run()
             else:
                 print("try again")
+        elif choice == '4':
+            view.print_Hall_of_fame(view.bubble_sort(data_manager.read_file_nicknames(file_results)))
+            user_decision = input("And what now ;)? If you want to come to main menu, please press 0 :")
+            if user_decision == "0" :
+                run()
+            else:
+                print("try again")        
         elif choice == '0':
             view.exit_message() 
             sys.exit()      
