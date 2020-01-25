@@ -288,7 +288,7 @@ inventory = {}
 # CODES ---------------------
 
 codes = {
-    "kill_others": "KILLEMALL",
-    "last_board": "DESPERATE",
-    "extra_lives": "SHOWMUSTGOON"
+    "kill_others": "killemall",
+    "last_board": "desparate",
+    "extra_lives": "showmustgoon"
 }
