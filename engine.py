@@ -65,7 +65,7 @@ def put_player_on_board(board, player):
     return board
 
 
-def put_other_on_board(board, others):
+def put_other_on_board(board, others, level):
     '''
     Modifies the game board by placing the other character icon at its coordinates.
     Args:
@@ -86,20 +86,15 @@ def put_other_on_board(board, others):
             x += 1
 
     for other in others:
-        height = others[other]['position_y']
-        width = others[other]['position_x']
-        if others[other]["other_health"] > 0 and others[other]["width"] == 1:
-            board[height][width] = others[other]['other_icon']
-        elif others[other]["other_health"] > 0 and others[other]["width"] > 1:
-            put_bigger_character_on_board(height, width, others, other, board)
+        if others[other]["board"] == int(level[-1]) and others[other]['other_health'] >= 1:
+            height = others[other]['position_y']
+            width = others[other]['position_x']
+
+            for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
+                for cell in range(width - (math.floor(others[other]["width"] / 2)), width + (math.ceil(others[other]["width"] / 2))):
+                    board[row][cell] = others[other]['other_icon']
 
     return board
-
-
-def put_bigger_character_on_board(height, width, others, other, board):
-    for row in range(height - (math.floor(others[other]["width"] / 2)), height + (math.ceil(others[other]["width"] / 2))):
-        for cell in range(width - (math.floor(others[other]["width"] / 2)), width + (math.ceil(others[other]["width"] / 2))):
-            board[row][cell] = others[other]['other_icon']
 
 
 def get_random_position_of_other(others, width, height):
@@ -324,7 +319,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
         ui.print_message("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
     else:
         player["player_life"] += 1
-        add_to_inventory(inventory, "flour0")
+        add_to_inventory(inventory, "jelly")
         ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         ui.print_message('+1 life point!')
 
@@ -339,12 +334,14 @@ def fight(player, others, other, inventory, items):
     other_y = others[other]['position_y']
 
     items_sumaric_power = 0
+    items_summaric_protection = 0
     if player_x == other_x and player_y == other_y:
         for item in inventory:
             items_sumaric_power += items[item]['added_power']
-        
+            items_sumaric_protection += items[item]['added_protection']
+
     player_hit = (player['player_power'] + items_sumaric_power) * random.randrange(2)
-    other_hit = others[other]['other_power'] #* random.randrange(2)
+    other_hit = (others[other]['other_power'] - items_summaric_protection) * random.randrange(2)
 
     if player_hit > other_hit:
         ui.print_message('You just won the fight with %s! +1 to power for you!' %(others[other]['other_name']))
@@ -357,3 +354,18 @@ def fight(player, others, other, inventory, items):
     else:
         ui.print_message('You just lost fight with %s! You loose one life point' %(others[other]['other_name']))
         player['player_life'] -= 1
+
+
+def use_secret_code(player, others, level, codes):
+    try:
+        added_code = input("Insert the code: ")
+        if added_code not in codes.values():
+            raise TypeError("Code incorrect")
+    except TypeError as err:
+        print(err)
+    else:
+        if added_code == codes["kill_others"]:
+            for other in others:
+                others[other]['other_health'] = 0
+        elif added_code == codes["extra_lives"]:
+            player['player_life'] += 3

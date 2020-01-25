@@ -37,15 +37,15 @@ def user_info(list_labels, player_nickname):
                 raise Exception(colored("It's not acceptable choice. Try again\n", "red"))   
             else:
                 if user_answer == '1':
-                    print("You are a CookieMan so you are more powerful than you think")
+                    print(colored("You are a CookieMan so you are more powerful than you think", 'magenta'))
                     dictionaries.player['player_power'] = 5
                 elif user_answer == '2':
-                    print("You chose CookieMum and you get rolling pin :D!!!It can be useful later")
+                    print(colored("You chose CookieMum and you get rolling pin :D!!!It can be useful later",'magenta' ))
                     dictionaries.player['additional_elements'] = 'rolling_pin'
                 elif user_answer == '3':    
-                    print("Hello little boy ;) Because you're still a child, You get a more life_points ")
+                    print(colored("Hello little boy ;) Because you're still a child, You get a more life_points ", 'magenta'))
                     dictionaries.player['player_life'] = 2
-        
+                print("\nOptions: (1) Easy, (2) Medium, (3) Hard \n")
         elif elem == 2:
             if user_answer not in game_player['Level_of_difficulty']:
                 raise Exception(colored("You choose only (1)Easy ,(2) Medium or (3)Hard level of difficulty\n", "red"))
@@ -66,4 +66,19 @@ def user_info(list_labels, player_nickname):
 def data_to_print(data):
     keys = ["Nickname", "Type", "Level of difficulty"]
     data_print = {key : dictionaries.player[key] for key in keys }
+    for key in data_print:
+        if key == "Type":
+            if data_print[key] == '1':
+                data_print[key] = 'CookieMan'
+            elif data_print[key] == '2':
+                data_print[key] = 'CookieMum'
+            else:
+                data_print[key] = 'CookieBaby'
+        elif key == "Level of difficulty":  
+            if data_print[key] == '1':
+                data_print[key] = 'Easy'
+            elif data_print[key] == '2':
+                data_print[key] = 'Medium'
+            else:
+                data_print[key] = 'Hard'              
     return data_print

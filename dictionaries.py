@@ -2,9 +2,9 @@
 
 player = {
     'player_icon': '@',
-    'position_x': 5,
-    'position_y': 1,
-    'player_life': 3,
+    'position_x': 10,
+    'position_y': 10,
+    'player_life': 0,
     'player_power': 1
     }
 
@@ -77,7 +77,8 @@ items = {
             'position_y': 20,
             'number': 1,
             'board': 3,
-            'added_power': 0            
+            'added_power': 0,
+            'added_protection': 0        
             },
         'Jelly':{ 
             'type': 'ingridient', 
@@ -86,7 +87,8 @@ items = {
             'position_y': 18,
             'number': 1,
             'board': 3,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Pudding':{ 
             'type': 'ingridient', 
@@ -95,7 +97,8 @@ items = {
             'position_y': 25,
             'number': 1,
             'board': 3,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Ice Cream':{ 
             'type': 'ingridient', 
@@ -104,7 +107,8 @@ items = {
             'position_y': 7,
             'number': 2,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Jam':{
             'type': 'ingridient',
@@ -113,7 +117,8 @@ items = {
             'position_y': 3,
             'number': 2,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Biscuits':{ 
             'type': 'ingridient', 
@@ -122,7 +127,8 @@ items = {
             'position_y': 19,
             'number': 1,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Pralines':{ 
             'type': 'ingridient', 
@@ -131,7 +137,8 @@ items = {
             'position_y': 27,
             'number': 1,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Candy':{ 
             'type': 'ingridient', 
@@ -140,7 +147,8 @@ items = {
             'position_y': 2,
             'number': 2,
             'board': 2,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Honey':{
             'type': 'ingridient',
@@ -149,16 +157,18 @@ items = {
             'position_y': 4,
             'number': 2,
             'board': 1,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
-        'Lollipop':{ 
-            'type': 'ingridient', 
+        'Lollipop0':{ 
+            'type': 'weapon', 
             'item_icon': 'L',
             'position_x': 9,
             'position_y': 17,
             'number': 1,
             'board': 1,
-            'added_power': 0
+            'added_power': 5,
+            'added_protection': 0    
             },
         'Donut':{ 
             'type': 'ingridient', 
@@ -167,7 +177,8 @@ items = {
             'position_y': 26,
             'number': 1,
             'board': 1,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
             },
         'Candy':{ 
             'type': 'ingridient', 
@@ -176,7 +187,18 @@ items = {
             'position_y': 5,
             'number': 2,
             'board': 1,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
+            },
+        'Sugar_wall0':{ 
+            'type': 'Shield', 
+            'item_icon': 'W',
+            'position_x': 40,
+            'position_y': 2,
+            'number': 2,
+            'board': 1,
+            'added_power': 0,
+            'added_protection': 5    
             },
         'first_aid':{ 
             'type': 'life', 
@@ -185,7 +207,8 @@ items = {
             'position_y': 15,
             'number': 1,
             'board': 1,
-            'added_power': 0
+            'added_power': 0,
+            'added_protection': 0    
         }
     }
 
@@ -209,7 +232,8 @@ others = {
                         ["What is the capital of Australia?\n(a) Sydney\n(b) Canberra\n(c) Melbourne\n", "b", False], 
                         ["How many islands there are in Faroe Islands?\n(a) 412\n(b) 779\n(c) 18\n", "b", False]],
         'width': 1,
-        'other_power': 1
+        'other_power': 1,
+        'board': 1
         },
     'other2': {
         'other_type': "friend",
@@ -222,7 +246,8 @@ others = {
         'goal_quiz': "information",
         'questions': [],
         'width': 1,
-        'other_power': 1
+        'other_power': 1,
+        'board': 1
         },
     'other3': {
         'other_type': "enemy",
@@ -235,7 +260,8 @@ others = {
         'goal_quiz': "milk",
         'questions': [],
         'width': 1,
-        'other_power': 1
+        'other_power': 1,
+        'board': 2
         },
     'boss': {
         'other_type': "enemy",
@@ -248,7 +274,8 @@ others = {
         'goal_quiz': "winning",
         'questions': [],
         'width': 5,
-        'other_power': 1
+        'other_power': 1,
+        'board': 3
         }
     }  
 
@@ -257,3 +284,11 @@ others = {
 
 inventory = {}
 
+
+# CODES ---------------------
+
+codes = {
+    "kill_others": "KILLEMALL",
+    "last_board": "DESPERATE",
+    "extra_lives": "SHOWMUSTGOON"
+}
