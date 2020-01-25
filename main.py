@@ -36,7 +36,7 @@ def main():
         # Set up board
         board = engine.create_board(dictionaries.BOARD[level])
         board = engine.put_player_on_board(board, dictionaries.player)
-        board = engine.put_other_on_board(board, dictionaries.others)
+        board = engine.put_other_on_board(board, dictionaries.others, level)
         board = engine.put_item_on_board(board, dictionaries.items, level) 
 
         # Display essential info

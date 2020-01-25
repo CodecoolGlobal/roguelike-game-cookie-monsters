@@ -44,7 +44,7 @@ BOARD = {
 # ITEMS -------------------------
 
 items = {
-        'Chocolate0':{
+        'Chocolate':{
             'type': 'ingridient',
             'item_icon': 'C',
             'position_x': 5,
@@ -54,7 +54,7 @@ items = {
             'added_power': 0,
             'added_protection': 0        
             },
-        'Jelly0':{ 
+        'Jelly':{ 
             'type': 'ingridient', 
             'item_icon': 'J',
             'position_x': 12,
@@ -64,7 +64,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Pudding0':{ 
+        'Pudding':{ 
             'type': 'ingridient', 
             'item_icon': 'P',
             'position_x': 55,
@@ -74,7 +74,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Ice Cream0':{ 
+        'Ice Cream':{ 
             'type': 'ingridient', 
             'item_icon': 'I',
             'position_x': 92,
@@ -94,7 +94,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Biscuits0':{ 
+        'Biscuits':{ 
             'type': 'ingridient', 
             'item_icon': 'B',
             'position_x': 10,
@@ -104,7 +104,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Pralines0':{ 
+        'Pralines':{ 
             'type': 'ingridient', 
             'item_icon': 'Q',
             'position_x': 57,
@@ -114,7 +114,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Candy0':{ 
+        'Candy':{ 
             'type': 'ingridient', 
             'item_icon': 'U',
             'position_x': 91,
@@ -124,7 +124,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Honey0':{
+        'Honey':{
             'type': 'ingridient',
             'item_icon': 'H',
             'position_x': 11,
@@ -144,7 +144,7 @@ items = {
             'added_power': 5,
             'added_protection': 0    
             },
-        'Donut0':{ 
+        'Donut':{ 
             'type': 'ingridient', 
             'item_icon': 'D',
             'position_x': 56,
@@ -154,7 +154,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Candy0':{ 
+        'Candy':{ 
             'type': 'ingridient', 
             'item_icon': 'E',
             'position_x': 90,
@@ -206,7 +206,8 @@ others = {
                         ["What is the capital of Australia?\n(a) Sydney\n(b) Canberra\n(c) Melbourne\n", "b", False], 
                         ["How many islands there are in Faroe Islands?\n(a) 412\n(b) 779\n(c) 18\n", "b", False]],
         'width': 1,
-        'other_power': 1
+        'other_power': 1,
+        'board': 1
         },
     'other2': {
         'other_type': "friend",
@@ -219,7 +220,8 @@ others = {
         'goal_quiz': "information",
         'questions': [],
         'width': 1,
-        'other_power': 1
+        'other_power': 1,
+        'board': 1
         },
     'other3': {
         'other_type': "enemy",
@@ -232,7 +234,8 @@ others = {
         'goal_quiz': "milk",
         'questions': [],
         'width': 1,
-        'other_power': 1
+        'other_power': 1,
+        'board': 2
         },
     'boss': {
         'other_type': "enemy",
@@ -245,7 +248,8 @@ others = {
         'goal_quiz': "winning",
         'questions': [],
         'width': 5,
-        'other_power': 1
+        'other_power': 1,
+        'board': 3
         }
     }  
 
