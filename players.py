@@ -48,7 +48,7 @@ def user_info(list_labels, player_nickname):
         
         elif elem == 2:
             if user_answer not in game_player['Level_of_difficulty']:
-                raise Exception(colored("You choose only 1 ,2 or 3 level of difficulty\n", "red"))
+                raise Exception(colored("You choose only (1)Easy ,(2) Medium or (3)Hard level of difficulty\n", "red"))
             else:
                 if user_answer == '1':
                     dictionaries.player['player_life'] = dictionaries.player['player_life'] + 5
