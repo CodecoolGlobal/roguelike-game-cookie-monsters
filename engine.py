@@ -280,7 +280,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     health - it disappears and the Player gets flour.
     """
 
-    print_message("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"]))
+    ui.print_message(("Play the quiz to get %s from the %s" % (others[other]["goal_quiz"], others[other]["other_name"])))
 
     q_count = 0
 
@@ -295,7 +295,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
             ui.print_message("Correct!")
         else:
             # player['player_power'] -= 1  moze -1 power za kazda bledna odpowiedz?
-            print_message("Wrong!")
+            ui.print_message("Wrong!")
         q_count += 1
 
     if others[other]["other_health"] > 0:

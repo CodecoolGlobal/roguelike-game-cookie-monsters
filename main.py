@@ -10,9 +10,6 @@ from termcolor import colored
 
 def main():
 
-    # initial board
-    board = engine.create_board(dictionaries.BOARD['BOARD_1'])
-
     # initial level
     level = 'BOARD_1'   
 
@@ -79,7 +76,6 @@ def main():
                 time.sleep(1.0)
                 util.clear_screen()
 
-
         # Check if quit
         if key == 'q':
             quit_assertion = ''
@@ -89,11 +85,6 @@ def main():
                 quit_assertion = util.key_pressed()
                 if quit_assertion == 'y':
                     level = 'QUIT'
-                elif quit_assertion == 'n':
-                    pass
-                else:
-                    pass
-
         
         elif dictionaries.player['player_life'] == 0:
             level = 'LOSE'
@@ -113,7 +104,7 @@ def main():
         print('GAME OVER')
         time.sleep(3.0)
     
-    print('\n\n\n Goodbye, see you soon!')
+    print('\n\n Goodbye, see you soon!\n')
     time.sleep(1.0)
 
 

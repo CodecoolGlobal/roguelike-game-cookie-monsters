@@ -3,7 +3,7 @@ import view
 import sys
 import main
 import dictionaries
-#from termcolor import colored
+from termcolor import colored
 
 BOARD_WIDTH = 80
 BOARD_HEIGHT = 20
