@@ -17,13 +17,14 @@ BOARD = {
         'WIDTH': 100,
         'HEIGHT': 30,
         'NEXT_LEVEL': 'BOARD_2',
+        'PREVIOUS_LEVEL': None,
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_X': 5,
-                'GATE_POSITION_Y': 0},
+                'GATE_POSITION_Y': 0,
+                'GATE_POSITION_X': 5},
             'GATE_DOWN': {
-                'GATE_POSITION_X': None,
-                'GATE_POSITION_Y': None}
+                'GATE_POSITION_Y': None,
+                'GATE_POSITION_X': None}
                 }
     },
 
@@ -35,13 +36,14 @@ BOARD = {
         'GATE_POSITION_X': 0,
         'GATE_POSITION_Y': 10,
         'NEXT_LEVEL': 'BOARD_3',
+        'PREVIOUS_LEVEL': 'BOARD_1',
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_X': 15,
-                'GATE_POSITION_Y': 0},
+                'GATE_POSITION_Y': 0,
+                'GATE_POSITION_X': 25},
             'GATE_DOWN': {
-                'GATE_POSITION_X': 0,
-                'GATE_POSITION_Y': 5}
+                'GATE_POSITION_Y': 29,
+                'GATE_POSITION_X': 5}
         }        
     },
 
@@ -53,13 +55,15 @@ BOARD = {
         'GATE_POSITION_X': 60,
         'GATE_POSITION_Y': 0,
         'NEXT_LEVEL': 'WIN',
+        'PREVIOUS_LEVEL': 'BOARD_2',
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_X': None,
-                'GATE_POSITION_Y': None},
+                'GATE_POSITION_Y': 29,
+                'GATE_POSITION_X': 80},
             'GATE_DOWN': {
-                'GATE_POSITION_X': 0,
-                'GATE_POSITION_Y': 5} 
+                'GATE_POSITION_Y': 29,
+                'GATE_POSITION_X': 5
+                } 
             }
         }
     }

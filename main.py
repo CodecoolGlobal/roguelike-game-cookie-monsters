@@ -9,7 +9,7 @@ import view
 from art import text2art
 from termcolor import colored
 from PIL import Image
-from pygame import mixer
+#from pygame import mixer
 import data_manager
 
 
@@ -17,12 +17,12 @@ import data_manager
         #img.show()
 
 def main():
-    MUSIC_FILE = "Cookie Monster Sings C is for Cookie.wav"
-    mixer.init()
-    mixer.music.load(MUSIC_FILE)
-    mixer.music.play()
-    view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
-    view.start_descriptions()    
+    #MUSIC_FILE = "Cookie Monster Sings C is for Cookie.wav"
+    #mixer.init()
+    #mixer.music.load(MUSIC_FILE)
+    #mixer.music.play()
+    #view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
+    #view.start_descriptions()    
     # initial level
     level = 'BOARD_1'   
 
@@ -40,7 +40,6 @@ def main():
         view.print_table(players.data_to_print(dictionaries.player))
 
         # Set up board
-        print(level)
         board = engine.create_board(dictionaries.BOARD[level])
         board = engine.put_player_on_board(board, dictionaries.player)
         board = engine.put_other_on_board(board, dictionaries.others, level)
@@ -76,8 +75,8 @@ def main():
         util.clear_screen()
 
         # Interaction with other characters
-        if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
-            other = engine.player_meets_other(dictionaries.others, dictionaries.player)
+        if engine.player_meets_other(dictionaries.others, dictionaries.player, level) != False:
+            other = engine.player_meets_other(dictionaries.others, dictionaries.player, level)
             if dictionaries.others[other]['other_type'] == 'enemy':
                 engine.fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
             elif dictionaries.others[other]['other_type'] == 'quiz':
@@ -92,8 +91,6 @@ def main():
             if level == 'WIN':
                 pass
             else:
-               
-                print(level[-1])
                 ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
                 time.sleep(1.0)
                 util.clear_screen()
