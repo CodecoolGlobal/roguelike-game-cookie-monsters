@@ -11,11 +11,10 @@ from termcolor import colored
 from PIL import Image
 
 
-with Image.open("cookiemonster.jpg") as img:
-        img.show()
 
 def main():
-   
+    with Image.open("cookiemonster.jpg") as img:
+        img.show()
     # initial level
     level = 'BOARD_1'   
 
