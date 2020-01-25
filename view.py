@@ -79,7 +79,7 @@ def print_table(data):
         if i == 0:
             print(colored(key.rjust(int(BOARD_WIDTH/2)),"cyan"),":",colored(data[key], "cyan"))
         else:
-            print("|","." * (BOARD_WIDTH - 4),"|")
+            #print("|","." * (BOARD_WIDTH - 4),"|")
             print(colored(key.rjust(int(BOARD_WIDTH/2)), "cyan"),":",colored(data[key], "cyan"))
         i += 1       
     print("-" * BOARD_WIDTH) 
