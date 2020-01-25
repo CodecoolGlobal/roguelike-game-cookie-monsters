@@ -4,7 +4,7 @@ player = {
     'player_icon': '@',
     'position_x': 10,
     'position_y': 10,
-    'player_life': 3,
+    'player_life': 0,
     'player_power': 1
     }
 
@@ -258,3 +258,11 @@ others = {
 
 inventory = {}
 
+
+# CODES ---------------------
+
+codes = {
+    "kill_others": "KILLEMALL",
+    "last_board": "DESPERATE",
+    "extra_lives": "SHOWMUSTGOON"
+}

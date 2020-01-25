@@ -332,3 +332,18 @@ def fight(player, others, other, inventory, items):
     else:
         ui.print_message('You just lost fight with %s! You loose one life point' %(others[other]['other_name']))
         player['player_life'] -= 1
+
+
+def use_secret_code(player, others, level, codes):
+    try:
+        added_code = input("Insert the code: ")
+        if added_code not in codes.values():
+            raise TypeError("Code incorrect")
+    except TypeError as err:
+        print(err)
+    else:
+        if added_code == codes["kill_others"]:
+            for other in others:
+                others[other]['other_health'] = 0
+        elif added_code == codes["extra_lives"]:
+            player['player_life'] += 3
