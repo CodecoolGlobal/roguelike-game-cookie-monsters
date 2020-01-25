@@ -1,2 +1,5 @@
-Nati,3,1,1
-Natwer,3,1,1
+Nati,4,1
+Nat,4,2
+Milosz,5,5
+Michal,3,2
+Aga,6,10

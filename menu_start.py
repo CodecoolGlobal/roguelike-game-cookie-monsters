@@ -5,6 +5,7 @@ import players
 import main
 from termcolor import colored
 
+
 file_nicknames = "data_nickname.txt"
 file_results = "results.txt"
 
@@ -19,7 +20,7 @@ list_options = {
 
 choice_options = ['0', '1', '2', '3']
 
-label_results = ["Nickname", "Time", "Points", "Life"]
+label_results = ["Nickname", "Time", "Points"]
 
 
 def run():

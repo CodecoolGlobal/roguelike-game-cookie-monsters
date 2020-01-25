@@ -8,9 +8,14 @@ import menu_start
 import view
 from art import text2art
 from termcolor import colored
+from PIL import Image
+
+
+with Image.open("cookiemonster.jpg") as img:
+        img.show()
 
 def main():
-
+   
     # initial level
     level = 'BOARD_1'   
 
@@ -97,17 +102,15 @@ def main():
 
 
     if level == 'WIN':
-
-        while True:
-            util.clear_screen()
-            print('YOU WON!!!')
-            time.sleep(0.7)
-            print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
+        util.clear_screen()
+        ui.display_board(board)
+        print(text2art("VICTORY!", font='block', chr_ignore=True))
 
     elif level == 'LOSE':
         util.clear_screen()
-        print('GAME OVER')
-        time.sleep(3.0)
+        ui.display_board(board)
+        print(text2art("GAME OVER!", font='block', chr_ignore=True))
+        time.sleep(10.7)
     
     print('\n\n\n Goodbye, see you soon!')
     time.sleep(1.0)
