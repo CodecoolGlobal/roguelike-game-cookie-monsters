@@ -94,17 +94,28 @@ def print_table(data):
     print("-" * BOARD_WIDTH) 
 
 def print_instruction():
-    i = 0
-    while i == 0:
-        print(colored("About this Sotry:\n",'cyan', attrs=['bold', 'underline']))
-        print(colored("""Which TV show reminds you of your childhood? 
-        Do you remember your childhood mornings - drinking milk, eating cookies and watching cartoons? 
-        Talking about cookies …Do you know what starts with letter C? 
-        Good enough for me, not only for me and you but for this main character also! 
-        What are we talking about? Cookie starts with C! Are you already recognizing this song?"""))
-        time.sleep(1.0)
-        print("""Cookie Monster is a Muppet on the long-running children's television show Sesame Street\n.""", 'cyan')
-        i += 1
+    
+    print(colored("Start? :\n",'cyan', attrs=['bold', 'underline']))
+    print('\n')
+    print("First, please enter your Nickname and decide which character you want to play. You may choose: CookieMan, he is the most powerful.")
+    print("CookieMum she has rolling pin, which gives her additional points during fights.")
+    print("CookieBaby has more life points than other characters.")
+    print('\n')
+
+    print("Play")
+    print('\n')
+    print("Use A to go up")
+    print("Use S to go down")
+    print("Use D to go right")
+    print("Use A to go left")
+    print('\n')
+
+    print("Story")
+    print('\n')
+
+    print("You had been locked in secret maze, you are just trying to get out of here! Make sure to find as many items, as it is possible. They will be useful at the very end.")
+    print('\n')
+    
 
 def print_images(images):
     for line in images:
