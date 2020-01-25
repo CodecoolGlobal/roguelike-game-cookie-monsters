@@ -85,6 +85,11 @@ def main():
                 quit_assertion = util.key_pressed()
                 if quit_assertion == 'y':
                     level = 'QUIT'
+                elif quit_assertion == 'n':
+                    pass
+                else:
+                    pass
+
         
         elif dictionaries.player['player_life'] == 0:
             level = 'LOSE'
@@ -104,7 +109,7 @@ def main():
         print('GAME OVER')
         time.sleep(3.0)
     
-    print('\n\n Goodbye, see you soon!\n')
+    print('\n\n\n Goodbye, see you soon!')
     time.sleep(1.0)
 
 
