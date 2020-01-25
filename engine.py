@@ -180,7 +180,8 @@ def player_meets_other(others, player):
                 return other
 
     return if_meet
-            
+
+
 def movement(board, player, key, others):
 
     height = len(board)
@@ -374,4 +375,4 @@ def use_secret_code(player, others, level, codes):
                 others[other]['other_health'] = 0
         elif added_code == codes["extra_lives"]:
             player['player_life'] += 3
-
+        player['used_code'] = True
