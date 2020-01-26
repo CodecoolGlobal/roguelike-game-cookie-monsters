@@ -489,7 +489,7 @@ def use_secret_code(player, others, level, codes):
 def show_statistics(player):
     statistics_keys = ("wins", "loss", 'discovered_boards')
     statistics_dict = {}
-    for k, v in player.items():
-        if player[k] in statistics_keys:
-            statistics_dict[k] = v
+    for k in player:
+        if k in statistics_keys:
+            statistics_dict[k] = player[k]
     ui.print_table(statistics_dict)

@@ -9,7 +9,7 @@ player = {
     'used_code': False,
     'wins': 0,
     'loss': 0,
-    'discovered_boards': 1
+    'levels': 1
     }
 
 # BOARD -------------------------
