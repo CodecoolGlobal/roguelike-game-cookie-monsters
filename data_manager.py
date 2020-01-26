@@ -2,7 +2,7 @@ file_nicknames = "data_nickname.txt"
 file_results = "results.txt"
 
 
-def read_file_nicknames(file):
+def read_file_record(file):
     with open(file, "r") as fil:
         lines = fil.readlines()
         players_info = []
@@ -14,7 +14,7 @@ def read_file_nicknames(file):
 
 
 
-def add_new_nicknames(data, file):
+def add_new_record(data, file):
     with open(file, 'a') as fil:
         record = []
         for key in data:
