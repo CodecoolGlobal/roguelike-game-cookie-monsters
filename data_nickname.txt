@@ -1,16 +1,1 @@
 @,10,10,5,1,Nati,CookieBaby,2
-@,10,10,3,1,False,0,0,1,ss,rolling_pin,2,2
-@,10,10,3,1,False,0,0,1,sss,rolling_pin,2,2
-@,10,10,1,1,False,0,0,1,sdfg,rolling_pin,2,3
-@,10,10,5,1,False,0,0,1,jhgf,3,2
-@,10,10,3,1,False,0,0,1,sdfg,rolling_pin,2,2
-@,10,10,5,1,False,0,0,1,sdfg,3,2
-@,10,10,3,1,False,0,0,1,asdfgh,rolling_pin,2,2
-@,10,10,3,1,False,0,0,1,asdf,rolling_pin,2,2
-@,10,10,3,1,False,0,0,1,sadf,rolling_pin,2,2
-@,10,10,3,1,False,0,0,1,sd,rolling_pin,2,2
-@,10,10,5,1,False,0,0,1,wrfe,3,2
-@,10,10,5,1,False,0,0,1,btfdgb,3,2
-@,10,10,5,1,False,0,0,1,wdswd,3,2
-@,10,10,3,1,False,0,0,1,asdsc,rolling_pin,2,2
-@,10,10,3,1,False,0,0,1,sdac,rolling_pin,2,2

@@ -1,7 +1,5 @@
-import time
 
-while True:
-    print('YOU WON!!!')
-    time.sleep(0.7)
-    print('🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪 🍪')
-    time.sleep(0.7)
+print('111👴🏼11')
+print('1111111')
+
+print(len('👴🏼'))
