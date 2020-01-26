@@ -168,7 +168,7 @@ items = {
             'added_power': 0,
             'added_protection': 0    
             },
-        'Lollipop0':{ 
+        'Lollipop':{ 
             'type': 'weapon', 
             'item_icon': 'L',
             'position_x': 9,

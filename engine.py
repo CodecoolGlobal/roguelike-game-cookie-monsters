@@ -140,7 +140,7 @@ def add_to_inventory(inventory, item_key):
     """Add to the inventory dictionary a list of items"""
 
 
-    if item_key == 'first_ai':
+    if item_key == 'first_aid':
         pass
 
     elif item_key in inventory:
@@ -154,6 +154,8 @@ def put_item_on_board(board, items, level):
     for item_key in items:
         if items[item_key]['board'] == int(level[-1]):
             board[items[item_key]['position_y']][items[item_key]['position_x']] = items[item_key]['item_icon']
+        else:
+            pass
 
     return board
 
@@ -223,12 +225,12 @@ def movement(board, player, key, others):
         pass
 
 
-def item_vs_player(inventory, item, player):
+def item_vs_player(inventory, item, player, level, items):
 
     item_to_delete = ''
 
     for item_key in item:
-        if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
+        if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y'] and items[item_key]['board'] == int(level[-1]):
 
             add_to_inventory(inventory, item_key)
             item_to_delete = item_key
@@ -246,7 +248,7 @@ def item_vs_player(inventory, item, player):
         pass
 
     elif item[item_to_delete]['number'] == 0:
-        del item[item_to_delete]
+        item[item_to_delete]['board'] = -1
 
 def add_life_points(item, player):
 
@@ -368,7 +370,7 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                     elif 'Pralines' not in inventory  and others['other3']['other_health'] == 0:
                                         print("Come back with Pralines!")                                        
                                 elif level == 'BOARD_3':
-                                    if 'boss' not in others:
+                                    if others['boss']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
                                         print('Come back once you defeat the Boss!!')
@@ -440,14 +442,14 @@ def fight(player, others, other, inventory, items):
     other_x = others[other]['position_x']
     other_y = others[other]['position_y']
 
-    items_sumaric_power = 0
+    items_summaric_power = 0
     items_summaric_protection = 0
     if player_x == other_x and player_y == other_y:
         for item in inventory:
-            items_sumaric_power += items[item]['added_power']
-            items_sumaric_protection += items[item]['added_protection']
+            items_summaric_power += items[item]['added_power']
+            items_summaric_protection += items[item]['added_protection']
 
-    player_hit = (player['player_power'] + items_sumaric_power) * random.randrange(5)
+    player_hit = (player['player_power'] + items_summaric_power) * random.randrange(5)
     other_hit = (others[other]['other_power'] - items_summaric_protection) * random.randrange(5)
 
     if player_hit > other_hit:
