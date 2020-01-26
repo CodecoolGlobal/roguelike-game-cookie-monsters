@@ -24,7 +24,7 @@ def main():
     #view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
     #view.start_descriptions()    
     # initial level
-    level = 'BOARD_1'   
+    level = 'BOARD_3'   
 
     # initial key`
     key = ''
@@ -60,23 +60,26 @@ def main():
             message = 'This is your inventory content: '
             ui.print_message(message)
             ui.print_table(dictionaries.inventory)
-        
-        # Player input
-        key = util.key_pressed()
 
         # Insert secret code
         if key == "c":
             engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
 
-        # Movement
-        engine.movement(board, dictionaries.player, key, dictionaries.others)
+
+        # Player input
+        key = util.key_pressed()
 
         # Clear screen
         util.clear_screen()
 
+        # Movement
+        engine.movement(board, dictionaries.player, key, dictionaries.others)
+
+
+
         # Interaction with other characters
-        if engine.player_meets_other(dictionaries.others, dictionaries.player, level) != False:
-            other = engine.player_meets_other(dictionaries.others, dictionaries.player, level)
+        if engine.player_meets_other(dictionaries.others, dictionaries.player, level, board) != False:
+            other = engine.player_meets_other(dictionaries.others, dictionaries.player, level, board)
             if dictionaries.others[other]['other_type'] == 'enemy':
                 engine.fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
             elif dictionaries.others[other]['other_type'] == 'quiz':
@@ -84,9 +87,12 @@ def main():
 
         # Gate and level change handling
       
-        if engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key) != level:
+        if engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key, dictionaries.inventory, dictionaries.others) != level:
             util.clear_screen()
-            level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
+            level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key, dictionaries.inventory, dictionaries.others)
+            if level == 'BOARD_2' or level == 'BOARD_3':
+                dictionaries.player['position_y'] = 15
+                dictionaries.player['position_x'] = 3
     
             if level == 'WIN':
                 pass
@@ -94,6 +100,7 @@ def main():
                 ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
                 time.sleep(1.0)
                 util.clear_screen()
+        
 
         # Check if quit
         if key == 'q':
@@ -109,8 +116,8 @@ def main():
                 else:
                     pass
 
-        
-        elif dictionaries.player['player_life'] == 0:
+
+        if dictionaries.player['player_life'] == 0:
             level = 'LOSE'
 
 

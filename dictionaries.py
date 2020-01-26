@@ -5,7 +5,8 @@ player = {
     'position_x': 10,
     'position_y': 10,
     'player_life': 0,
-    'player_power': 1
+    'player_power': 1,
+    'used_code': False
     }
 
 # BOARD -------------------------
@@ -20,8 +21,8 @@ BOARD = {
         'PREVIOUS_LEVEL': None,
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_Y': 0,
-                'GATE_POSITION_X': 5},
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 99},
             'GATE_DOWN': {
                 'GATE_POSITION_Y': None,
                 'GATE_POSITION_X': None}
@@ -39,11 +40,11 @@ BOARD = {
         'PREVIOUS_LEVEL': 'BOARD_1',
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_Y': 0,
-                'GATE_POSITION_X': 25},
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 99},
             'GATE_DOWN': {
-                'GATE_POSITION_Y': 29,
-                'GATE_POSITION_X': 5}
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 0}
         }        
     },
 
@@ -58,11 +59,11 @@ BOARD = {
         'PREVIOUS_LEVEL': 'BOARD_2',
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_Y': 29,
-                'GATE_POSITION_X': 80},
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 99},
             'GATE_DOWN': {
-                'GATE_POSITION_Y': 29,
-                'GATE_POSITION_X': 5
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 0
                 } 
             }
         }
@@ -150,7 +151,7 @@ items = {
             'position_x': 91,
             'position_y': 2,
             'number': 2,
-            'board': 2,
+            'board': 1,
             'added_power': 0,
             'added_protection': 0    
             },
@@ -187,17 +188,17 @@ items = {
         'Candy':{ 
             'type': 'ingridient', 
             'item_icon': 'E',
-            'position_x': 90,
+            'position_x': 91,
             'position_y': 5,
             'number': 2,
             'board': 1,
             'added_power': 0,
             'added_protection': 0    
             },
-        'Sugar_wall0':{ 
+        'Sugar_wall':{ 
             'type': 'Shield', 
             'item_icon': 'W',
-            'position_x': 40,
+            'position_x': 41,
             'position_y': 2,
             'number': 2,
             'board': 1,
@@ -228,7 +229,7 @@ others = {
         'position_y': 5,
         'step': 1,
         'other_health': 3,
-        'goal_quiz': "flour",
+        'goal_quiz': "jelly",
         'questions':   [["What's the first name of 'Ooops I did it again' singer?\n(a) Christina\n(b) Britney\n(c) Jessica\n", "b", False],
                         ["Which river passes through Vienna?\n(a) Vistula\n(b) Douro\n(c) Danube\n", "c", False],
                         ["What color are bananas?\n(a) Red\n(b) Orange\n(c) Yellow\n", "c", False],
@@ -273,7 +274,7 @@ others = {
         'other_icon': "B",
         'position_x': 50,
         'position_y': 15,
-        'step': 2,
+        'step': 0,
         'other_health': 3,
         'goal_quiz': "winning",
         'questions': [],
