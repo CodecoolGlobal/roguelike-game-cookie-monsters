@@ -246,7 +246,7 @@ def item_vs_player(inventory, item, player):
         pass
 
     elif item[item_to_delete]['number'] == 0:
-        del item[item_to_delete]
+        item[item_to_delete]['board'] = -1
 
 def add_life_points(item, player):
 
