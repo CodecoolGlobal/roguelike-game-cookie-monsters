@@ -86,7 +86,7 @@ def print_table(data):
     index = 0
     print("-" * 40)
     for key in data:
-        if i == 0:
+        if index == 0:
             print(colored(key.ljust(int(len("Level of difficulty"))), "cyan"),":",colored(data[key], "cyan")," 😈")
         else:
             print(colored(key.ljust(int(len("Level of difficulty"))), "cyan"),":",colored(data[key], "cyan"))

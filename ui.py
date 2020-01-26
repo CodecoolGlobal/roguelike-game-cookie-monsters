@@ -4,7 +4,7 @@ import main
 def display_board(board):
     for row in board:
         for cell in row:
-            print(colored(cell,"blue"), end='')
+            print(cell, end='')
         print()
     print()
 
@@ -34,7 +34,6 @@ def print_player_essential_atributes(player):
 
 def authors_presentation():
 
-    print('\n Goodbye, see you soon!')
     print('\n')
     print('\n This Game was prepared by: ')
     print('\n')

@@ -37,7 +37,6 @@ def main():
     while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
         
         util.clear_screen()
-        print(dictionaries.items)
         pass_key_input = False
         
         view.print_table(players.data_to_print(dictionaries.player))
@@ -134,13 +133,11 @@ def main():
         util.clear_screen()
         ui.display_board(board)
         print(text2art("VICTORY!", font='block', chr_ignore=True))
-        ui.authors_presentation()
 
     elif level == 'LOSE':
         util.clear_screen()
         ui.display_board(board)
         print(text2art("GAME OVER!", font='block', chr_ignore=True))
-        ui.authors_presentation()
 
         time.sleep(10.7)
     
