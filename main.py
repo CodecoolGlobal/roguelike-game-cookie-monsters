@@ -35,8 +35,14 @@ def main():
     time.sleep(1.0)
     util.clear_screen()
 
-    while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
+    pass_key_input = False
 
+    while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
+        
+        util.clear_screen()
+
+        pass_key_input = False
+        
         view.print_table(players.data_to_print(dictionaries.player))
 
         # Set up board
@@ -55,31 +61,13 @@ def main():
         engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player, level, dictionaries.items)
 
         # Display inventory
-
         if key == 'i':
-            message = 'This is your inventory content: '
-            ui.print_message(message)
+            ui.print_message('This is your inventory content: ')
             ui.print_table(dictionaries.inventory)
 
         # Display statistics
         if key == "p":
             engine.show_statistics(dictionaries.player)
-
-        # Insert secret code
-        if key == "c":
-            engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
-
-        # Player input
-        key = util.key_pressed()
-
-        # Clear screen
-        util.clear_screen()
-
-        # Movement
-        engine.movement(board, dictionaries.player, key, dictionaries.others)
-
-        # Clear screen
-        #util.clear_screen()
 
         # Interaction with other characters
         if engine.player_meets_other(dictionaries.others, dictionaries.player, level, board) != False:
@@ -89,11 +77,15 @@ def main():
             elif dictionaries.others[other]['other_type'] == 'quiz':
                 engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
-        # Gate and level change handling
-      
+        # Insert secret code
+        if key == "c":
+            engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
+
+        # Gate and level change handling      
         if engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key, dictionaries.inventory, dictionaries.others) != level:
             util.clear_screen()
             level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key, dictionaries.inventory, dictionaries.others)
+
             if level == 'BOARD_2' or level == 'BOARD_3':
                 dictionaries.player['position_y'] = 15
                 dictionaries.player['position_x'] = 3
@@ -101,11 +93,20 @@ def main():
             if level == 'WIN':
                 pass
             else:
-               
                 ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
                 time.sleep(1.0)
                 util.clear_screen()
-        
+                pass_key_input = True
+                
+    
+        # Player input
+        if pass_key_input == False:
+            key = util.key_pressed()
+
+        # Movement
+        if pass_key_input == False:
+            engine.movement(board, dictionaries.player, key, dictionaries.others) 
+   
 
         # Check if quit
         if key == 'q':
@@ -120,6 +121,8 @@ def main():
                     pass
                 else:
                     pass
+
+
 
 
         if dictionaries.player['player_life'] == 0:
