@@ -278,7 +278,7 @@ def item_vs_player(inventory, item, player, level, items):
                 ui.print_message('\n' + ' +1 Life point! ')
                 player['player_life'] += 1 
             else:
-                ui.print_message('\n' + item_key + 'has been added to your inventory!')
+                ui.print_message('\n' + item_key + ' has been added to your inventory!')
                 
 
     if item_to_delete == '':
@@ -330,8 +330,8 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
                                         ui.print_message('Come back once you defeat the Boss!!')
-                                elif gate_ == 'GATE_DOWN':
-                                    return BOARD_level['PREVIOUS_LEVEL']                          
+                            elif gate_ == 'GATE_DOWN':
+                                return BOARD_level['PREVIOUS_LEVEL']                          
 
                         # entering gate that is down in relation to player
                         elif (player['position_y'] + 1 ) == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and (player['position_x']) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and key == 's':
@@ -356,8 +356,8 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
                                         ui.print_message('Come back once you defeat the Boss!!')
-                                elif gate_ == 'GATE_DOWN':
-                                    return BOARD_level['PREVIOUS_LEVEL'] 
+                            elif gate_ == 'GATE_DOWN':
+                                return BOARD_level['PREVIOUS_LEVEL'] 
 
                         # entering gate that is left in relation to player
                         elif (player['position_x'] - 1) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and player['position_y'] == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and key == 'a':
@@ -382,8 +382,8 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
                                         ui.print_message('Come back once you defeat the Boss!!')
-                                elif gate_ == 'GATE_DOWN':
-                                    return BOARD_level['PREVIOUS_LEVEL'] 
+                            elif gate_ == 'GATE_DOWN':
+                                return BOARD_level['PREVIOUS_LEVEL'] 
 
                         # entering gate that is right in relation to player
                         elif (player['position_x'] + 1) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and player['position_y'] == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and key == 'd':
@@ -408,8 +408,8 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
                                         ui.print_message('Come back once you defeat the Boss!!')
-                                elif gate_ == 'GATE_DOWN':
-                                    return BOARD_level['PREVIOUS_LEVEL'] 
+                            elif gate_ == 'GATE_DOWN':
+                                return BOARD_level['PREVIOUS_LEVEL'] 
     return level
 
 def gate_requirements(level, inventory, others, gate_, BOARD_level):
