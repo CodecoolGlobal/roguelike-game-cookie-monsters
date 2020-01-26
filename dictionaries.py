@@ -9,7 +9,7 @@ player = {
     'used_code': False,
     'wins': 0,
     'loss': 0,
-    'discovered_boards': 1
+    'levels': 1
     }
 
 # BOARD -------------------------
@@ -277,7 +277,7 @@ others = {
         'other_icon': "B",
         'position_x': 50,
         'position_y': 15,
-        'step': 0,
+        'step': 1,
         'other_health': 3,
         'goal_quiz': "winning",
         'questions': [],

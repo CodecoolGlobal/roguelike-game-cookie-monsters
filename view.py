@@ -8,21 +8,24 @@ BOARD_HEIGHT = 30
 file_nicknames = "data_nickname.txt"
 file_results = "results.txt"
 
-label_results = ["Nickname", "Time", "Points"]
+label_results = ["Nickname","Points"]
 
 def start_descriptions():
     print(colored("Welcome to our cookie game! \n", "yellow"))
     print(colored("Maybe you want to play some game:D? \n", "yellow"))
     print(colored("So, first I suggest you read instruction about our Magic World :) \n", "yellow"))
-    print(colored("About this Sotry:\n",'cyan', attrs=['bold', 'underline']))
-    print(colored("""Which TV show reminds you of your childhood? 
+    print(colored("About this Story:\n",'cyan', attrs=['bold', 'underline']))
+    print(colored(("""Which TV show reminds you of your childhood? 
         Do you remember your childhood mornings - drinking milk, eating cookies and watching cartoons? 
         Talking about cookies …Do you know what starts with letter C? 
         Good enough for me, not only for me and you but for this main character also! 
-        What are we talking about? Cookie starts with C! Are you already recognizing this song?""", 'cyan'))
+        What are we talking about? Cookie starts with C! Are you already recognizing this song?\n
+        Cookie Monster is a Muppet on the long-running children's television show Sesame Street.\n
+        Now you have a unique opportunity to become CookieMonster.
+        Your job will be get as many candies as you can. 
+        On the other hands you'll be forced to mental effort as well as defeat the monsters.
+        So let's try your skills !!!\n""").ljust(10), 'cyan'))
     time.sleep(15.0)
-    print(colored("""        Cookie Monster is a Muppet on the long-running children's television show Sesame Street.\n""", 'cyan'))
-    time.sleep(5.0)
 
 def bubble_sort(table):
     """function which sort all records in our table"""
@@ -30,7 +33,7 @@ def bubble_sort(table):
     for i in range(len(table)):
         j = len(table)-1
         while j > i:
-            if int(table[j][2]) > int(table[j-1][2]):
+            if int(table[j][1]) > int(table[j-1][1]):
                 temp = table[j-1]
                 table[j-1] = table[j]
                 table[j] = temp

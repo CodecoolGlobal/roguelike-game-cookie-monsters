@@ -24,9 +24,9 @@ def main():
     #view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
     #view.start_descriptions()    
     # initial level
-    level = 'BOARD_1'   
+    level = 'BOARD_3'   
 
-    # initial key`
+    # initial key
     key = ''
 
     menu_start.run()
@@ -34,6 +34,7 @@ def main():
     ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
     time.sleep(1.0)
     util.clear_screen()
+    
 
     pass_key_input = False
 
@@ -56,6 +57,9 @@ def main():
         
         # Display board
         ui.display_board(board)
+
+        # Message panel intoduction (always displayed)
+        ui.print_message('  MESSAGE PANEL \n' + 17 * '-' + '\n')
 
         # Interaction whit items
         engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player, level, dictionaries.items)
@@ -139,7 +143,7 @@ def main():
         ui.display_board(board)
         print(text2art("GAME OVER!", font='block', chr_ignore=True))
         time.sleep(10.7)
-    
+    players.add_results(players.count_points(), "results.txt")
     print('\n\n\n Goodbye, see you soon!')
     time.sleep(1.0)
 

@@ -23,7 +23,6 @@ def print_table(inventory):
     return ''
 
 def print_message(message = ''):
-    print('-' * 17)
     print(message)
 
 def print_player_essential_atributes(player):
