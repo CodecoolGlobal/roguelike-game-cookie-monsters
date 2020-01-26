@@ -24,9 +24,9 @@ def main():
     #view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
     #view.start_descriptions()    
     # initial level
-    level = 'BOARD_1'   
+    level = 'BOARD_3'   
 
-    # initial key`
+    # initial key
     key = ''
 
     menu_start.run()
@@ -34,11 +34,22 @@ def main():
     ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
     time.sleep(1.0)
     util.clear_screen()
+    
+
+    pass_key_input = False
 
     while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
+        
+        util.clear_screen()
 
+        pass_key_input = False
+        
         view.print_table(players.data_to_print(dictionaries.player))
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> 27aae20681d7cff1d5bff716f677c4bc11b0a659
         # Set up board
         board = engine.create_board(dictionaries.BOARD[level])
         board = engine.put_player_on_board(board, dictionaries.player)
@@ -51,32 +62,20 @@ def main():
         # Display board
         ui.display_board(board)
 
+        # Message panel intoduction (always displayed)
+        ui.print_message('  MESSAGE PANEL \n' + 17 * '-' + '\n')
+
         # Interaction whit items
         engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player, level, dictionaries.items)
 
         # Display inventory
-
         if key == 'i':
-            message = 'This is your inventory content: '
-            ui.print_message(message)
+            ui.print_message('This is your inventory content: ')
             ui.print_table(dictionaries.inventory)
 
-        # Insert secret code
-        if key == "c":
-            engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
-
-
-        # Player input
-        key = util.key_pressed()
-
-        # Clear screen
-        util.clear_screen()
-
-        # Movement
-        engine.movement(board, dictionaries.player, key, dictionaries.others)
-
-        # Clear screen
-        #util.clear_screen()
+        # Display statistics
+        if key == "p":
+            engine.show_statistics(dictionaries.player)
 
         # Interaction with other characters
         if engine.player_meets_other(dictionaries.others, dictionaries.player, level, board) != False:
@@ -86,11 +85,15 @@ def main():
             elif dictionaries.others[other]['other_type'] == 'quiz':
                 engine.player_vs_other_quiz(dictionaries.player, other, dictionaries.others, dictionaries.inventory, dictionaries.others[other]['questions'])
 
-        # Gate and level change handling
-      
+        # Insert secret code
+        if key == "c":
+            engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
+
+        # Gate and level change handling      
         if engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key, dictionaries.inventory, dictionaries.others) != level:
             util.clear_screen()
             level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key, dictionaries.inventory, dictionaries.others)
+
             if level == 'BOARD_2' or level == 'BOARD_3':
                 dictionaries.player['position_y'] = 15
                 dictionaries.player['position_x'] = 3
@@ -98,11 +101,20 @@ def main():
             if level == 'WIN':
                 pass
             else:
-               
                 ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
                 time.sleep(1.0)
                 util.clear_screen()
-        
+                pass_key_input = True
+                
+    
+        # Player input
+        if pass_key_input == False:
+            key = util.key_pressed()
+
+        # Movement
+        if pass_key_input == False:
+            engine.movement(board, dictionaries.player, key, dictionaries.others) 
+   
 
         # Check if quit
         if key == 'q':
@@ -117,6 +129,8 @@ def main():
                     pass
                 else:
                     pass
+
+
 
 
         if dictionaries.player['player_life'] == 0:
@@ -136,9 +150,14 @@ def main():
         ui.authors_presentation()
 
         time.sleep(10.7)
+<<<<<<< HEAD
     
     
     ui.authors_presentation()
+=======
+    players.add_results(players.count_points(), "results.txt")
+    print('\n\n\n Goodbye, see you soon!')
+>>>>>>> 27aae20681d7cff1d5bff716f677c4bc11b0a659
     time.sleep(1.0)
 
     with Image.open("cookiemonster.jpg") as img:

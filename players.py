@@ -82,3 +82,17 @@ def data_to_print(data):
             else:
                 data_print[key] = 'Hard'              
     return data_print
+
+def count_points():
+    points = dictionaries.player['player_power'] + (int(dictionaries.player['player_life']) * 2)
+    data = {
+        'Nickname' : dictionaries.player['Nickname'],
+        'points' : points
+        }   
+    return data
+
+def add_results(data, result):
+    if dictionaries.player['used_code'] == False:
+        data_manager.add_new_nicknames(data,file_results)
+    else:
+        print('You cheated') 

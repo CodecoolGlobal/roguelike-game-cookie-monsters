@@ -15,9 +15,9 @@ def read_file_nicknames(file):
 
 
 def add_new_nicknames(data, file):
-    with open(file_nicknames, 'a') as fil:
+    with open(file, 'a') as fil:
         record = []
-        for key in data.keys():
+        for key in data:
             record.append(data[key])
         row = ",".join(map(str, record))
         fil.write(row + "\n")

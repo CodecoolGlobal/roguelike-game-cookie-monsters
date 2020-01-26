@@ -19,7 +19,7 @@ def create_board(board):
     new_board.append(width * [brick])
 
     for a in range(height - 2):
-        new_board.append([brick] + (width - 2) * [' '] + [brick])
+        new_board.append([brick] + (width - 2) * ['  '] + [brick])
 
     new_board.append(width * [brick])
 
@@ -27,13 +27,13 @@ def create_board(board):
         pass
     else:
 
-        new_board[board['GATES']['GATE_UP']['GATE_POSITION_Y']][board['GATES']['GATE_UP']['GATE_POSITION_X']] = ' '
+        new_board[board['GATES']['GATE_UP']['GATE_POSITION_Y']][board['GATES']['GATE_UP']['GATE_POSITION_X']] = '  '
 
     if board['GATES']['GATE_DOWN']['GATE_POSITION_Y'] == None:
         pass
     else:
 
-        new_board[board['GATES']['GATE_DOWN']['GATE_POSITION_Y']][board['GATES']['GATE_DOWN']['GATE_POSITION_X']] = ' '
+        new_board[board['GATES']['GATE_DOWN']['GATE_POSITION_Y']][board['GATES']['GATE_DOWN']['GATE_POSITION_X']] = '  '
 
     return new_board
 
@@ -182,9 +182,9 @@ def player_meets_other(others, player, level, board = ''):
                     elif others[other]["position_y"] == player["position_y"] and others[other]["position_x"] == player["position_x"]:
                         return other
             elif others[other]['other_name'] == 'Boss':
-                if board[(player["position_y"] + 1)][player["position_x"]] == 'B' or board[(player["position_y"] - 1)][player["position_x"]] == 'B':
+                if board[(player["position_y"] + 1)][player["position_x"]] == '🍔' or board[(player["position_y"] - 1)][player["position_x"]] == '🍔':
                     return other
-                elif board[player["position_y"]][(player["position_x"] + 1)] == 'B' or board[player["position_y"]][(player["position_x"] - 1)] == 'B':
+                elif board[player["position_y"]][(player["position_x"] + 1)] == '🍔' or board[player["position_y"]][(player["position_x"] - 1)] == '🍔':
                     return other
 
     return if_meet
@@ -241,7 +241,7 @@ def item_vs_player(inventory, item, player, level, items):
                 ui.print_message('\n' + ' +1 Life point! ')
                 player['player_life'] += 1 
             else:
-                ui.print_message('\n' + 'This item has been added to your inventory!')
+                ui.print_message('\n' + item_key + 'has been added to your inventory!')
                 
 
     if item_to_delete == '':
@@ -271,9 +271,6 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                     for gate_ in BOARD[board_][key_]:
                         
                         # entering gate that is up in relation to player
-                        print(inventory)
-                        if inventory != {}:
-                            print(inventory['Donut'])
                         if (player['position_y'] - 1) == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and (player['position_x']) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and key == 'w':
                             if gate_ == 'GATE_UP':
                                 # Gate Requirements
@@ -281,21 +278,21 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                     if 'Donut' in inventory: #and others['other']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     else:
-                                        print('Come back with Donut!!')
+                                        ui.print_message('Come back with Donut!!')
                                 elif level == 'BOARD_2':
                                     if 'Pralines' in inventory and others['other3']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif 'Pralines' in inventory   and others['other3']['other_health'] > 0:
-                                        print('Come back once you defeat the Cow!!')
+                                        ui.print_message('Come back once you defeat the Cow!!')
                                     elif 'Pralines' not in inventory and others['other3']['other_health'] > 0:
-                                        print("Once you defeat Cow, come back with Pralines!")
+                                        ui.print_message("Once you defeat Cow, come back with Pralines!")
                                     elif 'Pralines' not in inventory  and others['other3']['other_health'] == 0:
-                                        print("Come back with Pralines!")                                        
+                                        ui.print_message("Come back with Pralines!")                                        
                                 elif level == 'BOARD_3':
                                     if 'boss' not in others:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
-                                        print('Come back once you defeat the Boss!!')
+                                        ui.print_message('Come back once you defeat the Boss!!')
                                 elif gate_ == 'GATE_DOWN':
                                     return BOARD_level['PREVIOUS_LEVEL']                          
 
@@ -307,23 +304,23 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                     if 'Donut' in inventory: #and others['other']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     else:
-                                        print('Come back with Donut!!')
+                                        ui.print_message('Come back with Donut!!')
                                 elif level == 'BOARD_2':
                                     if 'Pralines' in inventory and others['other3']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif 'Pralines' in inventory   and others['other3']['other_health'] > 0:
-                                        print('Come back once you defeat the Cow!!')
+                                        ui.print_message('Come back once you defeat the Cow!!')
                                     elif 'Pralines' not in inventory and others['other3']['other_health'] > 0:
-                                        print("Once you defeat Cow, come back with Pralines!")
+                                        ui.print_message("Once you defeat Cow, come back with Pralines!")
                                     elif 'Pralines' not in inventory  and others['other3']['other_health'] == 0:
-                                        print("Come back with Pralines!")                                        
+                                        ui.print_message("Come back with Pralines!")                                        
                                 elif level == 'BOARD_3':
-                                    if 'boss' not in others:
+                                    if others['boss']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
-                                        print('Come back once you defeat the Boss!!')
+                                        ui.print_message('Come back once you defeat the Boss!!')
                                 elif gate_ == 'GATE_DOWN':
-                                    return BOARD_level['PREVIOUS_LEVEL']  
+                                    return BOARD_level['PREVIOUS_LEVEL'] 
 
                         # entering gate that is left in relation to player
                         elif (player['position_x'] - 1) == BOARD[board_][key_][gate_]['GATE_POSITION_X'] and player['position_y'] == BOARD[board_][key_][gate_]['GATE_POSITION_Y'] and key == 'a':
@@ -333,21 +330,21 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                     if 'Donut' in inventory: #and others['other']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     else:
-                                        print('Come back with Donut!!')
+                                        ui.print_message('Come back with Donut!!')
                                 elif level == 'BOARD_2':
                                     if 'Pralines' in inventory and others['other3']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif 'Pralines' in inventory   and others['other3']['other_health'] > 0:
-                                        print('Come back once you defeat the Cow!!')
+                                        ui.print_message('Come back once you defeat the Cow!!')
                                     elif 'Pralines' not in inventory and others['other3']['other_health'] > 0:
-                                        print("Once you defeat Cow, come back with Pralines!")
+                                        ui.print_message("Once you defeat Cow, come back with Pralines!")
                                     elif 'Pralines' not in inventory  and others['other3']['other_health'] == 0:
-                                        print("Come back with Pralines!")                                        
+                                        ui.print_message("Come back with Pralines!")                                        
                                 elif level == 'BOARD_3':
-                                    if 'boss' not in others:
+                                    if others['boss']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
-                                        print('Come back once you defeat the Boss!!')
+                                        ui.print_message('Come back once you defeat the Boss!!')
                                 elif gate_ == 'GATE_DOWN':
                                     return BOARD_level['PREVIOUS_LEVEL'] 
 
@@ -359,21 +356,21 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                     if 'Donut' in inventory: #and others['other']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     else:
-                                        print('Come back with Donut!!')
+                                        ui.print_message('Come back with Donut!!')
                                 elif level == 'BOARD_2':
                                     if 'Pralines' in inventory and others['other3']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif 'Pralines' in inventory   and others['other3']['other_health'] > 0:
-                                        print('Come back once you defeat the Cow!!')
+                                        ui.print_message('Come back once you defeat the Cow!!')
                                     elif 'Pralines' not in inventory and others['other3']['other_health'] > 0:
-                                        print("Once you defeat Cow, come back with Pralines!")
+                                        ui.print_message("Once you defeat Cow, come back with Pralines!")
                                     elif 'Pralines' not in inventory  and others['other3']['other_health'] == 0:
-                                        print("Come back with Pralines!")                                        
+                                        ui.print_message("Come back with Pralines!")                                        
                                 elif level == 'BOARD_3':
-                                    if 'boss' not in others:
+                                    if others['boss']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
-                                        print('Come back once you defeat the Boss!!')
+                                        ui.print_message('Come back once you defeat the Boss!!')
                                 elif gate_ == 'GATE_DOWN':
                                     return BOARD_level['PREVIOUS_LEVEL'] 
     return level
@@ -414,20 +411,20 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     while q_count <= questions_number and others[other]["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
-            # player['player_power'] += 1  moze +1 power za kazda dobra odpowiedz?
             others[other]["other_health"] -= 1
             questions[q_count][2] = True
             ui.print_message("Correct!")
         else:
-            # player['player_power'] -= 1  moze -1 power za kazda bledna odpowiedz?
             ui.print_message("Wrong!")
         q_count += 1
 
     if others[other]["other_health"] > 0:
         player["player_life"] -= 1
+        player['loss'] += 1
         ui.print_message("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
     else:
         player["player_life"] += 1
+        player['wins'] += 1
         add_to_inventory(inventory, "jelly")
         ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         ui.print_message('+1 life point!')
@@ -455,6 +452,7 @@ def fight(player, others, other, inventory, items):
     if player_hit > other_hit:
         ui.print_message('You just won the fight with %s! +1 to power for you!' %(others[other]['other_name']))
         player['player_power'] += 1
+        player['wins'] += 1
         others[other]['other_health'] -= 1
 
     elif player_hit == other_hit:
@@ -463,6 +461,7 @@ def fight(player, others, other, inventory, items):
     else:
         ui.print_message('You just lost fight with %s! You loose one life point' %(others[other]['other_name']))
         player['player_life'] -= 1
+        player['loss'] += 1
 
 
 def add_secret_code(codes):
@@ -484,3 +483,12 @@ def use_secret_code(player, others, level, codes):
         elif added_code == codes["extra_lives"]:
             player['player_life'] += 3
         player['used_code'] = True
+
+
+def show_statistics(player):
+    statistics_keys = ("wins", "loss", 'discovered_boards')
+    statistics_dict = {}
+    for k in player:
+        if k in statistics_keys:
+            statistics_dict[k] = player[k]
+    ui.print_table(statistics_dict)
