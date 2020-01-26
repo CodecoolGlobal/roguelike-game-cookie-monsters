@@ -26,7 +26,7 @@ def user_info(list_labels, player_nickname):
     for elem in range(len(list_labels)):
         user_answer = input(str(list_labels[elem])+" : ")
         if elem == 0:
-            data_manager.read_file_nicknames(file_nicknames)
+            data_manager.read_file_record(file_nicknames)
             for line in player_nickname:
                 if user_answer == line:
                     raise Exception("This user already exist. Try again and select other name")
@@ -58,10 +58,8 @@ def user_info(list_labels, player_nickname):
                     dictionaries.player['player_life'] = dictionaries.player['player_life'] + 1
      
         dictionaries.player[list_labels[elem]] = user_answer
-    data_manager.add_new_nicknames(dictionaries.player, file_nicknames)    
+    data_manager.add_new_record(dictionaries.player, file_nicknames)    
     
-
-
 
 def data_to_print(data):
     keys = ["Nickname", "Type", "Level of difficulty"]
@@ -93,6 +91,6 @@ def count_points():
 
 def add_results(data, result):
     if dictionaries.player['used_code'] == False:
-        data_manager.add_new_nicknames(data,file_results)
+        data_manager.add_new_record(data,file_results)
     else:
         print('You cheated') 
