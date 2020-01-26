@@ -24,7 +24,7 @@ def main():
     #view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
     #view.start_descriptions()    
     # initial level
-    level = 'BOARD_3'   
+    level = 'BOARD_1'   
 
     # initial key
     key = ''
@@ -48,9 +48,9 @@ def main():
 
         # Set up board
         board = engine.create_board(dictionaries.BOARD[level])
-        board = engine.put_player_on_board(board, dictionaries.player)
         board = engine.put_other_on_board(board, dictionaries.others, level)
         board = engine.put_item_on_board(board, dictionaries.items, level) 
+        board = engine.put_player_on_board(board, dictionaries.player)
 
         # Display essential info
         ui.print_player_essential_atributes(dictionaries.player)
@@ -95,6 +95,7 @@ def main():
                 dictionaries.player['position_x'] = 3
     
             if level == 'WIN':
+                pass_key_input = True
                 pass
             else:
                 ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))

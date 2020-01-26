@@ -107,33 +107,70 @@ def get_random_position_of_other(others, width, height):
 
     """
     for other in others:
+        if other != "boss":
+            if others[other]["other_health"] > 0:
+                random_selection = random.randrange(4)
+                # Going right
+                if random_selection == 0:
+                    potential_position = others[other]["position_x"] + others[other]["step"]
+                    if potential_position >= width - 1:
+                        pass
+                    else:
+                        others[other]["position_x"] += others[other]["step"]
+                # Going left
+                if random_selection == 1:
+                    potential_position = others[other]["position_x"] - others[other]["step"]
+                    if potential_position <= 0:
+                        pass
+                    else:
+                        others[other]["position_x"] -= others[other]["step"]
+                # Going down
+                if random_selection == 2:
+                    potential_position = others[other]["position_y"] + others[other]["step"]
+                    if potential_position >= height - 1:
+                        pass
+                    else:
+                        others[other]["position_y"] += others[other]["step"]
+                # Going up
+                if random_selection == 3:
+                    potential_position = others[other]["position_y"] - others[other]["step"]
+                    if potential_position <= 0:
+                        pass
+                    else:
+                        others[other]["position_y"] -= others[other]["step"]
+        elif other == 'boss':
+            if others[other]["other_health"] > 0:
+                random_selection = random.randrange(4)
+                # Going right
+                if random_selection == 0:
+                    potential_position = others[other]["position_x"] + others[other]["step"]
+                    if potential_position + 2 >= width - 1:
+                        pass
+                    else:
+                        others[other]["position_x"] += others[other]["step"]
+                # Going left
+                if random_selection == 1:
+                    potential_position = others[other]["position_x"] - others[other]["step"]
+                    if potential_position - 2 <= 0:
+                        pass
+                    else:
+                        others[other]["position_x"] -= others[other]["step"]
+                # Going down
+                if random_selection == 2:
+                    potential_position = others[other]["position_y"] + others[other]["step"]
+                    if potential_position + 2 >= height - 1:
+                        pass
+                    else:
+                        others[other]["position_y"] += others[other]["step"]
+                # Going up
+                if random_selection == 3:
+                    potential_position = others[other]["position_y"] - others[other]["step"]
+                    if potential_position - 2 <= 0:
+                        pass
+                    else:
+                        others[other]["position_y"] -= others[other]["step"]
 
-        if others[other]["other_health"] > 0:
-            random_selection = random.randrange(4)
-            if random_selection == 0:
-                potential_position = others[other]["position_x"] + others[other]["step"]
-                if potential_position >= width - 1:
-                    pass
-                else:
-                    others[other]["position_x"] += others[other]["step"]
-            if random_selection == 1:
-                potential_position = others[other]["position_x"] - others[other]["step"]
-                if potential_position <= 0:
-                    pass
-                else:
-                    others[other]["position_x"] -= others[other]["step"]
-            if random_selection == 2:
-                potential_position = others[other]["position_y"] + others[other]["step"]
-                if potential_position >= height - 1:
-                    pass
-                else:
-                    others[other]["position_y"] += others[other]["step"]
-            if random_selection == 3:
-                potential_position = others[other]["position_y"] - others[other]["step"]
-                if potential_position <= 0:
-                    pass
-                else:
-                    others[other]["position_y"] -= others[other]["step"]
+                
 
 
 def add_to_inventory(inventory, item_key):
