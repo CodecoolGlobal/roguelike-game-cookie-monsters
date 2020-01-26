@@ -414,20 +414,20 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     while q_count <= questions_number and others[other]["other_health"] > 0:
         answer = input(questions[q_count][0])
         if answer == questions[q_count][1]:
-            # player['player_power'] += 1  moze +1 power za kazda dobra odpowiedz?
             others[other]["other_health"] -= 1
             questions[q_count][2] = True
             ui.print_message("Correct!")
         else:
-            # player['player_power'] -= 1  moze -1 power za kazda bledna odpowiedz?
             ui.print_message("Wrong!")
         q_count += 1
 
     if others[other]["other_health"] > 0:
         player["player_life"] -= 1
+        player['loss'] += 1
         ui.print_message("To get %s you have to come back and reply correctly to the questions!" % others[other]["goal_quiz"])
     else:
         player["player_life"] += 1
+        player['wins'] += 1
         add_to_inventory(inventory, "jelly")
         ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         ui.print_message('+1 life point!')
