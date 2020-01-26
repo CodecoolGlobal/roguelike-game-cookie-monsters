@@ -28,7 +28,7 @@ def user_info(list_labels, player_nickname):
         if elem == 0:
             data_manager.read_file_record(file_nicknames)
             for line in player_nickname:
-                if user_answer == line:
+                if user_answer == line[5]:
                     raise Exception("This user already exist. Try again and select other name")
             print("\nYou can choose who you want to be :D \nYour options: (1)CookieMan, (2)CookieMum or (3)CookieBaby\n")        
         

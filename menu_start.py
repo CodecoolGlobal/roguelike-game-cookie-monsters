@@ -5,6 +5,7 @@ import players
 import main
 from termcolor import colored
 import util
+import time
 
 file_nicknames = "data_nickname.txt"
 file_results = "results.txt"
@@ -37,6 +38,7 @@ def run():
                 break               
             except Exception as error:
                 print(str(error))
+                time.sleep(3)
                 continue
         elif choice == '2':
             view.print_result(label_results,data_manager.read_file_record(file_results))
@@ -57,7 +59,7 @@ def run():
             else:
                 print("try again")
         elif choice == '4':
-            view.print_Hall_of_fame(view.bubble_sort(data_manager.read_file_nicknames(file_results)))
+            view.print_Hall_of_fame(view.bubble_sort(data_manager.read_file_record(file_results)))
             print("\n")
             user_decision = input("If you want to come to main menu, please press 0 :")
             if user_decision == "0" :
