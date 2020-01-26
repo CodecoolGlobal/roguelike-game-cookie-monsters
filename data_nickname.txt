@@ -1,1 +1,8 @@
 @,10,10,5,1,Nati,CookieBaby,2
+
+@,10,10,6,1,False,HHH,rolling_pin,2,2
+@,10,10,6,1,False,HHH,rolling_pin,2,2
+@,10,10,3,1,False,ddd,3,3
+@,10,10,6,1,False,ddd,rolling_pin,2,2
+@,10,10,6,1,False,sss,rolling_pin,2,2
+@,10,10,6,1,True,NNN,rolling_pin,2,2
