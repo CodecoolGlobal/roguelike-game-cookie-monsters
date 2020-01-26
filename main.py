@@ -38,7 +38,7 @@ def main():
     while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
 
         view.print_table(players.data_to_print(dictionaries.player))
-        print(dictionaries.items)
+       
         # Set up board
         board = engine.create_board(dictionaries.BOARD[level])
         board = engine.put_player_on_board(board, dictionaries.player)
@@ -127,14 +127,18 @@ def main():
         util.clear_screen()
         ui.display_board(board)
         print(text2art("VICTORY!", font='block', chr_ignore=True))
+        ui.authors_presentation()
 
     elif level == 'LOSE':
         util.clear_screen()
         ui.display_board(board)
         print(text2art("GAME OVER!", font='block', chr_ignore=True))
+        ui.authors_presentation()
+
         time.sleep(10.7)
     
-    print('\n\n\n Goodbye, see you soon!')
+    
+    ui.authors_presentation()
     time.sleep(1.0)
 
     with Image.open("cookiemonster.jpg") as img:
