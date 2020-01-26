@@ -140,7 +140,7 @@ def add_to_inventory(inventory, item_key):
     """Add to the inventory dictionary a list of items"""
 
 
-    if item_key == 'first_ai':
+    if item_key == 'first_aid':
         pass
 
     elif item_key in inventory:
@@ -154,6 +154,8 @@ def put_item_on_board(board, items, level):
     for item_key in items:
         if items[item_key]['board'] == int(level[-1]):
             board[items[item_key]['position_y']][items[item_key]['position_x']] = items[item_key]['item_icon']
+        else:
+            pass
 
     return board
 
@@ -223,12 +225,12 @@ def movement(board, player, key, others):
         pass
 
 
-def item_vs_player(inventory, item, player):
+def item_vs_player(inventory, item, player, level, items):
 
     item_to_delete = ''
 
     for item_key in item:
-        if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y']:
+        if item[item_key]['position_x'] == player['position_x'] and item[item_key]['position_y'] == player['position_y'] and items[item_key]['board'] == int(level[-1]):
 
             add_to_inventory(inventory, item_key)
             item_to_delete = item_key
