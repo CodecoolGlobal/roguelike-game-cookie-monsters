@@ -248,7 +248,7 @@ def item_vs_player(inventory, item, player, level, items):
         pass
 
     elif item[item_to_delete]['number'] == 0:
-        del item[item_to_delete]
+        item[item_to_delete]['board'] = -1
 
 def add_life_points(item, player):
 
@@ -442,14 +442,14 @@ def fight(player, others, other, inventory, items):
     other_x = others[other]['position_x']
     other_y = others[other]['position_y']
 
-    items_sumaric_power = 0
+    items_summaric_power = 0
     items_summaric_protection = 0
     if player_x == other_x and player_y == other_y:
         for item in inventory:
-            items_sumaric_power += items[item]['added_power']
-            items_sumaric_protection += items[item]['added_protection']
+            items_summaric_power += items[item]['added_power']
+            items_summaric_protection += items[item]['added_protection']
 
-    player_hit = (player['player_power'] + items_sumaric_power) * random.randrange(5)
+    player_hit = (player['player_power'] + items_summaric_power) * random.randrange(5)
     other_hit = (others[other]['other_power'] - items_summaric_protection) * random.randrange(5)
 
     if player_hit > other_hit:
