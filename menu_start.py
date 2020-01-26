@@ -10,7 +10,7 @@ file_nicknames = "data_nickname.txt"
 file_results = "results.txt"
 
 list_labels = ["Nickname", "Type", "Level of difficulty"]
-player_nickname = data_manager.read_file_nicknames(file_nicknames)
+player_nickname = data_manager.read_file_record(file_nicknames)
 list_options = {
                 1 : 'Start Play',
                 2 : 'Check all of results',
@@ -39,7 +39,7 @@ def run():
                 print(str(error))
                 continue
         elif choice == '2':
-            view.print_result(label_results,data_manager.read_file_nicknames(file_results))
+            view.print_result(label_results,data_manager.read_file_record(file_results))
             print("\n")
             user_decision = input("If you want to come to main menu, please press 0 :")
             if user_decision == "0" :

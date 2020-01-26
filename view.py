@@ -1,4 +1,3 @@
-import data_manager
 from termcolor import colored
 import time
 
@@ -11,24 +10,26 @@ file_results = "results.txt"
 label_results = ["Nickname","Points"]
 
 def start_descriptions():
-    print(colored("Welcome to our cookie game! \n", "yellow"))
-    print(colored("Maybe you want to play some game:D? \n", "yellow"))
-    print(colored("So, first I suggest you read instruction about our Magic World :) \n", "yellow"))
-    print(colored("About this Story:\n",'cyan', attrs=['bold', 'underline']))
-    print(colored(("""Which TV show reminds you of your childhood? 
-        Do you remember your childhood mornings - drinking milk, eating cookies and watching cartoons? 
-        Talking about cookies …Do you know what starts with letter C? 
-        Good enough for me, not only for me and you but for this main character also! 
-        What are we talking about? Cookie starts with C! Are you already recognizing this song?\n
-        Cookie Monster is a Muppet on the long-running children's television show Sesame Street.\n
-        Now you have a unique opportunity to become CookieMonster.
-        Your job will be get as many candies as you can. 
-        On the other hands you'll be forced to mental effort as well as defeat the monsters.
-        So let's try your skills !!!\n""").ljust(10), 'cyan'))
+    print(colored("Welcome to our cookie game!".center(100), "yellow"))
+    print(colored("Maybe you want to play some game:D?".center(100), "yellow"))
+    print(colored("So, first I suggest you read instruction about our Magic World :)".center(100), "yellow"))
+    print("\n")
+    print(colored("About this Story:".center(100),'cyan', attrs=['bold', 'underline']))
+    print(colored("Which TV show reminds you of your childhood?".center(100), 'cyan'))
+    print(colored("Do you remember your childhood mornings - drinking milk, eating cookies and watching cartoons?".center(100) , 'cyan'))
+    print(colored("Talking about cookies …Do you know what starts with letter C?\n".center(100), 'cyan'))
+    print(colored("Good enough for me, not only for me and you but for this main character also!\n".center(100), 'cyan'))
+    print(colored("What are we talking about? Cookie starts with C! Are you already recognizing this song?\n".center(100), 'cyan'))
+    print(colored("Cookie Monster is a Muppet on the long-running children's television show Sesame Street.\n".center(100), 'cyan'))
+    print(colored("Now you have a unique opportunity to become CookieMonster.\n".center(100), 'cyan'))
+    print(colored("Your job will be get as many candies as you can.\n".center(100), 'cyan'))
+    print(colored("On the other hands you'll be forced to mental effort as well as defeat the monsters.\n".center(100), 'cyan'))
+    print(colored("So let's try your skills !!!".center(100), 'cyan'))
     time.sleep(15.0)
 
 def bubble_sort(table):
     """function which sort all records in our table"""
+    position_of_points = 1
 
     for i in range(len(table)):
         j = len(table)-1
@@ -52,8 +53,6 @@ def print_result(label, results):
         record = "".join("|"+word.ljust(width) for word, width in zip(record, widths))+"|"
         table_new.append(record)
         i += 1
-
-
     floor = "|" + "-"*(len(record)-2) +"|"
     print("/","-"*(len(record)-4),"\\")
     
@@ -67,34 +66,32 @@ def print_result(label, results):
     print("\\","-"*(len(record)-4),"/")    
 
 def print_Hall_of_fame(results):
-    i = 1
+    index = 1
     print(colored("\n***** The best 5 players *****\n", 'green'))
     for line in results[0:5]:
-        print(i, ". ", " : ".join(line))
-        i += 1 
-
-
+        print(index, ". ", " : ".join(line))
+        index += 1 
 
 
 def print_menu(list_options):
-    i = 1
+    index = 1
     for key in list_options:
         if key != 0:
-            print("(",i,")", list_options[key])
-            i += 1 
+            print("(",index,")", list_options[key])
+            index += 1 
     print("( 0 )", list_options[0])
 
 
 def print_table(data):
-    i = 0
-    print("-" * BOARD_WIDTH)
-    for key in data.keys():
+    index = 0
+    print("-" * 40)
+    for key in data:
         if i == 0:
-            print(colored(key.rjust(int(BOARD_WIDTH/2)),"cyan"),":",colored(data[key], "cyan"))
+            print(colored(key.ljust(int(len("Level of difficulty"))), "cyan"),":",colored(data[key], "cyan")," 😈")
         else:
-            print(colored(key.rjust(int(BOARD_WIDTH/2)), "cyan"),":",colored(data[key], "cyan"))
-        i += 1       
-    print("-" * BOARD_WIDTH) 
+            print(colored(key.ljust(int(len("Level of difficulty"))), "cyan"),":",colored(data[key], "cyan"))
+        index += 1       
+    print("-" * 40) 
 
 def print_instruction():
     
@@ -123,7 +120,6 @@ def print_instruction():
 def print_images(images):
     for line in images:
         print(colored("".join(line), "blue"))
-
 
 
 def exit_message():

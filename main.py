@@ -9,20 +9,16 @@ import view
 from art import text2art
 from termcolor import colored
 from PIL import Image
-#from pygame import mixer
+from pygame import mixer
 import data_manager
 
-
-#with Image.open("cookiemonster.jpg") as img:
-        #img.show()
-
 def main():
-    #MUSIC_FILE = "Cookie Monster Sings C is for Cookie.wav"
-    #mixer.init()
-    #mixer.music.load(MUSIC_FILE)
-    #mixer.music.play()
-    #view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
-    #view.start_descriptions()    
+    MUSIC_FILE = "Cookie Monster Sings C is for Cookie.wav"
+    mixer.init()
+    mixer.music.load(MUSIC_FILE)
+    mixer.music.play()
+    view.print_images(data_manager.read_file_record('ascii-art.txt'))
+    view.start_descriptions()    
     # initial level
     level = 'BOARD_1'   
 
@@ -45,7 +41,7 @@ def main():
         pass_key_input = False
         
         view.print_table(players.data_to_print(dictionaries.player))
-
+       
         # Set up board
         board = engine.create_board(dictionaries.BOARD[level])
         board = engine.put_other_on_board(board, dictionaries.others, level)
@@ -138,12 +134,17 @@ def main():
         util.clear_screen()
         ui.display_board(board)
         print(text2art("VICTORY!", font='block', chr_ignore=True))
+        ui.authors_presentation()
 
     elif level == 'LOSE':
         util.clear_screen()
         ui.display_board(board)
         print(text2art("GAME OVER!", font='block', chr_ignore=True))
+        ui.authors_presentation()
+
         time.sleep(10.7)
+    
+    ui.authors_presentation()
     players.add_results(players.count_points(), "results.txt")
     print('\n\n\n Goodbye, see you soon!')
     time.sleep(1.0)
