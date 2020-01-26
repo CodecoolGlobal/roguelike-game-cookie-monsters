@@ -368,7 +368,7 @@ def player_enters_gate(level, BOARD, player, key, inventory, others):
                                     elif 'Pralines' not in inventory  and others['other3']['other_health'] == 0:
                                         print("Come back with Pralines!")                                        
                                 elif level == 'BOARD_3':
-                                    if 'boss' not in others:
+                                    if others['boss']['other_health'] == 0:
                                         return BOARD_level['NEXT_LEVEL']
                                     elif others['boss']['other_health'] > 0:
                                         print('Come back once you defeat the Boss!!')
@@ -440,14 +440,14 @@ def fight(player, others, other, inventory, items):
     other_x = others[other]['position_x']
     other_y = others[other]['position_y']
 
-    items_sumaric_power = 0
+    items_summaric_power = 0
     items_summaric_protection = 0
     if player_x == other_x and player_y == other_y:
         for item in inventory:
-            items_sumaric_power += items[item]['added_power']
-            items_sumaric_protection += items[item]['added_protection']
+            items_summaric_power += items[item]['added_power']
+            items_summaric_protection += items[item]['added_protection']
 
-    player_hit = (player['player_power'] + items_sumaric_power) * random.randrange(5)
+    player_hit = (player['player_power'] + items_summaric_power) * random.randrange(5)
     other_hit = (others[other]['other_power'] - items_summaric_protection) * random.randrange(5)
 
     if player_hit > other_hit:

@@ -38,7 +38,7 @@ def main():
     while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
 
         view.print_table(players.data_to_print(dictionaries.player))
-        print(dictionaries.items)
+
         # Set up board
         board = engine.create_board(dictionaries.BOARD[level])
         board = engine.put_player_on_board(board, dictionaries.player)
