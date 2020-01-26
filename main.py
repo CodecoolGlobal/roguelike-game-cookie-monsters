@@ -61,10 +61,13 @@ def main():
             ui.print_message(message)
             ui.print_table(dictionaries.inventory)
 
+        # Display statistics
+        if key == "p":
+            engine.show_statistics(dictionaries.player)
+
         # Insert secret code
         if key == "c":
             engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
-
 
         # Player input
         key = util.key_pressed()

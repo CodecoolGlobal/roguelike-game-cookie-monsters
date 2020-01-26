@@ -482,3 +482,12 @@ def use_secret_code(player, others, level, codes):
         elif added_code == codes["extra_lives"]:
             player['player_life'] += 3
         player['used_code'] = True
+
+
+def show_statistics(player):
+    statistics_keys = ("wins", "loss", 'discovered_boards')
+    statistics_dict = {}
+    for k, v in player.items():
+        if player[k] in statistics_keys:
+            statistics_dict[k] = v
+    ui.print_table(statistics_dict)

@@ -6,7 +6,7 @@ player = {
     'position_y': 10,
     'player_life': 0,
     'player_power': 1,
-    'used_code': False
+    'used_code': False,
     'wins': 0,
     'loss': 0,
     'discovered_boards': 1
