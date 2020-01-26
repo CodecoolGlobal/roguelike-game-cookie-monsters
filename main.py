@@ -26,18 +26,19 @@ def main():
     # initial level
     level = 'BOARD_1'   
 
-    # initial key`
+    # initial key
     key = ''
 
-    #menu_start.run()
-        
+    menu_start.run()
+
     ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
     time.sleep(1.0)
     util.clear_screen()
+    
 
     while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
 
-        #view.print_table(players.data_to_print(dictionaries.player))
+        view.print_table(players.data_to_print(dictionaries.player))
 
         # Set up board
         print(level)
@@ -73,7 +74,7 @@ def main():
         engine.movement(board, dictionaries.player, key, dictionaries.others)
 
         # Clear screen
-        #util.clear_screen()
+        util.clear_screen()
 
         # Interaction with other characters
         if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
@@ -127,7 +128,7 @@ def main():
         ui.display_board(board)
         print(text2art("GAME OVER!", font='block', chr_ignore=True))
         time.sleep(10.7)
-    
+    players.add_results(players.count_points(), "results.txt")
     print('\n\n\n Goodbye, see you soon!')
     time.sleep(1.0)
 
