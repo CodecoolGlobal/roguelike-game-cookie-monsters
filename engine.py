@@ -462,7 +462,7 @@ def player_vs_other_quiz(player, other, others, inventory, questions, questions_
     else:
         player["player_life"] += 1
         player['wins'] += 1
-        add_to_inventory(inventory, "jelly")
+        add_to_inventory(inventory, "Jelly")
         ui.print_message("Wonderful! The %s gave you %s." % (others[other]["other_name"], others[other]["goal_quiz"]))
         ui.print_message('+1 life point!')
 

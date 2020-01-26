@@ -180,7 +180,7 @@ items = {
             },
         'Donut':{ 
             'type': 'ingridient', 
-            'item_icon': 'D ',
+            'item_icon': '🍩',
             'position_x': 56,
             'position_y': 26,
             'number': 1,

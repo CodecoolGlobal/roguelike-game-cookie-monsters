@@ -41,7 +41,7 @@ def main():
     while level != 'WIN' and level != 'QUIT' and level != 'LOSE':
         
         util.clear_screen()
-
+        print(dictionaries.items)
         pass_key_input = False
         
         view.print_table(players.data_to_print(dictionaries.player))
