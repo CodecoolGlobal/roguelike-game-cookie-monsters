@@ -9,7 +9,7 @@ import view
 from art import text2art
 from termcolor import colored
 from PIL import Image
-from pygame import mixer
+#from pygame import mixer
 import data_manager
 
 
@@ -17,12 +17,12 @@ import data_manager
         #img.show()
 
 def main():
-    MUSIC_FILE = "Cookie Monster Sings C is for Cookie.wav"
-    mixer.init()
-    mixer.music.load(MUSIC_FILE)
-    mixer.music.play()
-    view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
-    view.start_descriptions()    
+    #MUSIC_FILE = "Cookie Monster Sings C is for Cookie.wav"
+    #mixer.init()
+    #mixer.music.load(MUSIC_FILE)
+    #mixer.music.play()
+    #view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
+    #view.start_descriptions()    
     # initial level
     level = 'BOARD_1'   
 
@@ -30,7 +30,7 @@ def main():
     key = ''
 
     menu_start.run()
-
+        
     ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
     time.sleep(1.0)
     util.clear_screen()
@@ -41,7 +41,6 @@ def main():
         view.print_table(players.data_to_print(dictionaries.player))
 
         # Set up board
-        print(level)
         board = engine.create_board(dictionaries.BOARD[level])
         board = engine.put_player_on_board(board, dictionaries.player)
         board = engine.put_other_on_board(board, dictionaries.others, level)
@@ -54,7 +53,7 @@ def main():
         ui.display_board(board)
 
         # Interaction whit items
-        engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player)
+        engine.item_vs_player(dictionaries.inventory, dictionaries.items, dictionaries.player, level, dictionaries.items)
 
         # Display inventory
 
@@ -62,13 +61,20 @@ def main():
             message = 'This is your inventory content: '
             ui.print_message(message)
             ui.print_table(dictionaries.inventory)
-        
-        # Player input
-        key = util.key_pressed()
+
+        # Display statistics
+        if key == "p":
+            engine.show_statistics(dictionaries.player)
 
         # Insert secret code
         if key == "c":
             engine.use_secret_code(dictionaries.player, dictionaries.others, level, dictionaries.codes)
+
+        # Player input
+        key = util.key_pressed()
+
+        # Clear screen
+        util.clear_screen()
 
         # Movement
         engine.movement(board, dictionaries.player, key, dictionaries.others)
@@ -77,8 +83,8 @@ def main():
         util.clear_screen()
 
         # Interaction with other characters
-        if engine.player_meets_other(dictionaries.others, dictionaries.player) != False:
-            other = engine.player_meets_other(dictionaries.others, dictionaries.player)
+        if engine.player_meets_other(dictionaries.others, dictionaries.player, level, board) != False:
+            other = engine.player_meets_other(dictionaries.others, dictionaries.player, level, board)
             if dictionaries.others[other]['other_type'] == 'enemy':
                 engine.fight(dictionaries.player, dictionaries.others, other, dictionaries.inventory, dictionaries.items)
             elif dictionaries.others[other]['other_type'] == 'quiz':
@@ -86,18 +92,21 @@ def main():
 
         # Gate and level change handling
       
-        if engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key) != level:
+        if engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key, dictionaries.inventory, dictionaries.others) != level:
             util.clear_screen()
-            level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key)
+            level = engine.player_enters_gate(level, dictionaries.BOARD, dictionaries.player, key, dictionaries.inventory, dictionaries.others)
+            if level == 'BOARD_2' or level == 'BOARD_3':
+                dictionaries.player['position_y'] = 15
+                dictionaries.player['position_x'] = 3
     
             if level == 'WIN':
                 pass
             else:
                
-                #print(level[-1])
-                #ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
+                ui.print_message('\n\n\n LEVEL %s \n\n\n' % (level[-1]))
                 time.sleep(1.0)
                 util.clear_screen()
+        
 
         # Check if quit
         if key == 'q':
@@ -113,8 +122,8 @@ def main():
                 else:
                     pass
 
-        
-        elif dictionaries.player['player_life'] == 0:
+
+        if dictionaries.player['player_life'] == 0:
             level = 'LOSE'
 
 
