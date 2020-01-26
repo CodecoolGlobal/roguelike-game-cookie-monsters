@@ -13,17 +13,16 @@ def start_descriptions():
     print(colored("Welcome to our cookie game!".center(100), "yellow"))
     print(colored("Maybe you want to play some game:D?".center(100), "yellow"))
     print(colored("So, first I suggest you read instruction about our Magic World :)".center(100), "yellow"))
-    print("\n")
     print(colored("About this Story:".center(100),'cyan', attrs=['bold', 'underline']))
     print(colored("Which TV show reminds you of your childhood?".center(100), 'cyan'))
     print(colored("Do you remember your childhood mornings - drinking milk, eating cookies and watching cartoons?".center(100) , 'cyan'))
-    print(colored("Talking about cookies …Do you know what starts with letter C?\n".center(100), 'cyan'))
-    print(colored("Good enough for me, not only for me and you but for this main character also!\n".center(100), 'cyan'))
-    print(colored("What are we talking about? Cookie starts with C! Are you already recognizing this song?\n".center(100), 'cyan'))
-    print(colored("Cookie Monster is a Muppet on the long-running children's television show Sesame Street.\n".center(100), 'cyan'))
-    print(colored("Now you have a unique opportunity to become CookieMonster.\n".center(100), 'cyan'))
-    print(colored("Your job will be get as many candies as you can.\n".center(100), 'cyan'))
-    print(colored("On the other hands you'll be forced to mental effort as well as defeat the monsters.\n".center(100), 'cyan'))
+    print(colored("Talking about cookies …Do you know what starts with letter C?".center(100), 'cyan'))
+    print(colored("Good enough for me, not only for me and you but for this main character also!".center(100), 'cyan'))
+    print(colored("What are we talking about? Cookie starts with C! Are you already recognizing this song?".center(100), 'cyan'))
+    print(colored("Cookie Monster is a Muppet on the long-running children's television show Sesame Street.".center(100), 'cyan'))
+    print(colored("Now you have a unique opportunity to become CookieMonster.".center(100), 'cyan'))
+    print(colored("Your job will be get as many candies as you can.".center(100), 'cyan'))
+    print(colored("On the other hands you'll be forced to mental effort as well as defeat the monsters.".center(100), 'cyan'))
     print(colored("So let's try your skills !!!".center(100), 'cyan'))
     time.sleep(15.0)
 
@@ -86,7 +85,7 @@ def print_table(data):
     index = 0
     print("-" * 40)
     for key in data:
-        if i == 0:
+        if index == 0:
             print(colored(key.ljust(int(len("Level of difficulty"))), "cyan"),":",colored(data[key], "cyan")," 😈")
         else:
             print(colored(key.ljust(int(len("Level of difficulty"))), "cyan"),":",colored(data[key], "cyan"))
