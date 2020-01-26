@@ -6,7 +6,10 @@ player = {
     'position_y': 10,
     'player_life': 0,
     'player_power': 1,
-    'used_code': False
+    'used_code': False,
+    'wins': 0,
+    'loss': 0,
+    'discovered_boards': 1
     }
 
 # BOARD -------------------------
@@ -18,13 +21,14 @@ BOARD = {
         'WIDTH': 100,
         'HEIGHT': 30,
         'NEXT_LEVEL': 'BOARD_2',
+        'PREVIOUS_LEVEL': None,
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_X': 5,
-                'GATE_POSITION_Y': 0},
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 99},
             'GATE_DOWN': {
-                'GATE_POSITION_X': None,
-                'GATE_POSITION_Y': None}
+                'GATE_POSITION_Y': None,
+                'GATE_POSITION_X': None}
                 }
     },
 
@@ -36,13 +40,14 @@ BOARD = {
         'GATE_POSITION_X': 0,
         'GATE_POSITION_Y': 10,
         'NEXT_LEVEL': 'BOARD_3',
+        'PREVIOUS_LEVEL': 'BOARD_1',
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_X': 15,
-                'GATE_POSITION_Y': 0},
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 99},
             'GATE_DOWN': {
-                'GATE_POSITION_X': 0,
-                'GATE_POSITION_Y': 5}
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 0}
         }        
     },
 
@@ -54,13 +59,15 @@ BOARD = {
         'GATE_POSITION_X': 60,
         'GATE_POSITION_Y': 0,
         'NEXT_LEVEL': 'WIN',
+        'PREVIOUS_LEVEL': 'BOARD_2',
         'GATES': {
             'GATE_UP': {
-                'GATE_POSITION_X': None,
-                'GATE_POSITION_Y': None},
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 99},
             'GATE_DOWN': {
-                'GATE_POSITION_X': 0,
-                'GATE_POSITION_Y': 5} 
+                'GATE_POSITION_Y': 15,
+                'GATE_POSITION_X': 0
+                } 
             }
         }
     }
@@ -147,7 +154,7 @@ items = {
             'position_x': 91,
             'position_y': 2,
             'number': 2,
-            'board': 2,
+            'board': 1,
             'added_power': 0,
             'added_protection': 0    
             },
@@ -184,7 +191,7 @@ items = {
         'Candy':{ 
             'type': 'ingridient', 
             'item_icon': 'E',
-            'position_x': 90,
+            'position_x': 91,
             'position_y': 5,
             'number': 2,
             'board': 1,
@@ -194,7 +201,7 @@ items = {
         'Sugar_wall':{ 
             'type': 'Shield', 
             'item_icon': 'W',
-            'position_x': 40,
+            'position_x': 41,
             'position_y': 2,
             'number': 2,
             'board': 1,
@@ -270,7 +277,7 @@ others = {
         'other_icon': "B",
         'position_x': 50,
         'position_y': 15,
-        'step': 2,
+        'step': 0,
         'other_health': 3,
         'goal_quiz': "winning",
         'questions': [],
