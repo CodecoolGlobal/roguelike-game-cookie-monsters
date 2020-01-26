@@ -24,7 +24,7 @@ def main():
     #view.print_images(data_manager.read_file_nicknames('ascii-art.txt'))
     #view.start_descriptions()    
     # initial level
-    level = 'BOARD_3'   
+    level = 'BOARD_1'   
 
     # initial key`
     key = ''
