@@ -19,7 +19,7 @@ def create_board(board):
     new_board.append(width * [brick])
 
     for a in range(height - 2):
-        new_board.append([brick] + (width - 2) * [' '] + [brick])
+        new_board.append([brick] + (width - 2) * ['  '] + [brick])
 
     new_board.append(width * [brick])
 
@@ -27,13 +27,13 @@ def create_board(board):
         pass
     else:
 
-        new_board[board['GATES']['GATE_UP']['GATE_POSITION_Y']][board['GATES']['GATE_UP']['GATE_POSITION_X']] = ' '
+        new_board[board['GATES']['GATE_UP']['GATE_POSITION_Y']][board['GATES']['GATE_UP']['GATE_POSITION_X']] = '  '
 
     if board['GATES']['GATE_DOWN']['GATE_POSITION_Y'] == None:
         pass
     else:
 
-        new_board[board['GATES']['GATE_DOWN']['GATE_POSITION_Y']][board['GATES']['GATE_DOWN']['GATE_POSITION_X']] = ' '
+        new_board[board['GATES']['GATE_DOWN']['GATE_POSITION_Y']][board['GATES']['GATE_DOWN']['GATE_POSITION_X']] = '  '
 
     return new_board
 

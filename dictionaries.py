@@ -1,7 +1,7 @@
 # PLAYER -------------------------
 
 player = {
-    'player_icon': '@',
+    'player_icon': '😋',
     'position_x': 10,
     'position_y': 10,
     'player_life': 0,
@@ -16,16 +16,16 @@ player = {
 
 BOARD = {
     'BOARD_1': {
-        'BRICK': '#',
+        'BRICK': '🍉',
         'COLOR': 'green',
-        'WIDTH': 100,
-        'HEIGHT': 30,
+        'WIDTH': 70,
+        'HEIGHT': 40,
         'NEXT_LEVEL': 'BOARD_2',
         'PREVIOUS_LEVEL': None,
         'GATES': {
             'GATE_UP': {
                 'GATE_POSITION_Y': 15,
-                'GATE_POSITION_X': 99},
+                'GATE_POSITION_X': 69},
             'GATE_DOWN': {
                 'GATE_POSITION_Y': None,
                 'GATE_POSITION_X': None}
@@ -33,10 +33,10 @@ BOARD = {
     },
 
     'BOARD_2':{
-        'BRICK': '%',
+        'BRICK': '🍩',
         'COLOR': 'yellow',
-        'WIDTH': 100,
-        'HEIGHT': 30,
+        'WIDTH': 70,
+        'HEIGHT': 40,
         'GATE_POSITION_X': 0,
         'GATE_POSITION_Y': 10,
         'NEXT_LEVEL': 'BOARD_3',
@@ -44,7 +44,7 @@ BOARD = {
         'GATES': {
             'GATE_UP': {
                 'GATE_POSITION_Y': 15,
-                'GATE_POSITION_X': 99},
+                'GATE_POSITION_X': 69},
             'GATE_DOWN': {
                 'GATE_POSITION_Y': 15,
                 'GATE_POSITION_X': 0}
@@ -52,10 +52,10 @@ BOARD = {
     },
 
     'BOARD_3':{
-        'BRICK': 'X',
+        'BRICK': '🍪',
         'COLOR': 'yellow',
-        'WIDTH': 100,
-        'HEIGHT': 30,
+        'WIDTH': 70,
+        'HEIGHT': 40,
         'GATE_POSITION_X': 60,
         'GATE_POSITION_Y': 0,
         'NEXT_LEVEL': 'WIN',
@@ -63,7 +63,7 @@ BOARD = {
         'GATES': {
             'GATE_UP': {
                 'GATE_POSITION_Y': 15,
-                'GATE_POSITION_X': 99},
+                'GATE_POSITION_X': 69},
             'GATE_DOWN': {
                 'GATE_POSITION_Y': 15,
                 'GATE_POSITION_X': 0
@@ -80,7 +80,7 @@ BOARD = {
 items = {
         'Chocolate':{
             'type': 'ingridient',
-            'item_icon': 'C',
+            'item_icon': 'C ',
             'position_x': 5,
             'position_y': 20,
             'number': 1,
@@ -90,7 +90,7 @@ items = {
             },
         'Jelly':{ 
             'type': 'ingridient', 
-            'item_icon': 'J',
+            'item_icon': 'J ',
             'position_x': 12,
             'position_y': 18,
             'number': 1,
@@ -100,7 +100,7 @@ items = {
             },
         'Pudding':{ 
             'type': 'ingridient', 
-            'item_icon': 'P',
+            'item_icon': 'P ',
             'position_x': 55,
             'position_y': 25,
             'number': 1,
@@ -110,8 +110,8 @@ items = {
             },
         'Ice Cream':{ 
             'type': 'ingridient', 
-            'item_icon': 'I',
-            'position_x': 92,
+            'item_icon': 'I ',
+            'position_x': 62,
             'position_y': 7,
             'number': 2,
             'board': 2,
@@ -120,7 +120,7 @@ items = {
             },
         'Jam':{
             'type': 'ingridient',
-            'item_icon': 'Z',
+            'item_icon': 'Z ',
             'position_x': 13,
             'position_y': 3,
             'number': 2,
@@ -130,7 +130,7 @@ items = {
             },
         'Biscuits':{ 
             'type': 'ingridient', 
-            'item_icon': 'B',
+            'item_icon': 'B ',
             'position_x': 10,
             'position_y': 19,
             'number': 1,
@@ -140,7 +140,7 @@ items = {
             },
         'Pralines':{ 
             'type': 'ingridient', 
-            'item_icon': 'Q',
+            'item_icon': 'Q ',
             'position_x': 57,
             'position_y': 27,
             'number': 1,
@@ -150,8 +150,8 @@ items = {
             },
         'Candy':{ 
             'type': 'ingridient', 
-            'item_icon': 'U',
-            'position_x': 91,
+            'item_icon': 'U ',
+            'position_x': 58,
             'position_y': 2,
             'number': 2,
             'board': 1,
@@ -160,7 +160,7 @@ items = {
             },
         'Honey':{
             'type': 'ingridient',
-            'item_icon': 'H',
+            'item_icon': 'H ',
             'position_x': 11,
             'position_y': 4,
             'number': 2,
@@ -170,7 +170,7 @@ items = {
             },
         'Lollipop':{ 
             'type': 'weapon', 
-            'item_icon': 'L',
+            'item_icon': 'L ',
             'position_x': 9,
             'position_y': 17,
             'number': 1,
@@ -180,7 +180,7 @@ items = {
             },
         'Donut':{ 
             'type': 'ingridient', 
-            'item_icon': 'D',
+            'item_icon': 'D ',
             'position_x': 56,
             'position_y': 26,
             'number': 1,
@@ -190,8 +190,8 @@ items = {
             },
         'Candy':{ 
             'type': 'ingridient', 
-            'item_icon': 'E',
-            'position_x': 91,
+            'item_icon': 'E ',
+            'position_x': 50,
             'position_y': 5,
             'number': 2,
             'board': 1,
@@ -200,9 +200,9 @@ items = {
             },
         'Sugar_wall':{ 
             'type': 'Shield', 
-            'item_icon': 'W',
-            'position_x': 41,
-            'position_y': 2,
+            'item_icon': '🍪',
+            'position_x': 65,
+            'position_y': 15,
             'number': 2,
             'board': 1,
             'added_power': 0,
@@ -210,8 +210,8 @@ items = {
             },
         'first_aid':{ 
             'type': 'life', 
-            'item_icon': 'A',
-            'position_x': 70,
+            'item_icon': '🍪',
+            'position_x': 50,
             'position_y': 15,
             'number': 1,
             'board': 1,
@@ -227,7 +227,7 @@ others = {
     'other': {
         'other_type': "quiz",
         'other_name': "Miller",
-        'other_icon': "M",
+        'other_icon': "👨🏼",
         'position_x': 5,
         'position_y': 5,
         'step': 1,
@@ -246,7 +246,7 @@ others = {
     'other2': {
         'other_type': "friend",
         'other_name': "Cook",
-        'other_icon': "C",
+        'other_icon': "👴🏼",
         'position_x': 20,
         'position_y': 25,
         'step': 0,
@@ -260,7 +260,7 @@ others = {
     'other3': {
         'other_type': "enemy",
         'other_name': "Cow",
-        'other_icon': "K",
+        'other_icon': "🐮",
         'position_x': 33,
         'position_y': 15,
         'step': 0,
@@ -274,8 +274,8 @@ others = {
     'boss': {
         'other_type': "enemy",
         'other_name': "Boss",
-        'other_icon': "B",
-        'position_x': 50,
+        'other_icon': "🍔",
+        'position_x': 30,
         'position_y': 15,
         'step': 1,
         'other_health': 3,
