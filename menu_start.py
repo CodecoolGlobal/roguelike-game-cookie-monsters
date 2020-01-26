@@ -25,7 +25,7 @@ label_results = ["Nickname", "Points"]
 
 
 def run():
-    print(colored("MAIN MENU", 'yellow'))
+    print(colored("\nMAIN MENU", 'yellow'))
     view.print_menu(list_options)
     print("\n")
     choice = input(str(colored('Your choice is: ', "green")))

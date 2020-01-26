@@ -277,7 +277,7 @@ others = {
         'other_icon': "🍔",
         'position_x': 30,
         'position_y': 15,
-        'step': 1,
+        'step': 0,
         'other_health': 3,
         'goal_quiz': "winning",
         'questions': [],

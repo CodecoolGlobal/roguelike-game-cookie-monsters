@@ -182,9 +182,9 @@ def player_meets_other(others, player, level, board = ''):
                     elif others[other]["position_y"] == player["position_y"] and others[other]["position_x"] == player["position_x"]:
                         return other
             elif others[other]['other_name'] == 'Boss':
-                if board[(player["position_y"] + 1)][player["position_x"]] == 'B' or board[(player["position_y"] - 1)][player["position_x"]] == 'B':
+                if board[(player["position_y"] + 1)][player["position_x"]] == '🍔' or board[(player["position_y"] - 1)][player["position_x"]] == '🍔':
                     return other
-                elif board[player["position_y"]][(player["position_x"] + 1)] == 'B' or board[player["position_y"]][(player["position_x"] - 1)] == 'B':
+                elif board[player["position_y"]][(player["position_x"] + 1)] == '🍔' or board[player["position_y"]][(player["position_x"] - 1)] == '🍔':
                     return other
 
     return if_meet
